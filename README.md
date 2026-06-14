@@ -87,6 +87,8 @@ Programs included:
 * Simple Calculator
 * Area of Rectangle Calculator
 
+---
+
 ### conditions.py
 
 **Topic:** Conditional Statements
