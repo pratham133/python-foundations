@@ -1,20 +1,34 @@
 # Python Foundations and Projects 🐍
 
-My Python learning journey for AI, Data Analytics, and Engineering.
+My Python learning journey for **AI, Data Analytics, and Software Engineering**.
+
+This repository contains daily Python practice, beginner programs, and mini-projects to build strong programming fundamentals.
+
+---
 
 ## Topics Covered
 
-### `hello.py`
+### hello.py
 
 **Topic:** Python Basics
+
+Concepts learned:
 
 * First Python program
 * `print()` function
 * Running Python in VS Code
 
-### `variables.py`
+Programs included:
+
+* Hello World Program
+
+---
+
+### variables.py
 
 **Topic:** Variables & User Input
+
+Concepts learned:
 
 * Variables
 * Strings (`str`)
@@ -22,17 +36,60 @@ My Python learning journey for AI, Data Analytics, and Engineering.
 * `input()` function
 * `print()` formatting
 
-### `datatypes.py`
+Programs included:
 
-**Topic:** Python Data Types
+* Personal Details Program
+* User Details Input Program
+
+---
+
+### datatypes.py
+
+**Topic:** Python Data Types & Type Conversion
+
+Concepts learned:
 
 * String (`str`)
 * Integer (`int`)
 * Float (`float`)
-* Variables
-* Output using `print()`
+* `input()`
+* `int(input())`
+* Type conversion
 
-## Goal
+Programs included:
+
+* Data Types Program
+* Number Addition Program
+* Marks Calculator
+* Average Marks Calculator
+
+---
+
+### operators.py
+
+**Topic:** Python Operators
+
+Concepts learned:
+
+* Addition (`+`)
+* Subtraction (`-`)
+* Multiplication (`*`)
+* Division (`/`)
+* Floor Division (`//`)
+* Modulus (`%`)
+* Power (`**`)
+
+Programs included:
+
+* Math Operators Program
+* More Operators Program
+* Square & Cube Calculator
+* Simple Calculator
+* Area of Rectangle Calculator
+
+---
+
+## Goal 🎯
 
 Building strong Python fundamentals for:
 
