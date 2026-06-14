@@ -13,3 +13,15 @@ height = 5.6
 print(name)
 print(age)
 print(height)
+
+# Program 2 (Number Input)
+
+# Get number input
+num1 = int(input("Enter first number: "))
+num2 = int(input("Enter second number: "))
+
+# Add numbers
+total = num1 + num2
+
+# Show result
+print("Total is:", total)
