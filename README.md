@@ -185,7 +185,6 @@ Concepts covered:
 **`while loop`** → Used when repetition depends on a condition and continues until it becomes false.
 
 
-
 ---
 
 ## Goal 🎯
