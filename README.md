@@ -118,6 +118,36 @@ Concepts covered:
 * Real-world logic building
 * Working with decimal values (`float`)
 
+---
+
+### loops.py
+
+**Topic:** Loops in Python
+
+Concepts learned:
+
+* `for loop`
+* `range()`
+* Looping with numbers
+* User input inside loops
+* Conditions inside loops
+
+Programs included:
+
+* Print Hello Program
+* Print Numbers Program
+* Print Name Multiple Times
+* Multiplication Table
+* Sum of Numbers
+* Sum of User Numbers
+* Even Numbers Printer
+
+Concepts covered:
+
+* Repeating tasks using loops
+* Working with ranges
+* Calculations inside loops
+* Combining loops with conditions
 
 ---
 
