@@ -187,6 +187,40 @@ Concepts covered:
 
 ---
 
+### Day-8/lists.py
+
+**Topic:** Lists in Python
+
+Concepts learned:
+
+* Creating lists
+* Accessing list items using index
+* Updating list items
+* Adding items with `append()`
+* Removing items with `remove()`
+
+Programs included:
+
+* Create a List
+* Access List Items
+* Print Favorite Fruit
+* Choose Fruit by Index
+* Change List Item
+* Add Item to List
+* Remove Item from List
+* Favorite Anime List
+
+Concepts covered:
+
+* Storing multiple values in one variable
+* Indexing in lists
+* Modifying lists
+* Basic list operations
+
+
+---
+
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
