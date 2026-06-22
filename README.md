@@ -256,6 +256,46 @@ Concepts covered:
 ---
 
 
+### Day-10/strings.py
+
+**Topic:** Strings in Python
+
+Concepts learned:
+
+* Creating and printing strings
+* String indexing
+* Finding string length with `len()`
+* Converting strings using `upper()`, `lower()`, and `capitalize()`
+* String slicing
+* Checking if a word exists in a string using `in`
+* String concatenation using `+`
+
+Programs included:
+
+* Create and Print a String
+* Print a Sentence with a String
+* String Indexing
+* Last Character of a String
+* Length of a String
+* Uppercase and Lowercase
+* String Slicing
+* Check Word in String
+* String Concatenation
+* String Practice Program
+
+Concepts covered:
+
+* Strings as text data in Python
+* Accessing characters by index
+* Extracting parts of a string
+* String methods and transformations
+* Searching text inside a string
+* Joining strings together
+
+
+---
+
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
