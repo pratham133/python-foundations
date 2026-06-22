@@ -187,7 +187,7 @@ Concepts covered:
 
 ---
 
-### Day-8/lists.py
+### lists.py
 
 **Topic:** Lists in Python
 
@@ -221,7 +221,7 @@ Concepts covered:
 ---
 
 
-### Day-9/functions.py
+### functions.py
 
 **Topic:** Functions in Python
 
@@ -256,7 +256,7 @@ Concepts covered:
 ---
 
 
-### Day-10/strings.py
+### strings.py
 
 **Topic:** Strings in Python
 
@@ -296,7 +296,7 @@ Concepts covered:
 ---
 
 
-### Day-11/dictionary.py
+### dictionary.py
 
 ### List vs Dictionary
 
