@@ -421,6 +421,49 @@ Concepts covered:
 ---
 
 
+### functions_advanced.py
+
+### Functions with Parameters and Return Values
+
+Functions can take **input values** using **parameters** and can send results back using **`return`**.
+
+* **Parameters** → values a function receives when called
+* **Return** → gives a result back so it can be stored, printed, or reused
+
+**Topic:** Advanced Functions in Python
+
+Concepts learned:
+
+* Creating functions with one parameter
+* Creating functions with multiple parameters
+* Returning values using `return`
+* Understanding the difference between `print()` and `return`
+* Using functions for calculations
+* Returning string values from functions
+* Building a small function practice program
+
+Programs included:
+
+* Function with One Parameter
+* Function with Two Parameters
+* Function that Returns a Value
+* Print vs Return
+* Multiplication Function
+* Function with String Return
+* Function Practice
+
+Concepts covered:
+
+* Passing values into functions
+* Returning results from functions
+* Reusing functions with different inputs
+* Working with both numbers and strings in functions
+* Understanding how `return` makes functions more powerful
+
+
+---
+
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
