@@ -378,6 +378,49 @@ Concepts covered:
 ---
 
 
+### set.py
+
+### List vs Tuple vs Set
+
+**`list`** → Stores multiple values in order, allows duplicates, and can be modified.
+
+**`tuple`** → Stores multiple values in order, allows duplicates, but is generally used for fixed / unchanging data.
+
+**`set`** → Stores **unique values only**, removes duplicates automatically, and is useful when order is not important.
+
+**Topic:** Sets in Python
+
+Concepts learned:
+
+* Creating sets
+* Understanding how sets remove duplicates
+* Adding values using `add()`
+* Removing values using `remove()`
+* Checking if a value exists in a set using `in`
+* Understanding the difference between list, tuple, and set
+
+Programs included:
+
+* Create a Set
+* Set Removes Duplicates
+* Add Value to Set
+* Remove Value from Set
+* Check Value in Set
+* List vs Tuple vs Set
+* Set Practice
+
+Concepts covered:
+
+* Sets as collections of unique values
+* Automatic duplicate removal
+* Adding and removing values from sets
+* Membership checking with `in`
+* Comparing sets with lists and tuples
+
+
+---
+
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
