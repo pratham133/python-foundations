@@ -464,6 +464,49 @@ Concepts covered:
 ---
 
 
+### loop_functions.py
+
+### Loops + Functions in Python
+
+Functions become much more powerful when combined with loops.
+This allows us to repeat logic, process strings, work with number ranges, and build reusable mini-programs.
+
+**Topic:** Combining Loops and Functions
+
+Concepts learned:
+
+* Using a `for` loop inside a function
+* Printing multiplication tables using a function
+* Finding the sum from 1 to N using a loop
+* Counting vowels in a string
+* Printing even numbers in a range
+* Returning the sum of even numbers
+* Printing each character of a string
+* Building a loop + function practice program
+
+Programs included:
+
+* Function to Print Table
+* Function to Find Sum from 1 to N
+* Function to Count Vowels
+* Function to Print Even Numbers
+* Function to Return Sum of Even Numbers
+* Function to Print Each Character
+* Loop + Function Practice
+
+Concepts covered:
+
+* Combining loops with reusable functions
+* Traversing strings character by character
+* Counting values using loops
+* Using conditions inside loops
+* Returning results from loop-based functions
+* Writing more practical and reusable programs
+
+
+---
+
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
