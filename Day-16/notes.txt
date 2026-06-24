@@ -1,0 +1,4 @@
+Hello, this my first file.
+I am learning Python file handling.
+This line was added later.
+Learning Python

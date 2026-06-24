@@ -507,6 +507,67 @@ Concepts covered:
 ---
 
 
+### file_handling.py
+
+### File Handling Basics in Python
+
+File handling allows Python programs to store and read data from files instead of only working with temporary terminal input/output.
+
+**Topic:** File Handling Basics
+
+Concepts learned:
+
+* Opening a file using `open()`
+* Writing text to a file using `"w"` mode
+* Reading text from a file using `"r"` mode
+* Appending new text using `"a"` mode
+* Reading a file line by line
+* Counting the number of lines in a file
+* Saving user notes into a text file
+* Reading all saved notes and counting them
+
+Programs included:
+
+* Write Text to File
+* Read Text from File
+* Append Text to File
+* Read File Line by Line
+* Count Number of Lines in File
+* Simple Note Saver
+* Note Reader + Line Counter
+
+Concepts covered:
+
+* Difference between write, read, and append modes
+* Overwriting vs preserving file content
+* Using `file.read()`, `file.readline()`, and `file.readlines()`
+* Traversing file content with loops
+* Storing user input in files
+* Building simple note-management logic with files
+
+### Difference between `readline()` and `readlines()`
+
+* **`file.readline()`**
+
+  * Reads **only one line** from the file
+  * Returns a **single string**
+  * Useful when you only want the next line
+
+* **`file.readlines()`**
+
+  * Reads **all lines** from the file
+  * Returns a **list of strings**
+  * Useful when you want to loop through every line or count total lines
+
+### Example:
+
+* `readline()` → `"Hello World\n"`
+* `readlines()` → `["Hello World\n", "Python Notes\n", "Practice Daily\n"]`
+
+
+---
+
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
