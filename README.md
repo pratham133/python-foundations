@@ -568,6 +568,76 @@ Concepts covered:
 ---
 
 
+### exception_handling.py
+
+### Exception Handling in Python
+
+Exception handling allows Python programs to catch runtime errors and respond gracefully instead of crashing with a traceback.
+
+**Topic:** Exception Handling with `try`, `except`, `else`, and `finally`
+
+Concepts learned:
+
+* Using `try` and `except` to catch errors
+* Handling invalid number input with `ValueError`
+* Handling division by zero with `ZeroDivisionError`
+* Handling missing files with `FileNotFoundError`
+* Using `else` when no exception occurs
+* Using `finally` to run code no matter what happens
+* Handling multiple exceptions in one program
+* Using a safe calculator program with exception handling
+
+Programs included:
+
+* Basic try and except
+* Handle Division by Zero
+* Handle Multiple Exceptions
+* Using else
+* Using finally
+* Handle File Not Found Error
+* Safe Calculator
+
+Concepts covered:
+
+* Preventing programs from crashing on bad input
+* Catching and handling runtime errors
+* Difference between `ValueError`, `ZeroDivisionError`, and `FileNotFoundError`
+* Using `else` only when no exception occurs
+* Using `finally` for cleanup or ending messages
+* Writing safer programs with multiple exception checks
+
+### Difference between `else` and `finally`
+
+* **`else`**
+
+  * Runs **only if no exception occurs**
+  * Useful for code that should run after a successful `try`
+
+* **`finally`**
+
+  * Runs **always**, whether an exception happens or not
+  * Useful for cleanup, closing resources, or final messages
+
+### Example:
+
+* If division works successfully → `else` runs
+* If division fails or succeeds → `finally` still runs
+
+### Handling multiple exceptions in one `except`
+
+Python also allows handling multiple exceptions in a single `except` block:
+
+```python
+except (ValueError, ZeroDivisionError):
+    print("Invalid input! or You cannot divide by zero.")
+```
+
+This is useful when different errors can be handled with the same message or logic.
+
+
+---
+
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
