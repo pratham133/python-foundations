@@ -1,8 +1,12 @@
-# Python Foundations and Projects 🐍
+# Python Foundations and Pr# Python Foundations 🐍
 
 My Python learning journey for **AI, Data Analytics, and Software Engineering**.
 
-This repository contains daily Python practice, beginner programs, and mini-projects to build strong programming fundamentals.
+This repository contains my **day-by-day Python foundations practice** — beginner programs, concept-based exercises, and structured notes to build strong programming fundamentals step by step.
+
+It is focused on **learning, consistency, and core Python concepts**.
+
+> **Note:** Standalone Python projects will be maintained in a separate repository so this repo stays focused on the learning journey and fundamentals.
 
 ---
 
@@ -184,7 +188,6 @@ Concepts covered:
 
 **`while loop`** → Used when repetition depends on a condition and continues until it becomes false.
 
-
 ---
 
 ### lists.py
@@ -217,9 +220,7 @@ Concepts covered:
 * Modifying lists
 * Basic list operations
 
-
 ---
-
 
 ### functions.py
 
@@ -252,9 +253,7 @@ Concepts covered:
 * Combining functions with loops and conditional statements
 * Writing cleaner and more organized programs
 
-
 ---
-
 
 ### strings.py
 
@@ -292,9 +291,7 @@ Concepts covered:
 * Searching text inside a string
 * Joining strings together
 
-
 ---
-
 
 ### dictionary.py
 
@@ -333,9 +330,7 @@ Concepts covered:
 * Removing data from dictionaries
 * Using dictionaries in practical examples
 
-
 ---
-
 
 ### tuple.py
 
@@ -374,9 +369,7 @@ Concepts covered:
 * Using tuples for fixed data
 * Comparing tuples with lists
 
-
 ---
-
 
 ### set.py
 
@@ -417,9 +410,7 @@ Concepts covered:
 * Membership checking with `in`
 * Comparing sets with lists and tuples
 
-
 ---
-
 
 ### functions_advanced.py
 
@@ -460,9 +451,7 @@ Concepts covered:
 * Working with both numbers and strings in functions
 * Understanding how `return` makes functions more powerful
 
-
 ---
-
 
 ### loop_functions.py
 
@@ -503,9 +492,7 @@ Concepts covered:
 * Returning results from loop-based functions
 * Writing more practical and reusable programs
 
-
 ---
-
 
 ### file_handling.py
 
@@ -564,9 +551,7 @@ Concepts covered:
 * `readline()` → `"Hello World\n"`
 * `readlines()` → `["Hello World\n", "Python Notes\n", "Practice Daily\n"]`
 
-
 ---
-
 
 ### exception_handling.py
 
@@ -634,9 +619,7 @@ except (ValueError, ZeroDivisionError):
 
 This is useful when different errors can be handled with the same message or logic.
 
-
 ---
-
 
 ### modules_imports.py
 
@@ -720,9 +703,7 @@ Concepts covered:
 * `add(a, b)` → returns the sum of two numbers
 * `make_upper(text)` → converts text to uppercase
 
-
 ---
-
 
 ## Goal 🎯
 
