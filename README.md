@@ -705,6 +705,122 @@ Concepts covered:
 
 ---
 
+### oop_basics.py
+
+### Object-Oriented Programming (OOP) Basics
+
+Object-Oriented Programming (OOP) is a programming paradigm that organizes code into **classes** and **objects**. It helps write cleaner, reusable, and more organized programs by combining **data** and the **functions** that operate on that data.
+
+**Topic:** OOP Basics in Python
+
+Concepts learned:
+
+* Creating classes using `class`
+* Creating objects (instances)
+* Understanding constructors using `__init__()`
+* Understanding the purpose of `self`
+* Creating and using instance variables
+* Accessing object attributes
+* Creating methods inside a class
+* Calling methods using objects
+
+Programs included:
+
+* Creating Your First Class
+* Creating Your First Object
+* Constructor (`__init__()`)
+* Accessing Object Attributes
+* Methods (`display_details()`)
+
+Concepts covered:
+
+* Difference between a class and an object
+* Initializing objects with constructors
+* Using `self` to refer to the current object
+* Storing data using instance variables
+* Accessing object data through attributes
+* Defining behavior using methods
+* Calling methods through object instances
+
+### Difference between Class and Object
+
+* **Class**
+
+  * A blueprint or template used to create objects.
+  * Defines what data and behavior an object will have.
+
+* **Object**
+
+  * A real instance created from a class.
+  * Stores its own data while sharing the class structure.
+
+### Understanding `__init__()`
+
+* `__init__()` is a special constructor method.
+* It runs **automatically** whenever a new object is created.
+* It is used to initialize an object's data.
+
+Example:
+
+```python
+student1 = Student("Pratham", 21, "Python")
+```
+
+Python automatically calls:
+
+```python
+__init__(student1, "Pratham", 21, "Python")
+```
+
+### Understanding `self`
+
+* `self` refers to the **current object**.
+* It allows each object to store and access its own data.
+* Python automatically passes the current object as the first argument when a method is called.
+
+Example:
+
+```python
+student1.display_details()
+```
+
+Python internally treats it similarly to:
+
+```python
+Student.display_details(student1)
+```
+
+### Instance Variables
+
+Instance variables belong to an individual object.
+
+Each object maintains its own copy.
+
+Example:
+
+```python
+student1.name
+student2.name
+```
+
+Even though both objects are created from the same class, they store different values independently.
+
+### Methods
+
+Methods are functions defined inside a class.
+
+They describe the behavior of an object and can access the object's data using `self`.
+
+Example:
+
+```python
+student1.display_details()
+```
+
+The method prints the information stored inside that specific object.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
