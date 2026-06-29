@@ -709,7 +709,7 @@ Concepts covered:
 
 ### Object-Oriented Programming (OOP) Basics
 
-Object-Oriented Programming (OOP) is a programming paradigm that organizes code into **classes** and **objects**. It helps write cleaner, reusable, and more organized programs by combining **data** and the **functions** that operate on that data.
+Object-Oriented Programming (OOP) is a programming paradigm that organizes code into **classes** and **objects**. It helps write cleaner, reusable, and more organized programs by combining **data** (attributes) and **behavior** (methods) into a single unit.
 
 **Topic:** OOP Basics in Python
 
@@ -723,6 +723,9 @@ Concepts learned:
 * Accessing object attributes
 * Creating methods inside a class
 * Calling methods using objects
+* Updating object attributes
+* Validating object data using methods
+* Introduction to Encapsulation
 
 Programs included:
 
@@ -731,6 +734,9 @@ Programs included:
 * Constructor (`__init__()`)
 * Accessing Object Attributes
 * Methods (`display_details()`)
+* Updating Object Attributes
+* Updating Attributes Using Methods
+* Age Validation
 
 Concepts covered:
 
@@ -741,18 +747,22 @@ Concepts covered:
 * Accessing object data through attributes
 * Defining behavior using methods
 * Calling methods through object instances
+* Updating object data directly
+* Updating object data through methods
+* Validating data before modifying object attributes
+* Basic idea of Encapsulation
 
 ### Difference between Class and Object
 
-* **Class**
+**Class**
 
-  * A blueprint or template used to create objects.
-  * Defines what data and behavior an object will have.
+* A blueprint or template used to create objects.
+* Defines what data and behavior an object will have.
 
-* **Object**
+**Object**
 
-  * A real instance created from a class.
-  * Stores its own data while sharing the class structure.
+* A real instance created from a class.
+* Stores its own data while sharing the class structure.
 
 ### Understanding `__init__()`
 
@@ -766,7 +776,7 @@ Example:
 student1 = Student("Pratham", 21, "Python")
 ```
 
-Python automatically calls:
+Python internally calls:
 
 ```python
 __init__(student1, "Pratham", 21, "Python")
@@ -776,7 +786,7 @@ __init__(student1, "Pratham", 21, "Python")
 
 * `self` refers to the **current object**.
 * It allows each object to store and access its own data.
-* Python automatically passes the current object as the first argument when a method is called.
+* Python automatically passes the current object as the first argument whenever a method is called.
 
 Example:
 
@@ -784,7 +794,7 @@ Example:
 student1.display_details()
 ```
 
-Python internally treats it similarly to:
+Python internally treats it like:
 
 ```python
 Student.display_details(student1)
@@ -794,7 +804,7 @@ Student.display_details(student1)
 
 Instance variables belong to an individual object.
 
-Each object maintains its own copy.
+Each object maintains its own copy of the data.
 
 Example:
 
@@ -817,7 +827,52 @@ Example:
 student1.display_details()
 ```
 
-The method prints the information stored inside that specific object.
+The method displays the information stored inside that specific object.
+
+### Updating Object Attributes
+
+Object attributes can be modified after an object has been created.
+
+Example:
+
+```python
+student1.age = 23
+```
+
+This directly updates the value stored inside the object.
+
+### Updating Attributes Using Methods
+
+Instead of changing attributes directly, methods can be used to control how object data is modified.
+
+Example:
+
+```python
+student1.update_age(23)
+```
+
+This approach keeps the object's behavior organized and makes future validation easier.
+
+### Age Validation
+
+The `update_age()` method was improved by validating the new age before updating it.
+
+Example:
+
+```python
+student1.update_age(-10)
+```
+
+Output:
+
+```text
+Invalid age! Age must be greater than 0.
+```
+
+The object's age remains unchanged because the invalid value is rejected.
+
+This is the first practical introduction to the concept of **Encapsulation**, where an object protects and manages its own data through methods instead of allowing unrestricted modification.
+
 
 ---
 
