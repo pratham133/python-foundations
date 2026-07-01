@@ -1323,6 +1323,241 @@ By completing this lesson, I learned how encapsulation helps protect object data
 
 ---
 
+### inheritance.py
+
+### Inheritance in Python
+
+Inheritance is one of the four fundamental principles of Object-Oriented Programming (OOP). It allows one class to inherit the attributes and methods of another class, promoting code reusability and reducing duplication.
+
+**Topic:** Inheritance in Python
+
+### Concepts Learned
+
+* Understanding Inheritance
+* Parent Class (Base Class)
+* Child Class (Derived Class)
+* Code Reusability
+* Adding New Features to Child Classes
+* Method Overriding
+* Using `super()`
+* Using `super().__init__()`
+* `isinstance()`
+* `issubclass()`
+
+### Programs Included
+
+* Creating a Parent Class
+* Creating a Child Class
+* Adding Child Class Features
+* Method Overriding
+* Using `super()`
+* Using `super()` with Constructors
+* Using `isinstance()` and `issubclass()`
+
+### Concepts Covered
+
+* Creating parent and child classes
+* Inheriting attributes and methods
+* Extending inherited classes
+* Overriding parent methods
+* Reusing parent functionality with `super()`
+* Reusing constructors with `super().__init__()`
+* Checking object types using `isinstance()`
+* Checking inheritance relationships using `issubclass()`
+
+---
+
+### What is Inheritance?
+
+Inheritance allows one class to acquire the properties and behaviors of another class.
+
+Instead of rewriting common code in multiple classes, a child class can reuse everything from its parent class and add its own unique features.
+
+This improves code organization, readability, and maintainability.
+
+---
+
+### Parent Class
+
+A parent class (also called a **Base Class** or **Superclass**) contains common attributes and methods that can be shared with other classes.
+
+Example:
+
+```python
+class Person:
+```
+
+The parent class serves as the foundation for child classes.
+
+---
+
+### Child Class
+
+A child class (also called a **Derived Class** or **Subclass**) inherits from a parent class.
+
+Example:
+
+```python
+class Student(Person):
+```
+
+The child automatically gains access to the parent's attributes and methods while being able to define its own additional functionality.
+
+---
+
+### Code Reusability
+
+One of the biggest advantages of inheritance is code reuse.
+
+Instead of rewriting constructors and methods in every class, common functionality is written once in the parent class and inherited by child classes.
+
+This reduces duplication and makes future updates much easier.
+
+---
+
+### Extending a Child Class
+
+A child class can add its own methods without affecting the parent class.
+
+Example:
+
+```python
+def study(self):
+    print(f"{self.name} is studying Python.")
+```
+
+The child class now has both inherited methods and its own newly added methods.
+
+---
+
+### Method Overriding
+
+Method overriding occurs when a child class defines a method with the same name as a method in the parent class.
+
+Example:
+
+```python
+def introduce(self):
+    print(f"Hi! I'm {self.name}.")
+```
+
+When the method is called on a child object, Python executes the child's version instead of the parent's version.
+
+This allows child classes to customize inherited behavior.
+
+---
+
+### Using `super()`
+
+The `super()` function allows a child class to call methods from its parent class.
+
+Example:
+
+```python
+super().introduce()
+```
+
+This enables the child class to reuse the parent's implementation before adding its own additional functionality.
+
+---
+
+### Using `super().__init__()`
+
+The most common use of `super()` is inside constructors.
+
+Example:
+
+```python
+super().__init__(name, age)
+```
+
+Instead of rewriting the parent's constructor, the child class reuses it and only initializes its own additional attributes.
+
+Example:
+
+```python
+self.course = course
+```
+
+This keeps constructors clean and avoids duplicate code.
+
+---
+
+### isinstance()
+
+The `isinstance()` function checks whether an object belongs to a particular class.
+
+Example:
+
+```python
+isinstance(student1, Student)
+```
+
+Since inheritance creates an "is-a" relationship, a child object is also considered an object of its parent class.
+
+Example:
+
+```python
+isinstance(student1, Person)
+```
+
+returns:
+
+```python
+True
+```
+
+because a `Student` is also a `Person`.
+
+---
+
+### issubclass()
+
+The `issubclass()` function checks whether one class inherits from another class.
+
+Example:
+
+```python
+issubclass(Student, Person)
+```
+
+returns:
+
+```python
+True
+```
+
+because `Student` inherits from `Person`.
+
+---
+
+### Advantages of Inheritance
+
+* Promotes code reusability
+* Reduces duplicate code
+* Makes programs easier to maintain
+* Simplifies extending existing classes
+* Supports hierarchical relationships between classes
+* Improves software organization
+
+---
+
+### Best Practices
+
+* Place common functionality inside the parent class.
+* Keep child classes focused on additional or specialized behavior.
+* Use method overriding only when customization is required.
+* Use `super()` instead of duplicating parent code.
+* Design inheritance using an **"is-a" relationship**.
+
+---
+
+### Summary
+
+By completing this lesson, I learned how inheritance allows child classes to reuse and extend parent classes. I understood how Python searches for inherited methods, how method overriding customizes inherited behavior, how `super()` and `super().__init__()` promote code reuse, and how `isinstance()` and `issubclass()` help verify inheritance relationships.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
