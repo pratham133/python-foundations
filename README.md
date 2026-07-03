@@ -1558,6 +1558,253 @@ By completing this lesson, I learned how inheritance allows child classes to reu
 
 ---
 
+### polymorphism.py
+
+### Polymorphism in Python
+
+Polymorphism is one of the four fundamental principles of Object-Oriented Programming (OOP). The word **Polymorphism** comes from two Greek words:
+
+* **Poly** = Many
+* **Morph** = Forms
+
+It means **"many forms."**
+
+In programming, polymorphism allows different objects to respond differently to the same method call while sharing a common interface.
+
+---
+
+**Topic:** Polymorphism in Python
+
+### Concepts Learned
+
+* Understanding Polymorphism
+* Same Method, Different Behavior
+* Polymorphism Without Inheritance
+* Polymorphism Using Inheritance
+* Method Overriding
+* Duck Typing
+* Writing Generic Functions
+
+---
+
+### Programs Included
+
+* Basic Polymorphism
+* One Function, Different Objects
+* Polymorphism with Inheritance
+* Duck Typing
+
+---
+
+### Concepts Covered
+
+* Same method name with different implementations
+* Dynamic method execution
+* Using one function with multiple object types
+* Method overriding as polymorphism
+* Duck Typing in Python
+* Writing flexible and reusable code
+
+---
+
+## What is Polymorphism?
+
+Polymorphism is an Object-Oriented Programming principle that allows different objects to respond differently to the same method call.
+
+Instead of writing separate code for every object type, Python automatically executes the appropriate method based on the actual object being used.
+
+In simple words:
+
+> **One interface, many different implementations.**
+
+This makes programs more flexible, reusable, and easier to maintain.
+
+---
+
+## Same Method, Different Behavior
+
+Different classes can define methods with the same name while providing different implementations.
+
+Example:
+
+```python
+class Dog:
+    def speak(self):
+        print("Woof!")
+
+class Cat:
+    def speak(self):
+        print("Meow!")
+```
+
+Both classes have a method named `speak()`, but each produces different behavior.
+
+This is the simplest example of polymorphism.
+
+---
+
+## Polymorphism Without Inheritance
+
+Polymorphism does not always require inheritance.
+
+If different objects provide the same method, they can all be used by the same function.
+
+Example:
+
+```python
+def animal_sound(animal):
+    animal.speak()
+```
+
+This function works for:
+
+* Dog
+* Cat
+* Cow
+* Robot
+* Any object that defines a `speak()` method
+
+The function never needs modification when new object types are introduced.
+
+---
+
+## Polymorphism with Inheritance
+
+Inheritance is one of the most common ways to implement polymorphism.
+
+A parent class defines a common method, and child classes override that method with their own implementation.
+
+Example:
+
+```python
+class Person:
+    def introduce(self):
+        print("I am a person.")
+
+class Student(Person):
+    def introduce(self):
+        print("I am a student.")
+
+class Teacher(Person):
+    def introduce(self):
+        print("I am a teacher.")
+```
+
+Each child class provides its own implementation of the same method.
+
+When the method is called, Python automatically executes the correct version based on the object.
+
+---
+
+## Method Overriding
+
+Method overriding occurs when a child class provides its own implementation of a method that already exists in the parent class.
+
+When that method is called using a child object, Python executes the child's implementation instead of the parent's.
+
+Method overriding is one of the most common ways to achieve polymorphism in Object-Oriented Programming.
+
+---
+
+## Writing Generic Functions
+
+One of the biggest advantages of polymorphism is the ability to write generic functions.
+
+Example:
+
+```python
+def introduce_person(person):
+    person.introduce()
+```
+
+This single function works for:
+
+* Student
+* Teacher
+* Doctor
+* Engineer
+* Any future class that defines an `introduce()` method.
+
+Instead of checking object types with multiple `if-else` statements, polymorphism allows the same function to work automatically with different objects.
+
+---
+
+## Duck Typing
+
+Duck Typing is a programming concept in Python where the type of an object is determined by its **behavior (methods and attributes)** rather than its actual class or inheritance hierarchy.
+
+In simple terms, Python does not care **what an object is**; it only cares **what the object can do**.
+
+Python follows the famous philosophy:
+
+> **"If it walks like a duck and quacks like a duck, then it's a duck."**
+
+This means that if an object provides the required methods or attributes, Python will use it regardless of the class from which the object was created.
+
+Example:
+
+```python
+class Dog:
+    def speak(self):
+        print("Woof!")
+
+class Robot:
+    def speak(self):
+        print("Beep Boop!")
+
+class Baby:
+    def speak(self):
+        print("Goo Goo!")
+
+def make_sound(obj):
+    obj.speak()
+```
+
+All three objects work successfully with the same function because they all implement the `speak()` method.
+
+Python does **not** ask:
+
+* "Are you a Dog?"
+* "Are you a Robot?"
+* "Are you a Baby?"
+
+Instead, Python simply asks:
+
+> **"Can you perform the required action?"**
+
+If the answer is **Yes**, Python executes the method.
+
+---
+
+## Advantages of Polymorphism
+
+* Promotes code reusability
+* Reduces duplicate code
+* Eliminates unnecessary `if-else` conditions
+* Makes programs easier to extend
+* Improves code flexibility
+* Simplifies software maintenance
+* Encourages clean Object-Oriented design
+
+---
+
+## Best Practices
+
+* Design classes with a common interface.
+* Use method overriding to customize inherited behavior.
+* Prefer polymorphism over long conditional statements.
+* Write generic functions that depend on behavior instead of object type.
+* Use Duck Typing whenever it makes the code simpler and more flexible.
+* Focus on what an object **can do**, not what class it belongs to.
+
+---
+
+## Summary
+
+By completing this lesson, I learned that polymorphism allows different objects to respond differently to the same method call while sharing a common interface. I understood how method overriding enables polymorphism through inheritance, how generic functions can work with multiple object types without modification, and how Duck Typing allows Python to focus on an object's behavior rather than its actual class. These concepts help in writing cleaner, more reusable, and easily extensible Object-Oriented programs.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
