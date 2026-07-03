@@ -1805,6 +1805,364 @@ By completing this lesson, I learned that polymorphism allows different objects 
 
 ---
 
+### abstraction.py
+
+# Abstraction in Python
+
+Abstraction is one of the four fundamental principles of Object-Oriented Programming (OOP). It is the process of **hiding the internal implementation details** of a program while exposing **only the essential features** to the user.
+
+Instead of focusing on *how* something works internally, abstraction focuses on *what* an object can do.
+
+---
+
+**Topic:** Abstraction in Python
+
+## Concepts Learned
+
+* Understanding Abstraction
+* Abstract Classes
+* Abstract Methods
+* Abstract Base Class (`ABC`)
+* `@abstractmethod` Decorator
+* Implementing Abstract Methods
+* Enforcing Method Implementation
+* Multiple Child Classes
+* Real-World Implementation using a Payment System
+* Combining Abstraction with Polymorphism
+
+---
+
+## Programs Included
+
+* Creating an Abstract Class
+* Missing Abstract Method
+* Multiple Child Classes
+* Real-Life Example using a Payment System
+* Abstraction + Polymorphism
+
+---
+
+## Concepts Covered
+
+* What is Abstraction?
+* Why Abstraction is Important
+* Creating Abstract Classes
+* Creating Abstract Methods
+* The `ABC` Class
+* The `@abstractmethod` Decorator
+* Enforcing Implementation in Child Classes
+* Preventing Object Creation from Incomplete Child Classes
+* Real-World Example of Abstraction
+* Combining Abstraction with Polymorphism
+
+---
+
+# What is Abstraction?
+
+Abstraction is the process of hiding unnecessary implementation details while exposing only the essential functionality of an object.
+
+The user interacts with an object through its public interface without needing to understand its internal implementation.
+
+In simple words:
+
+> **Abstraction hides "how something works" and shows only "what it does."**
+
+---
+
+# Why Do We Need Abstraction?
+
+As software grows larger, exposing every implementation detail makes programs difficult to understand and maintain.
+
+Abstraction helps by:
+
+* Reducing complexity
+* Improving code readability
+* Providing a common structure
+* Making programs easier to maintain
+* Allowing developers to focus on functionality instead of implementation
+
+---
+
+# Real-Life Examples
+
+## Example 1: Car
+
+When you start a car, you simply press the **Start** button.
+
+You do not need to know:
+
+* How fuel reaches the engine
+* How combustion happens
+* How pistons move
+* How the battery powers the starter motor
+
+You simply use the feature without knowing its internal implementation.
+
+This is abstraction.
+
+---
+
+## Example 2: Mobile Applications
+
+When you tap the **Like** button on a social media application, you do not know:
+
+* Which server receives the request
+* How the database is updated
+* How notifications are generated
+
+You simply use the feature.
+
+This is another example of abstraction.
+
+---
+
+# Abstract Classes
+
+An Abstract Class is a special class that acts as a blueprint for other classes.
+
+Its purpose is to define a common interface that every child class must follow.
+
+Abstract classes are **not intended to create objects directly**.
+
+In Python, abstract classes are created by inheriting from the `ABC` class.
+
+Example:
+
+```python
+from abc import ABC
+
+class Animal(ABC):
+    pass
+```
+
+---
+
+# Abstract Methods
+
+An Abstract Method is a method declared inside an abstract class without providing its implementation.
+
+Every child class must provide its own implementation of that method.
+
+Abstract methods are created using the `@abstractmethod` decorator.
+
+Example:
+
+```python
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+
+    @abstractmethod
+    def speak(self):
+        pass
+```
+
+This tells Python that every class inheriting from `Animal` **must** implement the `speak()` method.
+
+---
+
+# The `ABC` Class
+
+`ABC` stands for **Abstract Base Class**.
+
+It is available in Python's built-in `abc` module.
+
+When a class inherits from `ABC`, Python treats it as an abstract class.
+
+Example:
+
+```python
+from abc import ABC
+
+class Animal(ABC):
+    pass
+```
+
+---
+
+# The `@abstractmethod` Decorator
+
+The `@abstractmethod` decorator marks a method as mandatory.
+
+Every child class must implement that method.
+
+Example:
+
+```python
+class Animal(ABC):
+
+    @abstractmethod
+    def speak(self):
+        pass
+```
+
+Python will not allow objects to be created from any child class that fails to implement every abstract method.
+
+---
+
+# Implementing Abstract Methods
+
+Every child class must provide its own implementation for all abstract methods inherited from the parent class.
+
+Example:
+
+```python
+class Dog(Animal):
+
+    def speak(self):
+        print("Woof!")
+```
+
+Since `Dog` implements the required method, Python allows objects of `Dog` to be created.
+
+---
+
+# Missing an Abstract Method
+
+If a child class does not implement every abstract method, Python raises an error when an object is created.
+
+Example:
+
+```python
+class Dog(Animal):
+    pass
+
+dog = Dog()
+```
+
+Python raises:
+
+```text
+TypeError:
+Can't instantiate abstract class Dog
+with abstract method speak
+```
+
+This ensures that every child class follows the contract defined by the abstract class.
+
+---
+
+# Multiple Child Classes
+
+An abstract class can have multiple child classes.
+
+Each child class provides its own implementation of the required abstract methods.
+
+Example:
+
+```python
+class Dog(Animal):
+    def speak(self):
+        print("Woof!")
+
+class Cat(Animal):
+    def speak(self):
+        print("Meow!")
+
+class Cow(Animal):
+    def speak(self):
+        print("Moo!")
+
+class Lion(Animal):
+    def speak(self):
+        print("Roar!")
+```
+
+Although all classes inherit from `Animal`, each class behaves differently while following the same interface.
+
+---
+
+# Real-World Example: Payment System
+
+One practical use of abstraction is a payment system.
+
+Different payment methods perform the same task—making a payment—but each method has its own implementation.
+
+Examples include:
+
+* Credit Card
+* UPI
+* PayPal
+
+The abstract class defines a common interface:
+
+```python
+class Payment(ABC):
+
+    @abstractmethod
+    def pay(self):
+        pass
+```
+
+Each payment method provides its own implementation:
+
+```python
+class CreditCard(Payment):
+
+    def pay(self):
+        print("Paid using Credit Card")
+```
+
+This ensures that every payment method follows a common structure while allowing different implementations internally.
+
+---
+
+# Abstraction with Polymorphism
+
+Abstraction and Polymorphism complement each other.
+
+Abstraction guarantees that every child class provides the required methods.
+
+Polymorphism allows the same function to work with different child objects.
+
+Example:
+
+```python
+def animal_sound(animal):
+    animal.speak()
+```
+
+This function works for:
+
+* Dog
+* Cat
+* Cow
+* Lion
+
+As long as the object implements `speak()`, no changes to the function are required.
+
+---
+
+# Advantages of Abstraction
+
+* Hides unnecessary implementation details
+* Simplifies program design
+* Improves code readability
+* Reduces complexity
+* Makes software easier to maintain
+* Enforces a common structure among related classes
+* Improves scalability
+* Works effectively with inheritance and polymorphism
+
+---
+
+# Best Practices
+
+* Use abstract classes when multiple classes should follow the same structure.
+* Declare only the methods that every child class must implement.
+* Avoid creating objects of abstract classes.
+* Use meaningful method names in abstract classes.
+* Combine abstraction with inheritance and polymorphism for cleaner code.
+* Focus on behavior rather than implementation details.
+
+---
+
+# Summary
+
+By completing this lesson, I learned that abstraction is the process of hiding implementation details while exposing only the essential functionality of an object. I learned how to create abstract classes using the `ABC` class, define abstract methods using the `@abstractmethod` decorator, enforce method implementation in child classes, and apply abstraction to real-world scenarios such as payment systems. I also learned how abstraction works together with polymorphism to build clean, reusable, scalable, and maintainable Object-Oriented Python programs.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
