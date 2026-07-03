@@ -2163,6 +2163,136 @@ By completing this lesson, I learned that abstraction is the process of hiding i
 
 ---
 
+# Exception Handling
+
+Exception Handling is a mechanism in Python that allows a program to detect, handle, and recover from runtime errors without terminating unexpectedly. Instead of crashing when an error occurs, Python provides tools that enable developers to handle exceptional situations gracefully and continue program execution whenever possible.
+
+Exception Handling separates normal program logic from error-handling logic, making applications more reliable, maintainable, and user-friendly.
+
+---
+
+# Common Built-in Exceptions
+
+Python provides several built-in exceptions for handling different types of runtime errors.
+
+Some of the most commonly used exceptions include:
+
+- `ValueError` – Raised when a function receives the correct data type but an invalid value.
+- `TypeError` – Raised when an operation is performed on incompatible data types.
+- `ZeroDivisionError` – Raised when attempting to divide a number by zero.
+- `IndexError` – Raised when accessing a list element using an invalid index.
+- `KeyError` – Raised when accessing a dictionary using a key that does not exist.
+- `FileNotFoundError` – Raised when attempting to open a file that cannot be found.
+
+---
+
+# try, except, else and finally
+
+Python provides four important blocks for handling exceptions.
+
+### try
+
+The `try` block contains code that may raise an exception during execution.
+
+### except
+
+The `except` block executes only when an exception occurs inside the corresponding `try` block.
+
+### else
+
+The `else` block executes only if the `try` block completes successfully without raising any exception.
+
+### finally
+
+The `finally` block always executes regardless of whether an exception occurs or not. It is commonly used to perform cleanup operations such as closing files, releasing resources, or disconnecting from databases.
+
+Example:
+
+```python
+try:
+    number = int(input("Enter a number: "))
+
+except ValueError:
+    print("Invalid input!")
+
+else:
+    print("Valid input received.")
+
+finally:
+    print("Program execution completed.")
+```
+
+---
+
+# The raise Keyword
+
+Python automatically raises many built-in exceptions, but developers can also manually raise exceptions using the `raise` keyword.
+
+The `raise` statement is useful when implementing business rules or validating user input that Python cannot validate automatically.
+
+Example:
+
+```python
+if age < 18:
+    raise ValueError("You must be at least 18 years old.")
+```
+
+Using `raise` allows programmers to stop program execution whenever an invalid condition is detected.
+
+---
+
+# Custom Exceptions
+
+Python allows developers to create their own exception classes by inheriting from the built-in `Exception` class.
+
+Custom exceptions provide meaningful names for application-specific errors, making programs easier to understand, debug, and maintain.
+
+Example:
+
+```python
+class InvalidAgeError(Exception):
+    pass
+
+if age < 18:
+    raise InvalidAgeError("You must be at least 18 years old.")
+```
+
+Instead of relying only on generic exceptions, custom exceptions clearly describe the actual problem that occurred within an application.
+
+---
+
+# Advantages of Exception Handling
+
+- Prevents programs from crashing unexpectedly.
+- Improves program reliability and stability.
+- Separates normal program logic from error-handling logic.
+- Makes applications more user-friendly.
+- Simplifies debugging by providing meaningful error messages.
+- Allows programs to recover gracefully from runtime errors.
+- Supports custom validation through user-defined exceptions.
+- Encourages writing clean, maintainable, and professional code.
+
+---
+
+# Best Practices
+
+- Catch specific exceptions whenever possible instead of generic exceptions.
+- Keep the `try` block as small as possible.
+- Use `finally` for cleanup operations.
+- Use `raise` to enforce business rules and validate user input.
+- Create custom exceptions for application-specific errors.
+- Write clear and meaningful exception messages.
+- Avoid suppressing exceptions without handling them properly.
+- Combine exception handling with good program design to build reliable software.
+
+---
+
+# Summary
+
+By completing this lesson, I learned how Python handles runtime errors using Exception Handling. I learned how to use the `try`, `except`, `else`, and `finally` blocks to write reliable programs that continue running even when errors occur. I also learned how to manually generate exceptions using the `raise` keyword, create custom exceptions by inheriting from Python's built-in `Exception` class, and follow best practices for writing clean, maintainable, and professional Python applications.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
