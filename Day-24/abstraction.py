@@ -20,22 +20,22 @@ dog = Dog()
 dog.speak()
 
 
-# # ==========================================
-# # Program 2 (Missing Abstract Method)
-# # ==========================================
+# ==========================================
+# Program 2 (Missing Abstract Method)
+# ==========================================
 
-# from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod
 
-# class Animal(ABC):
+class Animal(ABC):
 
-#     @abstractmethod
-#     def speak(self):
-#         pass
+    @abstractmethod
+    def speak(self):
+        pass
 
-# class Dog(Animal):
-#     pass
+class Dog(Animal):
+    pass
 
-# dog = Dog()
+dog = Dog()
 
 
 # ==========================================
