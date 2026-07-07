@@ -2293,6 +2293,236 @@ By completing this lesson, I learned how Python handles runtime errors using Exc
 
 ---
 
+### operator_overloading.py
+
+# Operator Overloading in Python
+
+Operator Overloading is an Object-Oriented Programming (OOP) feature that allows developers to define how Python operators behave when used with objects of custom classes.
+
+Python already knows how operators such as `+`, `-`, `*`, `==`, and `/` work with built-in data types like integers, floats, and strings. Using **special (magic) methods**, we can teach Python how these operators should work with our own classes.
+
+This makes custom objects behave more naturally and improves code readability.
+
+---
+
+**Topic:** Operator Overloading in Python
+
+## Concepts Learned
+
+* Understanding Operator Overloading
+* Magic (Special) Methods
+* Overloading Arithmetic Operators
+* Overloading Comparison Operators
+* Returning New Objects
+* Custom String Representation using `__repr__()`
+* Building Real-World Classes with Operator Overloading
+
+---
+
+## Programs Included
+
+* Vector Class with Operator Overloading
+* ComplexNumber Class with Operator Overloading
+
+---
+
+## Concepts Covered
+
+* Using magic methods to overload operators
+* Performing arithmetic on custom objects
+* Comparing objects using `==`
+* Returning new objects from overloaded operators
+* Creating readable object representations
+* Applying operator overloading to real-world examples
+
+---
+
+# What is Operator Overloading?
+
+Operator Overloading is the process of giving existing Python operators a new meaning when they are used with objects of custom classes.
+
+Instead of working only with numbers or strings, operators can perform meaningful operations on user-defined objects.
+
+For example:
+
+```python
+v1 + v2
+```
+
+Rather than causing an error, Python can add two vectors together if we define the appropriate magic method.
+
+---
+
+# Magic (Special) Methods
+
+Python provides special methods (also called **magic methods** or **dunder methods**) that are automatically called whenever an operator is used.
+
+Some commonly used magic methods are:
+
+| Operator | Magic Method |
+|----------|--------------|
+| `+` | `__add__()` |
+| `-` | `__sub__()` |
+| `*` | `__mul__()` |
+| `/` | `__truediv__()` |
+| `==` | `__eq__()` |
+| `print(object)` | `__repr__()` |
+
+Python automatically calls these methods whenever the corresponding operator is used.
+
+---
+
+# Overloading Arithmetic Operators
+
+Arithmetic operators can be customized to perform operations on custom objects.
+
+Example:
+
+```python
+v1 + v2
+```
+
+Python internally calls:
+
+```python
+v1.__add__(v2)
+```
+
+Similarly,
+
+```python
+v1 - v2
+```
+
+calls
+
+```python
+v1.__sub__(v2)
+```
+
+This allows custom objects to behave like built-in numeric types.
+
+---
+
+# Overloading Comparison Operators
+
+Comparison operators can also be overloaded.
+
+Example:
+
+```python
+v1 == v2
+```
+
+Python internally calls:
+
+```python
+v1.__eq__(v2)
+```
+
+This allows us to define what it means for two objects to be considered equal.
+
+---
+
+# Returning New Objects
+
+Instead of modifying an existing object, overloaded operators often return a completely new object.
+
+Example:
+
+```python
+return Vector(self.x + other.x, self.y + other.y)
+```
+
+This keeps objects independent and follows good Object-Oriented Programming practices.
+
+---
+
+# The `__repr__()` Method
+
+The `__repr__()` method controls how an object is displayed when printed.
+
+Example:
+
+```python
+def __repr__(self):
+    return f"Vector({self.x}, {self.y})"
+```
+
+Now,
+
+```python
+print(v1)
+```
+
+produces
+
+```text
+Vector(2, 3)
+```
+
+instead of displaying the object's memory address.
+
+---
+
+# Vector Class Example
+
+The `Vector` class demonstrates operator overloading by implementing:
+
+* Vector Addition (`+`)
+* Vector Subtraction (`-`)
+* Scalar Multiplication (`*`)
+* Equality Comparison (`==`)
+* Custom Object Representation (`__repr__()`)
+
+These operations make vector objects behave naturally like mathematical vectors.
+
+---
+
+# Complex Number Class Example
+
+The `ComplexNumber` class demonstrates more advanced operator overloading.
+
+It overloads:
+
+* Addition (`+`)
+* Subtraction (`-`)
+* Multiplication (`*`)
+* Division (`/`)
+* Equality Comparison (`==`)
+* Object Representation (`__repr__()`)
+
+The multiplication and division operations follow the mathematical rules for complex numbers.
+
+---
+
+# Advantages of Operator Overloading
+
+* Makes custom classes easier to use.
+* Improves code readability.
+* Allows objects to behave like built-in data types.
+* Encourages clean and intuitive program design.
+* Reduces the need for lengthy method calls.
+* Supports mathematical and real-world modeling.
+
+---
+
+# Best Practices
+
+* Overload operators only when the behavior is meaningful.
+* Return new objects instead of modifying existing ones whenever appropriate.
+* Keep overloaded operations intuitive and predictable.
+* Implement `__repr__()` to provide clear object representations.
+* Avoid changing the expected meaning of common operators.
+
+---
+
+# Summary
+
+By completing this lesson, I learned how Python allows operators to work with custom objects through **Operator Overloading**. I learned how special (magic) methods such as `__add__()`, `__sub__()`, `__mul__()`, `__truediv__()`, `__eq__()`, and `__repr__()` enable objects to support arithmetic operations, comparisons, and readable output. I also practiced implementing operator overloading using **Vector** and **ComplexNumber** classes, making custom objects behave naturally like built-in Python data types.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
