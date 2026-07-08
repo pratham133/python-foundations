@@ -2523,6 +2523,87 @@ By completing this lesson, I learned how Python allows operators to work with cu
 
 ---
 
+# List Comprehensions
+
+## Topics Covered
+
+- Traditional List Creation
+- Introduction to List Comprehensions
+- List Comprehensions with Conditions
+- Filtering Data Using `if`
+- Using the Modulus (`%`) Operator
+- Writing Cleaner and More Pythonic Code
+
+---
+
+## Programs Practiced
+
+### Program 1 — Traditional Method
+
+Creating a new list using a `for` loop and `append()`.
+
+```python
+numbers = [1, 2, 3, 4, 5]
+
+squares = []
+
+for number in numbers:
+    squares.append(number ** 2)
+
+print(squares)
+```
+
+---
+
+### Program 2 — Basic List Comprehension
+
+Creating a new list using List Comprehensions.
+
+```python
+numbers = [1, 2, 3, 4, 5]
+
+squares = [number ** 2 for number in numbers]
+
+print(squares)
+```
+
+---
+
+### Program 3 — List Comprehension with Condition
+
+Filtering only even numbers.
+
+```python
+numbers = [1,2,3,4,5,6,7,8,9,10]
+
+even_numbers = [number for number in numbers if number % 2 == 0]
+
+print(even_numbers)
+```
+
+---
+
+## Key Concepts Learned
+
+- Creating lists using traditional loops.
+- Creating lists using List Comprehensions.
+- Filtering data while creating lists.
+- Using conditions inside List Comprehensions.
+- Writing cleaner and more Pythonic code.
+- Understanding why List Comprehensions are widely used in AI, Machine Learning, Data Analysis, and Data Engineering.
+
+---
+
+## Skills Gained
+
+- Cleaner Python syntax
+- Better code readability
+- Efficient list creation
+- Conditional filtering
+- Stronger Python foundations for NumPy and Pandas
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
