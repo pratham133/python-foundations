@@ -2604,6 +2604,7 @@ print(even_numbers)
 
 ---
 
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
