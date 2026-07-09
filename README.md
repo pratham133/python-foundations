@@ -2604,6 +2604,403 @@ print(even_numbers)
 
 ---
 
+# Lambda Functions & Functional Programming
+
+This section introduces **Lambda Functions** and Python's Functional Programming concepts. These features help us write cleaner, shorter, and more efficient code while processing collections of data.
+
+Functional Programming is widely used in **Artificial Intelligence, Machine Learning, Data Analytics, Data Science, and Automation**, where large datasets need to be transformed, filtered, and sorted efficiently.
+
+---
+
+## 📖 Topics Covered
+
+- Lambda Functions (Anonymous Functions)
+- Normal Function vs Lambda Function
+- Functional Programming Basics
+- `map()` Function
+- `filter()` Function
+- `sorted()` Function
+- Using Lambda with `map()`
+- Using Lambda with `filter()`
+- Using Lambda with `sorted()`
+- Sorting Lists of Dictionaries
+- Sorting Data using `key`
+- Sorting Data using `reverse=True`
+- Real-world AI Prediction Example
+
+---
+
+# Lambda Function
+
+A **Lambda Function** is a small anonymous function that can accept any number of arguments but contains only **one expression**.
+
+Unlike a normal function, a lambda function does not require the `def` keyword and is generally used for short and simple operations.
+
+## Syntax
+
+```python
+lambda arguments: expression
+```
+
+## Example
+
+```python
+square = lambda number: number ** 2
+
+print(square(8))
+```
+
+Output
+
+```python
+64
+```
+
+---
+
+## Normal Function vs Lambda Function
+
+### Normal Function
+
+```python
+def square(number):
+    return number ** 2
+```
+
+### Lambda Function
+
+```python
+square = lambda number: number ** 2
+```
+
+### Comparison
+
+| Normal Function | Lambda Function |
+|-----------------|-----------------|
+| Uses `def` keyword | Uses `lambda` keyword |
+| Can contain multiple statements | Can contain only one expression |
+| Best for complex logic | Best for short operations |
+| More readable for large programs | More concise and compact |
+
+### Simple Understanding
+
+During learning, we compared them like this:
+
+- **Normal Function** is like writing a complete paragraph.
+- **Lambda Function** is like writing a short one-line note.
+
+Whenever the logic is very small, Lambda makes the code cleaner and easier to read.
+
+---
+
+# Functional Programming
+
+Functional Programming is a programming style where functions are treated as data and are used to process collections efficiently.
+
+Python provides built-in functions such as:
+
+- `map()`
+- `filter()`
+- `sorted()`
+
+These functions become even more powerful when combined with Lambda Functions.
+
+---
+
+# map() Function
+
+The **map()** function applies the **same operation** to every element of an iterable.
+
+## Syntax
+
+```python
+map(function, iterable)
+```
+
+## Example
+
+```python
+numbers = [1, 2, 3, 4]
+
+squares = list(map(lambda number: number ** 2, numbers))
+```
+
+Output
+
+```python
+[1, 4, 9, 16]
+```
+
+### Simple Understanding
+
+We understood `map()` like a **machine**.
+
+Imagine a machine that squares every number entering it.
+
+```
+1 → 1
+
+2 → 4
+
+3 → 9
+
+4 → 16
+```
+
+Every item goes through the same operation.
+
+---
+
+# list() Function
+
+The **list()** function converts iterable objects into a usable Python list.
+
+Functions like `map()` and `filter()` return special objects instead of normal lists.
+
+Therefore we use:
+
+```python
+list(...)
+```
+
+to convert the result into a readable and usable list.
+
+---
+
+# filter() Function
+
+The **filter()** function keeps only those elements that satisfy a given condition.
+
+## Syntax
+
+```python
+filter(function, iterable)
+```
+
+## Example
+
+```python
+numbers = [10, 15, 20, 25, 30]
+
+even_numbers = list(
+    filter(lambda number: number % 2 == 0, numbers)
+)
+```
+
+Output
+
+```python
+[10, 20, 30]
+```
+
+### Simple Understanding
+
+We compared `filter()` to a **security guard**.
+
+Every person enters one by one.
+
+The guard checks the condition.
+
+```
+10 ✅
+
+15 ❌
+
+20 ✅
+
+25 ❌
+
+30 ✅
+```
+
+Only the matching elements are allowed to pass.
+
+---
+
+# map() vs filter()
+
+| map() | filter() |
+|--------|-----------|
+| Transforms every element | Selects matching elements only |
+| Number of output elements usually remains the same | Output size may become smaller |
+| Used for data transformation | Used for data filtering |
+
+### Simple Understanding
+
+- **map()** → Change every item.
+- **filter()** → Keep only the required items.
+
+---
+
+# sorted() Function
+
+The **sorted()** function sorts an iterable and returns a **new sorted list** without changing the original data.
+
+## Syntax
+
+```python
+sorted(iterable)
+```
+
+Example
+
+```python
+sorted(numbers)
+```
+
+---
+
+# key Parameter
+
+The **key** parameter tells Python **which value should be used while sorting**.
+
+Example
+
+```python
+sorted(
+    students,
+    key=lambda student: student["marks"]
+)
+```
+
+Instead of comparing the entire dictionary,
+
+Python compares only
+
+```python
+student["marks"]
+```
+
+---
+
+### Simple Understanding
+
+We compared this to a teacher arranging students according to marks.
+
+```
+Pratham → 88
+
+Rahul → 72
+
+Anjali → 95
+
+Riya → 81
+```
+
+Python only looks at the marks,
+
+sorts them,
+
+and moves the complete student record.
+
+---
+
+# reverse=True
+
+The **reverse** parameter changes the sorting order.
+
+## Comparison
+
+| reverse=False | reverse=True |
+|----------------|--------------|
+| Ascending Order | Descending Order |
+| Lowest value first | Highest value first |
+
+Example
+
+```
+72
+
+81
+
+88
+
+95
+```
+
+becomes
+
+```
+95
+
+88
+
+81
+
+72
+```
+
+---
+
+# Real-world AI Example
+
+We used prediction confidence scores.
+
+```python
+predictions = [
+
+{"image":"cat.jpg","confidence":0.92},
+
+{"image":"dog.jpg","confidence":0.81},
+
+{"image":"bird.jpg","confidence":0.98}
+
+]
+```
+
+Using
+
+```python
+sorted(
+    predictions,
+    key=lambda item: item["confidence"],
+    reverse=True
+)
+```
+
+Python sorts predictions according to confidence score.
+
+Output
+
+```
+bird.jpg → 0.98
+
+cat.jpg → 0.92
+
+dog.jpg → 0.81
+```
+
+This is exactly how AI models display predictions from **highest confidence to lowest confidence**.
+
+---
+
+# 🎯 Key Takeaways
+
+- Learned how Lambda Functions make code shorter and cleaner.
+- Understood the difference between Normal Functions and Lambda Functions.
+- Learned Functional Programming Basics.
+- Learned how `map()` transforms data.
+- Learned how `filter()` selects data based on conditions.
+- Understood why `list()` is used with `map()` and `filter()`.
+- Learned how `sorted()` organizes data.
+- Understood the purpose of the `key` parameter.
+- Learned how `reverse=True` performs descending sorting.
+- Applied Functional Programming concepts to a real-world AI prediction example.
+
+---
+
+# 🚀 Skills Gained
+
+- Writing concise Python code.
+- Functional Programming.
+- Data Transformation.
+- Data Filtering.
+- Data Sorting.
+- Working with Lists of Dictionaries.
+- Writing cleaner and more Pythonic code.
+- Understanding AI-oriented data processing workflows.
+
+---
 
 ## Goal 🎯
 
