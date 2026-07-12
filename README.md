@@ -3002,6 +3002,177 @@ This is exactly how AI models display predictions from **highest confidence to l
 
 ---
 
+# 🔹 Iterators & Iterables
+
+### 📚 Topics Covered
+
+- Understanding Iterables
+- Understanding Iterators
+- Creating Iterators using `iter()`
+- Traversing Iterators using `next()`
+- Understanding `StopIteration`
+- Internal Working of Python's `for` Loop
+
+---
+
+### 📌 Programs Practiced
+
+#### ✔ Program 1 – Understanding Iterables
+
+- Learned that an **Iterable** is an object that stores multiple elements and allows Python to traverse them one element at a time.
+- Explored common Python Iterables such as Lists, Tuples, Strings, Dictionaries, Sets, and `range()`.
+
+#### ✔ Program 2 – Creating an Iterator
+
+- Learned how to convert an Iterable into an Iterator using the built-in `iter()` function.
+- Understood that an **Iterator** keeps track of the current position while traversing an Iterable.
+- Observed that printing an Iterator displays the Iterator object instead of the stored elements.
+
+#### ✔ Program 3 – Traversing an Iterator using `next()`
+
+- Learned that the built-in `next()` function returns one element at a time from an Iterator.
+- Understood that every call to `next()` automatically moves the Iterator to the next position.
+- Learned the difference between **returning** a value and **printing** a value.
+
+#### ✔ Program 4 – Understanding `StopIteration`
+
+- Learned that Python raises a `StopIteration` exception when an Iterator has no more elements left to return.
+- Understood why calling `next()` after the last element results in this exception.
+- Learned that `StopIteration` is a normal part of Python's iteration mechanism.
+
+#### ✔ Program 5 – Manual Implementation of Python's `for` Loop
+
+- Implemented the internal working of a Python `for` loop using `while True`, `iter()`, `next()`, `try`, `except`, and `break`.
+- Learned how Python automatically catches the `StopIteration` exception and safely exits the loop.
+
+---
+
+### 🛠 Built-in Functions Learned
+
+#### 🔹 `iter()`
+
+Converts an **Iterable** into an **Iterator**.
+
+**Syntax**
+
+```python
+iterator = iter(iterable)
+```
+
+---
+
+#### 🔹 `next()`
+
+Returns the next element from an Iterator and automatically moves the Iterator to the next position.
+
+**Syntax**
+
+```python
+next(iterator)
+```
+
+---
+
+### 📖 Important Concepts Learned
+
+#### ✔ Iterable
+
+An **Iterable** is an object that stores multiple elements and allows Python to traverse them one element at a time.
+
+Examples:
+
+- List
+- Tuple
+- String
+- Dictionary
+- Set
+- `range()`
+
+---
+
+#### ✔ Iterator
+
+An **Iterator** is an object created from an Iterable that remembers the current position while traversing elements one by one.
+
+---
+
+#### ✔ StopIteration
+
+A built-in exception raised when an Iterator has no more elements left to return.
+
+---
+
+### ⚖ Comparison: Iterable vs Iterator
+
+| Iterable | Iterator |
+|----------|----------|
+| Stores multiple elements | Traverses elements one at a time |
+| Can create multiple Iterators | Created from an Iterable using `iter()` |
+| Does not remember the current position | Remembers the current position |
+| Examples: List, Tuple, String, Dictionary, Set | Created using the `iter()` function |
+
+---
+
+### 🔄 Internal Working of Python's `for` Loop
+
+A Python `for` loop internally performs the following steps:
+
+```python
+iterator = iter(iterable)
+
+while True:
+    try:
+        item = next(iterator)
+        # Loop Body
+
+    except StopIteration:
+        break
+```
+
+Understanding this flow helped explain how Python automatically traverses Iterables without exposing the `StopIteration` exception to the user.
+
+---
+
+### 🌍 Real-Life Comparisons
+
+#### 📚 Iterable
+
+Think of an **Iterable** as a bookshelf containing multiple books.
+
+The bookshelf stores all the books, but it does not remember which book you are currently reading.
+
+---
+
+#### 👉 Iterator
+
+Think of an **Iterator** as your finger pointing to the current book.
+
+Every time you move your finger, it remembers your current position and points to the next book.
+
+---
+
+#### 🎬 StopIteration
+
+Imagine watching every movie in a Netflix playlist.
+
+After the final movie, pressing **Next** results in no more movies being available.
+
+Python behaves similarly by raising a **StopIteration** exception when there are no more elements left in an Iterator.
+
+---
+
+### 💡 Key Takeaways
+
+After completing this topic, I can:
+
+- Differentiate between Iterables and Iterators.
+- Create Iterators using the `iter()` function.
+- Traverse Iterators using the `next()` function.
+- Understand why the `StopIteration` exception occurs.
+- Explain the internal working of Python's `for` loop.
+- Manually implement the behavior of a `for` loop using `while`, `try`, `except`, and `break`.
+
+---
 
 ## Goal 🎯
 
