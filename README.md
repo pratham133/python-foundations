@@ -3174,6 +3174,197 @@ After completing this topic, I can:
 
 ---
 
+# 📌 Python Generators (yield)
+
+## 📖 What I Learned
+
+Today, I learned one of Python's most powerful features called **Generators**. I understood how Generators differ from normal functions and why they are widely used in AI, Machine Learning, Data Engineering, and large-scale data processing.
+
+Unlike normal functions that return all values at once, Generators produce one value at a time whenever it is requested. This makes them memory efficient and suitable for working with very large datasets.
+
+---
+
+## 📚 Topics Covered
+
+- Generator Functions
+- `yield` Keyword
+- Generator Object
+- `next()` Function
+- Generator Pause and Resume Execution
+- Using `for` Loop with Generators
+- Generator vs List
+- Infinite Generator
+- Lazy Evaluation
+- Memory Efficiency
+
+---
+
+## 📝 Built-in Functions & Keywords Learned
+
+### `yield`
+
+The `yield` keyword is used to create a Generator Function. Instead of terminating the function like `return`, it pauses the function, returns one value, remembers its current execution position, and resumes from the same position when the next value is requested.
+
+**Syntax**
+
+```python
+yield value
+```
+
+### `next()`
+
+The `next()` function is used to request the next available value from an Iterator or Generator.
+
+Every time `next()` is called:
+
+- The Generator resumes execution.
+- Returns one value.
+- Pauses again.
+
+**Syntax**
+
+```python
+next(generator)
+```
+
+### `for`
+
+The `for` loop automatically calls `next()` internally until the Generator raises the `StopIteration` exception.
+
+This eliminates the need to manually call `next()` multiple times.
+
+---
+
+## 🔄 Generator Execution Flow
+
+```text
+Generator Function
+        │
+        ▼
+Generator Object
+        │
+        ▼
+next()
+        │
+        ▼
+Return One Value
+        │
+        ▼
+Pause Execution
+        │
+        ▼
+next()
+        │
+        ▼
+Resume Execution
+        │
+        ▼
+Return Next Value
+```
+
+---
+
+## ⚖️ Comparison
+
+### `return` vs `yield`
+
+| `return` | `yield` |
+|-----------|----------|
+| Returns everything at once | Returns one value at a time |
+| Ends the function immediately | Pauses the function |
+| Does not remember execution state | Remembers execution state |
+| Uses more memory for large datasets | Uses less memory |
+| Best for small datasets | Best for large datasets |
+
+### List vs Generator
+
+| List | Generator |
+|------|-----------|
+| Stores all values in memory | Produces values one at a time |
+| High memory usage | Low memory usage |
+| Returns complete collection | Returns values only when requested |
+| Suitable for small datasets | Suitable for very large datasets |
+
+---
+
+## 💡 Important Concepts Learned
+
+### Generator
+
+A **Generator** is a special type of **Iterator** that produces values one at a time only when they are requested.
+
+### Generator Object
+
+Calling a Generator Function does not immediately execute the function.
+
+Instead, Python creates a **Generator Object** which starts executing only when the first value is requested.
+
+### Pause and Resume Execution
+
+Unlike normal functions, Generators do not finish execution after returning a value.
+
+They pause at the `yield` statement, remember their current position, and resume from the same position when `next()` is called again.
+
+### Lazy Evaluation
+
+Generators use **Lazy Evaluation**, meaning values are generated only when required instead of creating the complete dataset in advance.
+
+### Infinite Generator
+
+Generators can produce an unlimited sequence of values without consuming large amounts of memory because only one value exists at a time.
+
+---
+
+## 🌍 Real-World Applications
+
+Generators are widely used in:
+
+- AI & Machine Learning
+- Data Engineering
+- Reading Large Files
+- Processing Large Datasets
+- Data Streaming
+- Web Scraping
+- Log File Processing
+- Sensor Data Processing
+- Infinite Data Sequences
+
+---
+
+## 🧠 Key Takeaways
+
+- A Generator is a special type of Iterator.
+- `yield` pauses the function instead of ending it.
+- Generators remember their execution state.
+- `next()` resumes the Generator from where it previously stopped.
+- `for` loops automatically call `next()` internally.
+- Lists store all values in memory.
+- Generators create values only when requested.
+- Lazy Evaluation makes Generators memory efficient.
+- Infinite Generators are possible because values are generated one at a time.
+
+---
+
+## 🚀 Programs Implemented
+
+- Understanding Normal Function using `return`
+- Creating the First Generator using `yield`
+- Using `next()` with a Generator
+- Generator Pause and Resume Execution
+- Using `for` Loop with a Generator
+- Comparing List and Generator
+- Creating an Infinite Generator
+
+---
+
+## 🎯 What I Understood
+
+The biggest learning from today's session was understanding that a Generator does not execute immediately. It only starts execution when a value is requested using `next()` or automatically by a `for` loop. After returning a value, the Generator pauses execution, remembers its current position, and resumes from the same point when the next value is requested.
+
+I also learned that Generators are memory efficient because they follow the **Load → Process → Discard** approach instead of storing the complete dataset in memory.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
