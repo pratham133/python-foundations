@@ -3365,6 +3365,328 @@ I also learned that Generators are memory efficient because they follow the **Lo
 
 ---
 
+# 📘 Python Decorators
+
+## 📖 What I Learned
+
+Today I learned one of the most powerful features in Python — **Decorators**.
+
+Before understanding decorators, I learned that **functions in Python are objects**, which means they can be stored in variables, passed as arguments, and returned from other functions. This concept is known as **Higher-Order Functions** and forms the foundation of decorators.
+
+I learned how decorators wrap an existing function to add extra functionality without modifying the original function. I also understood how Python internally converts the `@decorator` syntax into a normal function call.
+
+Finally, I learned how to create decorators that work with any number of positional and keyword arguments using `*args` and `**kwargs`.
+
+---
+
+# 🧠 Concepts Covered
+
+- Functions are Objects
+- Function References
+- Higher-Order Functions
+- Passing Functions as Arguments
+- Returning Functions
+- Wrapper Functions
+- Decorators
+- `@decorator` Syntax
+- `*args`
+- `**kwargs`
+
+---
+
+# 📌 Functions are Objects
+
+In Python, everything is an object, including functions.
+
+Since functions are objects, they can be:
+
+- Stored inside variables
+- Passed to another function
+- Returned from another function
+- Stored inside lists or dictionaries
+
+Example:
+
+```python
+def greet():
+    print("Hello")
+
+hello = greet
+
+hello()
+```
+
+Both `greet` and `hello` point to the same function object.
+
+---
+
+# 📌 Higher-Order Functions
+
+A Higher-Order Function is a function that:
+
+- Accepts another function as an argument.
+- Returns another function.
+
+Example:
+
+```python
+execute(greet)
+```
+
+or
+
+```python
+return greet
+```
+
+Decorators are built using Higher-Order Functions.
+
+---
+
+# 📌 Wrapper Function
+
+A Wrapper Function is a function created inside another function.
+
+Its purpose is to execute additional code before and after the original function.
+
+Example:
+
+```python
+def wrapper():
+
+    print("Before")
+
+    function()
+
+    print("After")
+```
+
+The wrapper controls when and how the original function executes.
+
+---
+
+# 📌 Decorator
+
+A Decorator is a function that adds new functionality to an existing function without modifying its original code.
+
+A decorator performs three steps:
+
+1. Accepts another function.
+2. Creates a wrapper function.
+3. Returns the wrapper function.
+
+Example:
+
+```python
+def decorator(function):
+
+    def wrapper():
+
+        print("Before")
+
+        function()
+
+        print("After")
+
+    return wrapper
+```
+
+---
+
+# 📌 @decorator Syntax
+
+The `@decorator` syntax is simply a shortcut provided by Python.
+
+Instead of writing:
+
+```python
+def greet():
+
+    print("Hello")
+
+greet = decorator(greet)
+```
+
+Python allows us to write:
+
+```python
+@decorator
+def greet():
+
+    print("Hello")
+```
+
+Both programs work exactly the same.
+
+The `@decorator` syntax automatically passes the original function into the decorator and replaces it with the wrapper function returned by the decorator.
+
+---
+
+# 📌 *args
+
+`*args` allows a function to accept any number of positional arguments.
+
+Python collects all positional arguments into a **Tuple**.
+
+Example:
+
+```python
+def show(*args):
+
+    print(args)
+```
+
+Calling
+
+```python
+show(10, 20, 30)
+```
+
+creates
+
+```python
+args = (10, 20, 30)
+```
+
+---
+
+# 📌 **kwargs
+
+`**kwargs` allows a function to accept any number of keyword arguments.
+
+Python collects all keyword arguments into a **Dictionary**.
+
+Example:
+
+```python
+student(name="Pratham", age=22)
+```
+
+creates
+
+```python
+kwargs = {
+
+    "name": "Pratham",
+
+    "age": 22
+
+}
+```
+
+---
+
+# 📊 Comparison
+
+## Functions vs Decorators
+
+| Function | Decorator |
+|----------|-----------|
+| Performs a task | Modifies or extends another function |
+| Executes directly | Wraps another function |
+| Independent | Depends on another function |
+
+---
+
+## *args vs **kwargs
+
+| *args | **kwargs |
+|--------|-----------|
+| Accepts positional arguments | Accepts keyword arguments |
+| Stores data in a Tuple | Stores data in a Dictionary |
+| Uses `*` | Uses `**` |
+
+---
+
+## return function vs return function()
+
+| return function | return function() |
+|-----------------|------------------|
+| Returns the function object | Executes the function immediately |
+| Does not call the function | Calls the function |
+| Returns a reference | Returns the function's return value |
+
+---
+
+## Normal Syntax vs @decorator
+
+| Normal Syntax | Decorator Syntax |
+|---------------|------------------|
+| `greet = decorator(greet)` | `@decorator` |
+| Longer | Cleaner |
+| Manual wrapping | Automatic wrapping |
+| Same execution | Same execution |
+
+---
+
+# ⚙️ Decorator Execution Flow
+
+```text
+Create Original Function
+
+        │
+
+        ▼
+
+Pass Function to Decorator
+
+        │
+
+        ▼
+
+Decorator Creates Wrapper
+
+        │
+
+        ▼
+
+Decorator Returns Wrapper
+
+        │
+
+        ▼
+
+Original Function Reference is Replaced
+
+        │
+
+        ▼
+
+Calling Function Executes Wrapper
+
+        │
+
+        ▼
+
+Before Function
+
+        │
+
+        ▼
+
+Original Function
+
+        │
+
+        ▼
+
+After Function
+```
+
+---
+
+# 🎯 Key Takeaways
+
+- Functions in Python are Objects.
+- Functions can be stored, passed, and returned.
+- Decorators are built using Higher-Order Functions.
+- Wrapper Functions allow extra functionality without modifying the original function.
+- `@decorator` is only a shortcut for `function = decorator(function)`.
+- `*args` collects positional arguments into a Tuple.
+- `**kwargs` collects keyword arguments into a Dictionary.
+- Decorators make code cleaner, reusable, and easier to maintain.
+
+---
 ## Goal 🎯
 
 Building strong Python fundamentals for:
