@@ -187,3 +187,156 @@ arr1 = np.array([10, 20, 30, 40, 50, 60])
 print(arr1[::2])
 print(arr1[1::2])
 print(arr1[::-1])
+
+
+# ==========================================
+# Program 16 (Creating a 2D NumPy Array)
+# ==========================================
+
+import numpy as np
+
+students = np.array([
+    [85, 90, 88],
+    [78, 82, 80],
+    [92, 95, 94]
+])
+
+print(students)
+
+
+# ==============================================
+# Program 17 (Accessing Elements in a 2D Array)
+# ==============================================
+
+import numpy as np
+
+students = np.array([
+    [85, 90, 88],
+    [78, 82, 80],
+    [92, 95, 94]
+])
+
+print(students[0][0])
+print(students[1][2])
+print(students[2][1])
+
+
+# ==========================================
+# Program 18 (Comma Indexing in NumPy)
+# ==========================================
+
+import numpy as np
+
+students = np.array([
+    [85, 90, 88],
+    [78, 82, 80],
+    [92, 95, 94]
+])
+
+print(students[0, 0])
+print(students[1, 2])
+print(students[2, 1])
+
+
+# ==============================================
+# Program 19 (Selecting Entire Rows and Columns)
+# ==============================================
+
+import numpy as np
+
+students = np.array([
+    [85, 90, 88],
+    [78, 82, 80],
+    [92, 95, 94]
+])
+
+print(students[0])
+print(students[1])
+print(students[:,1])
+print(students[:,2])
+
+
+# ============================================
+# Program 20 (Selecting All Columns of a Row)
+# ============================================
+
+import numpy as np
+
+students = np.array([
+    [85, 90, 88],
+    [78, 82, 80],
+    [92, 95, 94]
+])
+
+print(students[0,:])
+print(students[1,:])
+print(students[2,:])
+print(students[0:2, :])
+print(students[:, 1:3])
+print(students[0:2, 1:3])
+
+
+# ==========================================
+# Program 21 (Boolean Indexing)
+# ==========================================
+
+import numpy as np
+
+marks = np.array([85, 90, 78, 95, 88, 72])
+
+print(marks < 85)
+
+
+# ===================================================
+# Program 22 (Filtering Data using Boolean Indexing)
+# ===================================================
+
+import numpy as np
+
+marks = np.array([85, 90, 78, 95, 88, 72])
+
+high_marks = marks[marks > 85]
+
+print(high_marks)
+print(marks[marks < 85])
+
+# ==========================================
+# Program 23 (Reshaping a NumPy Array)
+# ==========================================
+
+import numpy as np
+
+numbers = np.array([10, 20, 30, 40, 50, 60])
+
+reshaped_array = numbers.reshape(2, 3)
+
+print(reshaped_array)
+
+
+# ==========================================
+# Program 24 (Automatic Reshape using -1)
+# ==========================================
+
+import numpy as np
+
+numbers = np.array([10, 20, 30, 40, 50, 60])
+
+print(numbers.reshape(2, -1))
+
+print(numbers.reshape(-1, 3))
+
+
+# ==========================================
+# Program 25 (Flattening a NumPy Array)
+# ==========================================
+
+import numpy as np
+
+matrix = np.array([
+    [10,20,30],
+    [40,50,60]
+])
+
+flat = matrix.flatten()
+
+print(matrix)

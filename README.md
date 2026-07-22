@@ -4328,6 +4328,165 @@ A negative step means Python moves backward through the array.
 
 ---
 
+## NumPy - Array Reshaping & Boolean Indexing
+
+### Topics Covered
+
+- Boolean Arrays
+- Boolean Filtering
+- Reshaping Arrays
+- Automatic Reshaping using `-1`
+- Flattening Arrays
+
+---
+
+### Boolean Arrays
+
+Boolean arrays contain only `True` and `False` values. They are created by comparing every element of a NumPy array with a condition.
+
+Example:
+
+```python
+marks > 85
+```
+
+Output:
+
+```python
+[False  True False  True  True False]
+```
+
+Boolean arrays help identify which elements satisfy a given condition.
+
+---
+
+### Boolean Filtering
+
+Boolean filtering allows us to extract only the elements that satisfy a condition without using loops.
+
+Example:
+
+```python
+marks[marks > 85]
+```
+
+Output:
+
+```python
+[90 95 88]
+```
+
+NumPy first creates a Boolean array and then uses it as a filter to return only the matching elements.
+
+---
+
+### Reshaping Arrays
+
+The `reshape()` function changes the shape of an array without changing its data.
+
+Example:
+
+```python
+numbers.reshape(2,3)
+```
+
+Output:
+
+```python
+[[10 20 30]
+ [40 50 60]]
+```
+
+Important Rule:
+
+```
+Rows × Columns = Total Number of Elements
+```
+
+The total number of elements must remain the same after reshaping.
+
+---
+
+### Automatic Reshaping using `-1`
+
+NumPy can automatically calculate one missing dimension.
+
+Example:
+
+```python
+numbers.reshape(2,-1)
+```
+
+or
+
+```python
+numbers.reshape(-1,3)
+```
+
+Here, `-1` tells NumPy to calculate the missing dimension automatically.
+
+Rules:
+
+- Only one `-1` is allowed.
+- Two `-1` values are not allowed because NumPy cannot calculate two unknown dimensions.
+
+---
+
+### Flattening Arrays
+
+The `flatten()` function converts a multi-dimensional array into a one-dimensional array without changing the data.
+
+Example:
+
+```python
+matrix.flatten()
+```
+
+Output:
+
+```python
+[10 20 30 40 50 60]
+```
+
+`flatten()` returns a new 1D array while leaving the original array unchanged.
+
+---
+
+## Difference Between `reshape()` and `flatten()`
+
+| reshape() | flatten() |
+|-----------|-----------|
+| Changes the shape of an array | Converts a multi-dimensional array into a 1D array |
+| Data remains unchanged | Data remains unchanged |
+| Can create different dimensions | Always returns a 1D array |
+| Requires compatible dimensions | No dimension calculation required |
+
+---
+
+## NumPy Attributes Learned
+
+| Attribute | Purpose |
+|-----------|---------|
+| `shape` | Returns the shape of the array (rows, columns) |
+| `ndim` | Returns the number of dimensions |
+| `size` | Returns the total number of elements |
+| `dtype` | Returns the data type of the array |
+
+---
+
+## Key Learnings
+
+- NumPy performs element-wise comparisons internally.
+- Boolean arrays are widely used for filtering data.
+- Boolean filtering removes the need for manual loops when selecting data.
+- `reshape()` changes only the arrangement of data, not the data itself.
+- `flatten()` converts any multi-dimensional array into a 1D array.
+- The rule `Rows × Columns = Total Elements` must always be satisfied while reshaping.
+- `-1` allows NumPy to calculate one missing dimension automatically.
+- NumPy provides faster and cleaner solutions for data manipulation compared to traditional Python loops.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
