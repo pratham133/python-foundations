@@ -122,3 +122,68 @@ print(arr.shape)
 print(arr.ndim)
 print(arr.size)
 print(arr.dtype)
+
+
+# ==============================================
+# Program 11 (Accessing Elements using Indexing)
+# ==============================================
+
+import numpy as np
+
+arr1 = np.array([10, 20, 30, 40, 50])
+
+print(arr1[0])
+print(arr1[1])
+print(arr1[2])
+
+
+# ==========================================
+# Program 12 (Negative Indexing)
+# ==========================================
+
+import numpy as np
+
+arr1 = np.array([10, 20, 30, 40, 50])
+
+print(arr1[-1])
+print(arr1[-2])
+print(arr1[-3])
+
+
+# ==========================================
+# Program 13 (Basic Array Slicing)
+# ==========================================
+
+import numpy as np
+
+arr1 = np.array([10, 20, 30, 40, 50])
+
+print(arr1[0:4])
+
+
+# ==========================================
+# Program 14 (Slice Shortcuts)
+# ==========================================
+
+import numpy as np
+
+arr1 = np.array([10, 20, 30, 40, 50])
+
+print(arr1[:])
+print(arr1[:3])
+print(arr1[2:])
+print(arr1[-3:])
+print(arr1[:-1])
+
+
+# ==========================================
+# Program 15 (Step Slicing)
+# ==========================================
+
+import numpy as np
+
+arr1 = np.array([10, 20, 30, 40, 50, 60])
+
+print(arr1[::2])
+print(arr1[1::2])
+print(arr1[::-1])

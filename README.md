@@ -3982,6 +3982,352 @@ NumPy is optimized for fast numerical and mathematical operations. It stores hom
 
 ---
 
+## NumPy Arrays: Indexing & Slicing
+
+### Topics Covered
+
+- Positive Indexing
+- Negative Indexing
+- Basic Slicing
+- Slice Shortcuts
+- Step Slicing
+- Reversing Arrays
+- Understanding Start, Stop, and Step
+
+---
+
+## Positive Indexing
+
+NumPy follows **zero-based indexing**, meaning the first element always starts at index `0`.
+
+Example:
+
+```python
+arr = np.array([10, 20, 30, 40, 50])
+
+print(arr[0])   # 10
+print(arr[2])   # 30
+print(arr[4])   # 50
+```
+
+Visualization:
+
+```
+Index
+
+0    1    2    3    4
+
+10   20   30   40   50
+```
+
+### Key Point
+
+Index represents the **distance (offset)** from the beginning of the array.
+
+---
+
+## Negative Indexing
+
+Negative indexing allows us to access elements from the end of the array without knowing its length.
+
+Example:
+
+```python
+print(arr[-1])   # Last Element
+print(arr[-2])   # Second Last Element
+print(arr[-5])   # First Element
+```
+
+Visualization:
+
+```
+Negative Index
+
+-5   -4   -3   -2   -1
+
+10   20   30   40   50
+```
+
+### Why Negative Indexing?
+
+It allows us to access the last elements directly without calculating the array size.
+
+Instead of
+
+```python
+arr[arr.size - 1]
+```
+
+we simply write
+
+```python
+arr[-1]
+```
+
+---
+
+## Basic Slicing
+
+Syntax:
+
+```python
+arr[start : stop]
+```
+
+Where
+
+- Start Index → Included
+- Stop Index → Excluded
+
+Example:
+
+```python
+arr = np.array([10,20,30,40,50])
+
+print(arr[1:4])
+```
+
+Output
+
+```python
+[20 30 40]
+```
+
+### Golden Rule
+
+> **Start is Included, Stop is Excluded**
+
+---
+
+## Why Stop Index is Excluded?
+
+Python excludes the stop index because it allows arrays to be divided into multiple parts **without overlapping or missing elements**.
+
+Example:
+
+```python
+arr[:3]
+
+arr[3:]
+```
+
+Output
+
+```
+First Part
+
+10 20 30
+
+Second Part
+
+40 50
+```
+
+Notice that no element is repeated or skipped.
+
+---
+
+## Slice Shortcuts
+
+### Entire Array
+
+```python
+arr[:]
+```
+
+Output
+
+```python
+[10 20 30 40 50]
+```
+
+---
+
+### From Beginning to a Specific Index
+
+```python
+arr[:3]
+```
+
+Output
+
+```python
+[10 20 30]
+```
+
+---
+
+### From a Specific Index to the End
+
+```python
+arr[2:]
+```
+
+Output
+
+```python
+[30 40 50]
+```
+
+---
+
+### Last Three Elements
+
+```python
+arr[-3:]
+```
+
+Output
+
+```python
+[30 40 50]
+```
+
+---
+
+### Everything Except the Last Element
+
+```python
+arr[:-1]
+```
+
+Output
+
+```python
+[10 20 30 40]
+```
+
+---
+
+## Step Slicing
+
+Syntax:
+
+```python
+arr[start : stop : step]
+```
+
+The **step** value tells Python how many indexes to move after selecting each element.
+
+---
+
+### Every Second Element
+
+```python
+arr[::2]
+```
+
+Output
+
+```python
+[10 30 50]
+```
+
+---
+
+### Every Second Element Starting from Index 1
+
+```python
+arr[1::2]
+```
+
+Output
+
+```python
+[20 40 60]
+```
+
+---
+
+### Every Third Element
+
+```python
+arr[::3]
+```
+
+Output
+
+```python
+[10 40]
+```
+
+---
+
+### Every Fourth Element
+
+```python
+arr[::4]
+```
+
+Output
+
+```python
+[10 50]
+```
+
+---
+
+## Reverse an Array
+
+```python
+arr[::-1]
+```
+
+Output
+
+```python
+[60 50 40 30 20 10]
+```
+
+A negative step means Python moves backward through the array.
+
+---
+
+## Difference Between Indexing and Slicing
+
+| Indexing | Slicing |
+|----------|----------|
+| Returns a single element | Returns multiple elements |
+| Example: `arr[2]` | Example: `arr[1:4]` |
+
+---
+
+## Difference Between Positive and Negative Indexing
+
+| Positive Indexing | Negative Indexing |
+|-------------------|------------------|
+| Starts from the beginning | Starts from the end |
+| `arr[0]` → First Element | `arr[-1]` → Last Element |
+
+---
+
+## Difference Between Slice Shortcuts
+
+| Syntax | Meaning |
+|--------|---------|
+| `arr[:]` | Entire Array |
+| `arr[:3]` | Beginning to Index 3 (Excluded) |
+| `arr[3:]` | Index 3 to End |
+| `arr[:-1]` | Everything Except Last Element |
+| `arr[-3:]` | Last Three Elements |
+
+---
+
+## Key Takeaways
+
+- NumPy indexing starts from `0`.
+- Negative indexing accesses elements from the end.
+- Slicing returns multiple elements.
+- Start index is included.
+- Stop index is excluded.
+- Step controls how many indexes Python moves after each selected element.
+- Positive step moves forward.
+- Negative step moves backward.
+- `arr[::-1]` is the easiest way to reverse an array.
+- Indexing and slicing work exactly the same way in Python Lists, Strings, Tuples, NumPy Arrays, and Pandas.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
