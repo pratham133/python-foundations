@@ -3687,6 +3687,301 @@ After Function
 - Decorators make code cleaner, reusable, and easier to maintain.
 
 ---
+
+---
+
+# Introduction to NumPy
+
+## 📌 Topics Covered
+
+- What is NumPy?
+- Installing NumPy
+- Importing NumPy (`import numpy as np`)
+- Creating NumPy Arrays
+- Python List vs NumPy Array
+- Element-wise Operations
+- NumPy Attributes
+  - `shape`
+  - `ndim`
+  - `size`
+  - `dtype`
+- Attributes vs Functions
+- Why NumPy is Faster than Python Lists
+
+---
+
+# 🧠 What is NumPy?
+
+**NumPy (Numerical Python)** is a third-party Python library specifically designed for fast numerical computations and mathematical operations.
+
+Unlike Python Lists, NumPy Arrays are optimized for storing the same type of data efficiently, making calculations significantly faster while using less memory.
+
+---
+
+# ⚙️ Installing NumPy
+
+```bash
+pip install numpy
+```
+
+---
+
+# 📥 Importing NumPy
+
+```python
+import numpy as np
+```
+
+- `numpy` is the library.
+- `np` is an alias (shortcut).
+- Using `np` is the standard convention followed by almost every Data Analyst, Data Scientist, and Machine Learning Engineer.
+
+Example:
+
+```python
+np.array([1, 2, 3])
+```
+
+instead of
+
+```python
+numpy.array([1, 2, 3])
+```
+
+---
+
+# 📦 Creating a NumPy Array
+
+```python
+import numpy as np
+
+arr = np.array([10, 20, 30])
+```
+
+The `np.array()` function converts a normal Python List into a NumPy Array.
+
+---
+
+# 🔥 Python List vs NumPy Array
+
+| Python List | NumPy Array |
+|-------------|-------------|
+| General-purpose container | Specialized for numerical data |
+| Can store different data types | Optimized for storing the same type of data |
+| Requires loops for most mathematical calculations | Performs calculations automatically |
+| Slower for numerical operations | Highly optimized and faster |
+| Uses more memory | Better memory management |
+
+---
+
+# ➕ Element-wise Operations
+
+One of the biggest advantages of NumPy is **Element-wise Operations**.
+
+Example:
+
+```python
+arr = np.array([10, 20, 30])
+
+print(arr + 5)
+```
+
+Output
+
+```python
+[15 25 35]
+```
+
+Internally NumPy performs
+
+```
+10 + 5
+
+20 + 5
+
+30 + 5
+```
+
+without requiring us to write a Python loop.
+
+The same concept applies to
+
+```python
+arr - 5
+
+arr * 2
+
+arr / 2
+```
+
+and many other mathematical operations.
+
+---
+
+# 📐 NumPy Attributes
+
+## 1️⃣ shape
+
+```python
+arr.shape
+```
+
+Returns the structure of the NumPy Array.
+
+Example
+
+```python
+(5,)
+```
+
+means
+
+- One dimension
+- Five elements
+
+Example
+
+```python
+(2,3)
+```
+
+means
+
+- Two rows
+- Three columns
+
+---
+
+## 2️⃣ ndim
+
+```python
+arr.ndim
+```
+
+Returns the number of dimensions.
+
+Example
+
+```python
+[10 20 30]
+```
+
+Output
+
+```python
+1
+```
+
+---
+
+## 3️⃣ size
+
+```python
+arr.size
+```
+
+Returns the total number of elements stored inside the NumPy Array.
+
+Example
+
+```python
+[10 20 30 40 50]
+```
+
+Output
+
+```python
+5
+```
+
+---
+
+## 4️⃣ dtype
+
+```python
+arr.dtype
+```
+
+Returns the data type of the NumPy Array.
+
+Example
+
+```python
+int64
+```
+
+(or `int32` depending on the operating system)
+
+NumPy stores the data type because knowing the data type helps it perform calculations faster and manage memory efficiently.
+
+---
+
+# 🆚 Attributes vs Functions
+
+One important concept learned today was the difference between **Attributes** and **Functions (Methods).**
+
+| Attribute | Function / Method |
+|-----------|-------------------|
+| Stores information about an object | Performs an action |
+| Does not use parentheses `()` | Uses parentheses `()` |
+| Examples: `shape`, `ndim`, `size`, `dtype` | Examples: `append()`, `sort()`, `print()` |
+
+Example
+
+```python
+arr.shape
+```
+
+stores information.
+
+Whereas
+
+```python
+print()
+```
+
+performs an action.
+
+---
+
+# ⚡ Why NumPy is Faster than Python Lists
+
+NumPy is significantly faster because
+
+- It is optimized for numerical computations.
+- It stores the same type of data efficiently.
+- It uses less memory.
+- It performs element-wise calculations internally.
+- It avoids the need to write explicit Python loops for most mathematical operations.
+- Most calculations are executed using highly optimized internal code, making NumPy much faster than normal Python Lists.
+
+---
+
+# 🎯 Interview Question
+
+### Why should we use NumPy instead of Python Lists?
+
+**Answer**
+
+NumPy is optimized for fast numerical and mathematical operations. It stores homogeneous data efficiently, provides better memory management, and automatically performs element-wise calculations without requiring explicit Python loops. These features make NumPy significantly faster and more suitable for Data Analysis, Machine Learning, and Scientific Computing than normal Python Lists.
+
+---
+
+# ✅ Key Takeaways
+
+- NumPy is a third-party library for numerical computing.
+- `np.array()` converts a Python List into a NumPy Array.
+- NumPy Arrays are optimized for storing the same type of data.
+- NumPy performs element-wise mathematical operations automatically.
+- `shape` describes the structure of the array.
+- `ndim` returns the number of dimensions.
+- `size` returns the total number of elements.
+- `dtype` returns the data type stored inside the array.
+- Attributes store information, whereas functions perform actions.
+- NumPy is faster and more memory-efficient than Python Lists for numerical computations.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
