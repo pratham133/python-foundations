@@ -4487,6 +4487,187 @@ Output:
 
 ---
 
+# Statistical Functions
+
+NumPy provides built-in statistical functions.
+
+### sum()
+
+Returns the total of all elements.
+
+### mean()
+
+Returns the average of the data.
+
+### max()
+
+Returns the largest value.
+
+### min()
+
+Returns the smallest value.
+
+### std()
+
+Returns the Standard Deviation.
+
+Standard Deviation tells us how spread out the data is from its average.
+
+- Small Standard Deviation → Data is more consistent.
+- Large Standard Deviation → Data is more spread out.
+
+---
+
+# Random Module
+
+## randint()
+
+Generates random integers.
+
+Syntax
+
+```python
+np.random.randint(start, stop, size)
+```
+
+Rules
+
+- Start → Included
+- Stop → Excluded
+- Size → Number of random integers
+
+Example
+
+```python
+np.random.randint(1,11,size=5)
+```
+
+Possible Output
+
+```
+[4 7 2 9 1]
+```
+
+---
+
+## rand()
+
+Generates random decimal numbers.
+
+Syntax
+
+```python
+np.random.rand(size)
+```
+
+Rules
+
+- Generates floating-point values.
+- Values are between **0 (inclusive)** and **1 (exclusive)**.
+
+Example
+
+```python
+np.random.rand(5)
+```
+
+Possible Output
+
+```
+[0.45 0.89 0.12 0.63 0.77]
+```
+
+---
+
+## seed()
+
+```python
+np.random.seed(42)
+```
+
+`seed()` sets the starting point of the random number generator.
+
+Using the same seed always produces the same sequence of random numbers.
+
+This is called **Reproducibility** and is widely used in:
+
+- Machine Learning
+- Data Analysis
+- Scientific Research
+- AI Experiments
+
+---
+
+# Joining Arrays
+
+## concatenate()
+
+Joins two or more arrays into one array.
+
+Example
+
+```python
+np.concatenate((arr1, arr2))
+```
+
+Output
+
+```
+[10 20 30 40 50 60]
+```
+
+---
+
+## hstack()
+
+Stacks arrays horizontally (side by side).
+
+Example
+
+```python
+np.hstack((arr1, arr2))
+```
+
+Output
+
+```
+[1 2 3 4 5 6]
+```
+
+---
+
+## vstack()
+
+Stacks arrays vertically (one above another).
+
+Example
+
+```python
+np.vstack((arr1, arr2))
+```
+
+Output
+
+```
+[[1 2 3]
+ [4 5 6]]
+```
+
+---
+
+# Key Takeaways
+
+- NumPy is the foundation of Data Analysis and Machine Learning.
+- NumPy arrays are faster and more memory efficient than Python lists.
+- Mathematical operations are performed element-wise without writing loops.
+- Attributes provide information, while functions perform operations.
+- Reshape and Flatten help organize data efficiently.
+- Statistical functions simplify data analysis.
+- Random module helps generate sample data and reproducible experiments.
+- Concatenate, Horizontal Stack, and Vertical Stack make it easy to combine datasets.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:

@@ -340,3 +340,129 @@ matrix = np.array([
 flat = matrix.flatten()
 
 print(matrix)
+
+
+# ==========================================
+# Program 26 (NumPy Statistical Functions)
+# ==========================================
+
+import numpy as np
+
+marks = np.array([85, 90, 78, 95, 88])
+
+print("Sum: ", np.sum(marks))
+print("Mean", np.mean(marks))
+print("Maximum: ", np.max(marks))
+print("Minimum: ", np.min(marks))
+
+
+numbers = np.array([10,20,30,40])
+
+print(np.mean(numbers))
+
+
+sales = np.array([25, 30, 28, 35, 32])
+
+print(f"Sum: {np.sum(sales)}")
+print(f"Average: {np.mean(sales)}")
+print(f"Max: {np.max(sales)}")
+print(f"Min: {np.min(sales)}")
+
+
+# ==========================================
+# Program 27 (NumPy Standard Deviation)
+# ==========================================
+
+import numpy as np
+
+marks = np.array([85, 90, 78, 95, 88])
+
+print(f"Mean: {np.mean(marks)}")
+print(f"standard Deviation: {np.std(marks)}")
+
+
+# ==========================================
+# Program 28 (Generate Random Integers)
+# ==========================================
+
+import numpy as np
+
+random_numbers = np.random.randint(1, 11, size=5)
+
+print(random_numbers)
+
+
+# ==========================================
+# Program 29 (Random Decimal Numbers)
+# ==========================================
+
+import numpy as np
+
+random_numbers = np.random.rand(5)
+
+print(random_numbers)
+
+
+# ==========================================
+# Program 30 (Random Numbers Without Seed)
+# ==========================================
+
+import numpy as np
+
+print(np.random.randint(1, 11, size=5))
+
+
+# ==========================================
+# Program 31 (Random Numbers With Seed)
+# ==========================================
+
+import numpy as np
+
+np.random.seed(42)
+
+print(np.random.randint(1, 11, size=5))
+
+
+# ==========================================
+# Program 32 (Concatenating NumPy Arrays)
+# ==========================================
+
+import numpy as np
+
+arr1 = np.array([10, 20, 30])
+
+arr2 = np.array([40, 50, 60])
+
+result = np.concatenate((arr1, arr2))
+
+print(result)
+
+
+# ==========================================
+# Program 33 (Horizontal Stack)
+# ==========================================
+
+import numpy as np
+
+arr1 = np.array([1, 2, 3])
+
+arr2 = np.array([4, 5, 6])
+
+result = np.hstack((arr1, arr2))
+
+print(result)
+
+
+# ==========================================
+# Program 34 (Vertical Stack)
+# ==========================================
+
+import numpy as np
+
+arr1 = np.array([1, 2, 3])
+
+arr2 = np.array([4, 5, 6])
+
+result = np.vstack((arr1, arr2))
+
+print(result)
