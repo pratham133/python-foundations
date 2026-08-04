@@ -5054,6 +5054,353 @@ It uses **row numbers and column numbers**.
 
 ---
 
+# 🐼 Pandas Data Filtering
+
+Data filtering is one of the most powerful features of Pandas. It allows us to retrieve only those rows that satisfy specific conditions, making it easier to analyze and work with large datasets.
+
+Filtering in Pandas is performed using **Boolean Indexing**, where each row is evaluated against a condition and marked as either **True** or **False**.
+
+Rows with **True** are returned, while rows with **False** are ignored.
+
+---
+
+# 📌 Filtering with a Single Condition
+
+We can filter a DataFrame by applying a single condition to one of its columns.
+
+Example:
+
+```python
+high_marks = students[students["Marks"] > 90]
+
+print(high_marks)
+```
+
+Output
+
+```
+      Name   Age   Marks
+
+0  Pratham   22     95
+
+3    Rahul   21     91
+```
+
+### How Pandas Executes This
+
+Step 1
+
+Select the required column.
+
+```python
+students["Marks"]
+```
+
+↓
+
+```
+95
+88
+65
+91
+```
+
+Step 2
+
+Compare every value with the condition.
+
+```python
+students["Marks"] > 90
+```
+
+↓
+
+```
+True
+False
+False
+True
+```
+
+This is called a **Boolean Mask**.
+
+Step 3
+
+The outer DataFrame
+
+```python
+students[ ... ]
+```
+
+uses this Boolean Mask to return only the rows where the condition is **True**.
+
+---
+
+# 📌 Boolean Mask
+
+A Boolean Mask is simply a collection of **True** and **False** values generated after evaluating a condition.
+
+Example
+
+```
+True
+False
+False
+True
+```
+
+Rows marked **True** are returned.
+
+Rows marked **False** are ignored.
+
+---
+
+# 📌 Filtering with Multiple Conditions (AND)
+
+The **AND (`&`)** operator is used when **all conditions must be satisfied**.
+
+Example
+
+```python
+filtered_students = students[
+    (students["Marks"] > 80) &
+    (students["Age"] > 21)
+]
+
+print(filtered_students)
+```
+
+Output
+
+```
+      Name   Age   Marks
+
+0  Pratham   22     95
+
+1     Gojo   24     88
+```
+
+### Execution Process
+
+Condition 1
+
+```
+Marks > 80
+```
+
+↓
+
+```
+True
+True
+False
+True
+```
+
+Condition 2
+
+```
+Age > 21
+```
+
+↓
+
+```
+True
+True
+True
+False
+```
+
+Applying **AND**
+
+```
+True  AND True   → True
+
+True  AND True   → True
+
+False AND True   → False
+
+True  AND False  → False
+```
+
+Final Boolean Mask
+
+```
+True
+True
+False
+False
+```
+
+---
+
+# 📌 Filtering with Multiple Conditions (OR)
+
+The **OR (`|`)** operator is used when **at least one condition must be satisfied**.
+
+Example
+
+```python
+filtered_students = students[
+    (students["Marks"] > 90) |
+    (students["Age"] > 22)
+]
+
+print(filtered_students)
+```
+
+Output
+
+```
+      Name   Age   Marks
+
+0  Pratham   22     95
+
+1     Gojo   24     88
+
+2      Gun   23     65
+
+3    Rahul   21     91
+```
+
+### Execution Process
+
+Condition 1
+
+```
+Marks > 90
+```
+
+↓
+
+```
+True
+False
+False
+True
+```
+
+Condition 2
+
+```
+Age > 22
+```
+
+↓
+
+```
+False
+True
+True
+False
+```
+
+Applying **OR**
+
+```
+True  OR False   → True
+
+False OR True    → True
+
+False OR True    → True
+
+True  OR False   → True
+```
+
+Final Boolean Mask
+
+```
+True
+True
+True
+True
+```
+
+---
+
+# 📌 Why Parentheses are Required?
+
+When using multiple conditions, each comparison must be enclosed inside parentheses.
+
+✅ Correct
+
+```python
+(students["Marks"] > 80) &
+(students["Age"] > 21)
+```
+
+❌ Incorrect
+
+```python
+students["Marks"] > 80 &
+students["Age"] > 21
+```
+
+Parentheses ensure Python evaluates each comparison separately before applying the logical operator.
+
+---
+
+# 🧠 Important Interview Questions
+
+## Q1. What is Boolean Indexing?
+
+**Answer**
+
+Boolean Indexing is the process of filtering rows in a DataFrame using Boolean values (`True` and `False`) generated from one or more conditions.
+
+---
+
+## Q2. How does Pandas perform filtering internally?
+
+**Answer**
+
+1. Select the required column.
+2. Compare every value with the given condition.
+3. Create a Boolean Mask (`True` / `False`).
+4. Use the Boolean Mask to return only the rows where the condition is `True`.
+
+---
+
+## Q3. What is the difference between `&` and `|`?
+
+**Answer**
+
+- `&` (AND) → All conditions must be **True**.
+- `|` (OR) → At least one condition must be **True**.
+
+---
+
+## Q4. Why are parentheses required while using multiple conditions?
+
+**Answer**
+
+Parentheses ensure each comparison is evaluated independently before applying the logical operator (`&` or `|`).
+
+---
+
+## Q5. What is a Boolean Mask?
+
+**Answer**
+
+A Boolean Mask is a sequence of `True` and `False` values created after evaluating a condition. Pandas uses this mask to decide which rows should be included in the final result.
+
+---
+
+# 📌 Key Takeaways
+
+- Filtering is one of the most frequently used operations in Pandas.
+- Pandas performs filtering using Boolean Indexing.
+- Every condition creates a Boolean Mask.
+- Rows marked **True** are returned.
+- Rows marked **False** are ignored.
+- `&` means **all conditions must be True**.
+- `|` means **at least one condition must be True**.
+- Parentheses are mandatory when combining multiple conditions.
+- Understanding Boolean Masks makes complex filtering much easier.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
