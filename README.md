@@ -4668,6 +4668,392 @@ Output
 
 ---
 
+# 🐼 Pandas Fundamentals – Series & DataFrame
+
+## 📖 What is Pandas?
+
+**Pandas** is an open-source Python library built on top of **NumPy** that is used for:
+
+- Data Analysis
+- Data Manipulation
+- Data Cleaning
+- Data Exploration
+- Working with CSV & Excel files
+- Handling Structured & Tabular Data
+
+Unlike NumPy, which mainly focuses on numerical computations, Pandas is specifically designed for working with real-world datasets.
+
+---
+
+# 📌 Why Pandas?
+
+Pandas makes it easy to:
+
+- Organize tabular data
+- Read and write CSV/Excel files
+- Clean missing data
+- Filter records
+- Analyze large datasets
+- Perform statistical analysis
+- Prepare data for Machine Learning
+
+---
+
+# 📌 Importing Pandas
+
+```python
+import pandas as pd
+```
+
+`pd` is the standard alias used by Python developers worldwide.
+
+---
+
+# 📌 Pandas Series
+
+A **Series** is a **one-dimensional labeled data structure** used to store a single column of data.
+
+Example:
+
+```python
+import pandas as pd
+
+marks = pd.Series([85, 90, 78, 92, 88])
+
+print(marks)
+```
+
+Output
+
+```
+0    85
+1    90
+2    78
+3    92
+4    88
+dtype: int64
+```
+
+### A Series consists of
+
+- Index (Labels)
+- Data (Values)
+- Data Type (dtype)
+
+---
+
+# 📌 Characteristics of Series
+
+- One-dimensional
+- Automatically creates an index
+- Similar to one column in Excel
+- Stores labeled data
+- Can store integers, floats, strings, booleans and objects
+
+---
+
+# 📌 Accessing Data from Series
+
+```python
+marks[0]
+marks[3]
+marks[4]
+```
+
+Output
+
+```
+85
+92
+88
+```
+
+---
+
+# 📌 Pandas DataFrame
+
+A **DataFrame** is a **two-dimensional labeled data structure** used to store data in rows and columns.
+
+Think of a DataFrame as an **Excel spreadsheet inside Python**.
+
+Example
+
+```python
+student_data = {
+    "Name": ["Pratham", "Rahul", "Aman"],
+    "Age": [22, 21, 23],
+    "Marks": [95, 88, 91]
+}
+
+students = pd.DataFrame(student_data)
+
+print(students)
+```
+
+Output
+
+```
+      Name   Age   Marks
+
+0  Pratham   22     95
+
+1    Rahul   21     88
+
+2     Aman   23     91
+```
+
+---
+
+# 📌 Why Dictionary?
+
+We create DataFrames using dictionaries because:
+
+- Dictionary Keys → Column Names
+- Dictionary Values (Lists) → Column Data
+
+Example
+
+```python
+{
+    "Name": [...],
+    "Age": [...],
+    "Marks": [...]
+}
+```
+
+becomes
+
+| Name | Age | Marks |
+|------|----:|------:|
+| ... | ... | ... |
+
+---
+
+# 📌 Selecting a Single Column
+
+```python
+students["Name"]
+```
+
+Output
+
+```
+0    Pratham
+1      Rahul
+2       Aman
+Name: Name, dtype: object
+```
+
+### Important
+
+Selecting **one column** returns a **Series**.
+
+---
+
+# 📌 Selecting Multiple Columns
+
+```python
+students[["Name", "Marks"]]
+```
+
+Output
+
+```
+      Name   Marks
+
+0  Pratham     95
+
+1    Rahul     88
+
+2     Aman     91
+```
+
+### Important
+
+Selecting **multiple columns** returns a **DataFrame**.
+
+---
+
+# 📌 loc[] – Label Based Indexing
+
+`loc` stands for **Location**.
+
+It accesses data using:
+
+- Row Labels
+- Column Names
+
+Example
+
+```python
+students.loc[1, "Marks"]
+```
+
+Output
+
+```
+88
+```
+
+---
+
+# 📌 iloc[] – Integer Based Indexing
+
+`iloc` stands for **Integer Location**.
+
+It accesses data using:
+
+- Row Numbers
+- Column Numbers
+
+Example
+
+```python
+students.iloc[1, 2]
+```
+
+Output
+
+```
+88
+```
+
+---
+
+# 📌 loc[] vs iloc[]
+
+| loc[] | iloc[] |
+|--------|---------|
+| Uses Labels | Uses Integer Positions |
+| Uses Column Names | Uses Column Numbers |
+| Label-based Indexing | Integer-based Indexing |
+
+---
+
+# 📌 Series vs DataFrame
+
+| Series | DataFrame |
+|---------|-----------|
+| One-dimensional | Two-dimensional |
+| Single Column | Multiple Columns |
+| Created using `pd.Series()` | Created using `pd.DataFrame()` |
+| Similar to one Excel Column | Similar to an Excel Sheet |
+
+---
+
+# 🧠 Important Interview Questions
+
+## Q1. What is Pandas?
+
+**Answer**
+
+Pandas is an open-source Python library built on top of NumPy that is used for data analysis, manipulation, cleaning and working with structured datasets.
+
+---
+
+## Q2. What is a Series?
+
+**Answer**
+
+A Series is a one-dimensional labeled data structure used to store a single column of data.
+
+---
+
+## Q3. What is a DataFrame?
+
+**Answer**
+
+A DataFrame is a two-dimensional labeled data structure used to store data in rows and columns.
+
+---
+
+## Q4. Why do we use a Dictionary while creating a DataFrame?
+
+**Answer**
+
+Because each dictionary key becomes a column name and each corresponding list becomes the values of that column, making it easy to organize structured tabular data.
+
+---
+
+## Q5. What is the difference between Series and DataFrame?
+
+**Answer**
+
+A Series stores one column of data, whereas a DataFrame stores multiple columns of data.
+
+---
+
+## Q6. What is returned when selecting a single column from a DataFrame?
+
+**Answer**
+
+A **Series** is returned.
+
+Example
+
+```python
+students["Name"]
+```
+
+---
+
+## Q7. What is returned when selecting multiple columns?
+
+**Answer**
+
+A **DataFrame** is returned.
+
+Example
+
+```python
+students[["Name", "Marks"]]
+```
+
+---
+
+## Q8. What does `loc[]` stand for?
+
+**Answer**
+
+`loc` stands for **Location**.
+
+It uses **row labels and column names**.
+
+---
+
+## Q9. What does `iloc[]` stand for?
+
+**Answer**
+
+`iloc` stands for **Integer Location**.
+
+It uses **row numbers and column numbers**.
+
+---
+
+## Q10. Difference between `loc[]` and `iloc[]`?
+
+**Answer**
+
+`loc[]` uses labels whereas `iloc[]` uses integer positions.
+
+---
+
+# 📌 Key Takeaways
+
+- Pandas is built on top of NumPy.
+- Series stores one column of labeled data.
+- DataFrame stores multiple columns of labeled data.
+- Dictionary keys become DataFrame column names.
+- Selecting one column returns a Series.
+- Selecting multiple columns returns a DataFrame.
+- `loc[]` uses labels.
+- `iloc[]` uses integer positions.
+- A DataFrame is a collection of multiple Series.
+- Pandas is one of the most important libraries for Data Analysis and Machine Learning.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
