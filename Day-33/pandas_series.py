@@ -207,3 +207,209 @@ filtered_students = [
 ]
 
 print(filtered_students)
+
+
+# ==========================================
+# Program 12 - Filtering Using Equal To (==)
+# ==========================================
+
+import pandas as pd
+
+student_data = {
+    "Name": ["Pratham", "Gojo", "Gun", "Rahul"],
+    "Age": [22, 24, 23, 21],
+    "Marks": [95, 88, 65, 91]
+}
+
+students = pd.DataFrame(student_data)
+
+result = students[students["Marks"] == 88]
+
+print(result)
+
+
+# ===============================================
+# Program 13 - Filtering Using Not Equal To (!=)
+# ===============================================
+
+import pandas as pd
+
+student_data = {
+    "Name": ["Pratham", "Gojo", "Gun", "Rahul"],
+    "Age": [22, 24, 23, 21],
+    "Marks": [95, 88, 65, 91]
+}
+
+students = pd.DataFrame(student_data)
+
+result = students[students["Marks"] != 88]
+
+print(result)
+
+
+# ===========================================================
+# Program 14 - Filtering Using Greater Than or Equal To (>=)
+# ===========================================================
+
+import pandas as pd
+
+student_data = {
+    "Name": ["Pratham", "Gojo", "Gun", "Rahul"],
+    "Age": [22, 24, 23, 21],
+    "Marks": [95, 88, 65, 91]
+}
+
+students = pd.DataFrame(student_data)
+
+result = students[students["Marks"] >= 90]
+
+print(result)
+
+
+# =========================================================
+# Program 15 - Filtering Using Less Than or Equal To (<=)
+# =========================================================
+
+import pandas as pd
+
+student_data = {
+    "Name": ["Pratham", "Gojo", "Gun", "Rahul"],
+    "Age": [22, 24, 23, 21],
+    "Marks": [95, 88, 65, 91]
+}
+
+students = pd.DataFrame(student_data)
+
+result = students[students["Marks"] <= 88]
+
+print(result)
+
+print(students[students["Age"] <= 22])
+
+print(students["Marks"] <= 91)
+
+
+# ==========================================
+# Program 16 - Filtering Using isin()
+# ==========================================
+
+import pandas as pd
+
+student_data = {
+    "Name": ["Pratham", "Gojo", "Gun", "Rahul"],
+    "Age": [22, 24, 23, 21],
+    "Marks": [95, 88, 65, 91]
+}
+
+students = pd.DataFrame(student_data)
+
+result = students[students["Name"].isin(["Gojo", "Rahul"])]
+
+print(result)
+
+print(students["Marks"].isin([88, 91]))
+
+print(students[students["Age"].isin([22, 23])])
+
+
+# ==========================================
+# Program 17 - Filtering Using between()
+# ==========================================
+
+import pandas as pd
+
+student_data = {
+    "Name": ["Pratham", "Gojo", "Gun", "Rahul"],
+    "Age": [22, 24, 23, 21],
+    "Marks": [95, 88, 65, 91]
+}
+
+students = pd.DataFrame(student_data)
+
+result = students[
+    students["Marks"].between(80, 90)
+    ]
+
+print(result)
+
+print(students
+    [students["Age"].between(22, 24)]
+    )
+
+print(students["Marks"].between(90, 95))
+
+
+# ==============================================
+# Program 18 - Sorting Data using sort_values()
+# ==============================================
+
+import pandas as pd
+
+student_data = {
+    "Name": ["Pratham", "Gojo", "Gun", "Rahul"],
+    "Age": [22, 24, 23, 21],
+    "Marks": [95, 88, 65, 91]
+}
+
+students = pd.DataFrame(student_data)
+
+print(students.sort_values("Marks"))
+
+print(students.sort_values("Age"))
+
+print(students.sort_values("Marks", ascending=False))
+
+
+# =================================================
+# Program 19 - Viewing the First Rows using head()
+# =================================================
+
+import pandas as pd
+
+student_data = {
+    "Name": ["Pratham", "Gojo", "Gun", "Rahul", "Naruto", "Luffy"],
+    "Age": [22, 24, 23, 21, 20, 19],
+    "Marks": [95, 88, 65, 91, 89, 84]
+}
+
+students = pd.DataFrame(student_data)
+
+print(students.head())
+
+print(students.head(4))
+
+
+# ================================================
+# Program 20 - Viewing the Last Rows using tail()
+# ================================================
+
+import pandas as pd
+
+student_data = {
+    "Name": ["Pratham", "Gojo", "Gun", "Rahul", "Naruto", "Luffy"],
+    "Age": [22, 24, 23, 21, 20, 19],
+    "Marks": [95, 88, 65, 91, 89, 84]
+}
+
+students = pd.DataFrame(student_data)
+
+print(students.tail())
+
+print(students.tail(4))
+
+
+# ================================================
+# Program 21 - Viewing Random Rows using sample()
+# ================================================
+
+import pandas as pd
+
+student_data = {
+    "Name": ["Pratham", "Gojo", "Gun", "Rahul", "Naruto", "Luffy"],
+    "Age": [22, 24, 23, 21, 20, 19],
+    "Marks": [95, 88, 65, 91, 89, 84]
+}
+
+students = pd.DataFrame(student_data)
+
+print(students.sample())

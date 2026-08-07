@@ -5401,6 +5401,222 @@ A Boolean Mask is a sequence of `True` and `False` values created after evaluati
 
 ---
 
+# 🐼 Pandas Fundamentals (Part 2)
+
+Today marked the beginning of my **Pandas** journey, one of the most important Python libraries for Data Analysis, Data Science, Machine Learning, and AI development.
+
+## 📚 Topics Covered
+
+### 🔹 Pandas Series
+- Introduction to `Series`
+- Creating a Series
+- Understanding Index and Values
+- Accessing data using indexing
+- Relationship between Series and one-dimensional data
+
+### 🔹 Pandas DataFrame
+- Introduction to `DataFrame`
+- Creating DataFrames using Python Dictionaries
+- Understanding rows and columns
+- Difference between Series and DataFrame
+
+### 🔹 Accessing Data
+- Selecting single columns
+- Selecting multiple columns
+- Accessing rows using:
+  - `loc[]` (Label-based indexing)
+  - `iloc[]` (Integer-based indexing)
+- Accessing specific rows and columns together
+
+### 🔹 Data Filtering
+Learned how Pandas creates **Boolean Masks** internally and filters only the rows that satisfy the given condition.
+
+Filtering techniques covered:
+
+- Greater Than (`>`)
+- Greater Than or Equal To (`>=`)
+- Less Than (`<`)
+- Less Than or Equal To (`<=`)
+- Equal To (`==`)
+- Not Equal To (`!=`)
+- Multiple Conditions using:
+  - AND (`&`)
+  - OR (`|`)
+
+### 🔹 Advanced Filtering
+
+#### `isin()`
+Used to filter rows whose values exist inside a given list.
+
+Example use cases:
+- Filter specific students
+- Filter selected products
+- Filter selected categories
+
+#### `between()`
+Used for filtering values within a range.
+
+Instead of writing:
+
+```python
+(students["Marks"] >= 80) &
+(students["Marks"] <= 90)
+```
+
+I learned the cleaner Pandas approach:
+
+```python
+students["Marks"].between(80, 90)
+```
+
+---
+
+## 📊 Sorting Data
+
+Learned to sort complete rows using:
+
+```python
+sort_values()
+```
+
+Topics covered:
+
+- Ascending order (Default)
+- Descending order (`ascending=False`)
+- Understanding why Pandas moves the **entire row** instead of only the selected column to preserve data integrity.
+
+---
+
+## 👀 Previewing Data
+
+### `head()`
+Displays the first **5 rows** by default.
+
+Can also display a custom number of rows:
+
+```python
+students.head(3)
+```
+
+### `tail()`
+Displays the last **5 rows** by default.
+
+Supports custom row count:
+
+```python
+students.tail(2)
+```
+
+### `sample()`
+Returns random rows from a DataFrame.
+
+Examples:
+
+```python
+students.sample()
+students.sample(3)
+students.sample(5)
+```
+
+Also learned that:
+- Output changes on every execution.
+- Useful for exploring large datasets.
+- Can later be combined with `random_state` for reproducible results.
+
+---
+
+# 💡 Key Concepts Learned
+
+- Series is a **1D labeled data structure**
+- DataFrame is a **2D labeled data structure**
+- `loc[]` uses row labels and column names.
+- `iloc[]` uses integer positions.
+- Boolean Mask is the foundation of Pandas filtering.
+- Pandas never modifies data while filtering—it returns a new filtered DataFrame.
+- Entire rows move together during sorting to maintain data consistency.
+- `head()`, `tail()`, and `sample()` are essential functions for quickly understanding large datasets.
+
+---
+
+# 📝 Important Interview Questions
+
+### Q1. Difference between Series and DataFrame?
+
+**Answer:**
+
+- **Series** is a one-dimensional labeled data structure.
+- **DataFrame** is a two-dimensional labeled data structure consisting of rows and columns.
+
+---
+
+### Q2. Difference between `loc[]` and `iloc[]`?
+
+**Answer:**
+
+| `loc[]` | `iloc[]` |
+|---------|----------|
+| Label-based indexing | Integer-based indexing |
+| Uses row labels and column names | Uses row and column positions |
+
+---
+
+### Q3. What is a Boolean Mask?
+
+**Answer:**
+
+A Boolean Mask is a sequence of `True` and `False` values generated after evaluating a condition. Pandas uses this mask to return only the rows where the condition is `True`.
+
+---
+
+### Q4. Why does Pandas move the entire row during sorting?
+
+**Answer:**
+
+Because all values in a row belong to the same record. Sorting only one column would mismatch the remaining column values, so Pandas rearranges the entire row together to preserve data integrity.
+
+---
+
+### Q5. Difference between `head()`, `tail()`, and `sample()`?
+
+| Function | Purpose |
+|----------|---------|
+| `head()` | Displays the first rows of a DataFrame |
+| `tail()` | Displays the last rows of a DataFrame |
+| `sample()` | Displays random rows from a DataFrame |
+
+---
+
+### Q6. When should we use `isin()`?
+
+**Answer:**
+
+Use `isin()` when filtering rows whose values belong to a predefined list instead of writing multiple OR (`|`) conditions.
+
+---
+
+### Q7. When should we use `between()`?
+
+**Answer:**
+
+Use `between()` when filtering values within a continuous range. It provides cleaner and more readable code than combining `>=` and `<=`.
+
+---
+
+# 🚀 Progress Update
+
+With these concepts completed, I now have a strong understanding of:
+
+- Creating and working with Series
+- Building and manipulating DataFrames
+- Selecting rows and columns efficiently
+- Boolean indexing and filtering
+- Sorting datasets
+- Previewing and exploring large datasets
+
+These skills form the foundation required before working with real-world CSV files, data cleaning, exploratory data analysis (EDA), and machine learning workflows.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
