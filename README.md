@@ -5617,6 +5617,1215 @@ These skills form the foundation required before working with real-world CSV fil
 
 ---
 
+---
+
+# 🐼 Pandas for Data Analysis (Part 3)
+
+This section continues my hands-on learning journey with **Pandas**, focusing on concepts that are especially useful for **Data Analyst and Business Analyst roles**.
+
+The focus of this section was not only learning Pandas syntax but also understanding **how data is filtered, grouped, cleaned, and analyzed to answer business questions**.
+
+---
+
+## 📚 Topics Covered
+
+### 🔹 Data Selection with `loc[]` and `iloc[]`
+
+Learned how to select rows and columns using two important Pandas indexing methods:
+
+* `loc[]` → Label-based indexing
+* `iloc[]` → Integer position-based indexing
+* Selecting individual rows
+* Selecting multiple rows
+* Selecting rows and columns together
+* Understanding slicing differences between `loc[]` and `iloc[]`
+
+### Difference Between `loc[]` and `iloc[]`
+
+| `loc[]`                           | `iloc[]`                             |
+| --------------------------------- | ------------------------------------ |
+| Label-based indexing              | Integer position-based indexing      |
+| Uses row labels                   | Uses row positions                   |
+| Can use column names              | Uses column positions                |
+| Last label in a slice is included | Stop position in a slice is excluded |
+
+Example:
+
+```python
+students.loc[1:3]
+```
+
+Includes labels:
+
+```text
+1, 2, 3
+```
+
+While:
+
+```python
+students.iloc[1:3]
+```
+
+Includes positions:
+
+```text
+1, 2
+```
+
+because normal Python slicing excludes the stop position.
+
+---
+
+# 📌 Filtering Data with `loc[]`
+
+Learned how to combine filtering and column selection using `loc[]`.
+
+Example:
+
+```python
+students.loc[
+    students["Marks"] >= 90,
+    ["Name", "Marks"]
+]
+```
+
+This allows us to:
+
+1. Apply a condition to filter rows.
+2. Select only the required columns.
+
+Also practiced:
+
+* Single conditions
+* Multiple conditions using AND (`&`)
+* Multiple conditions using OR (`|`)
+* NOT conditions using `~`
+* Selecting only relevant columns after filtering
+
+---
+
+# 📌 Multiple Conditions with `loc[]`
+
+### AND (`&`)
+
+All conditions must be `True`.
+
+```python
+students.loc[
+    (students["Age"] <= 22) &
+    (students["Marks"] >= 85)
+]
+```
+
+### OR (`|`)
+
+At least one condition must be `True`.
+
+```python
+students.loc[
+    (students["Marks"] >= 90) |
+    (students["Age"] <= 20)
+]
+```
+
+### NOT (`~`)
+
+Reverses a Boolean condition.
+
+```python
+students.loc[
+    ~(students["Marks"] >= 90)
+]
+```
+
+For example:
+
+```text
+True  → False
+False → True
+```
+
+---
+
+# 📊 Filtering and Sorting Data
+
+Learned how to combine filtering with sorting.
+
+Example:
+
+```python
+students.loc[
+    students["Marks"] >= 85,
+    ["Name", "Marks"]
+].sort_values("Marks", ascending=False)
+```
+
+This performs the following steps:
+
+1. Filters students with marks greater than or equal to `85`.
+2. Selects the required columns.
+3. Sorts the result from highest to lowest marks.
+
+---
+
+# 📊 Sorting by Multiple Columns
+
+Learned how to sort data using more than one column.
+
+Example:
+
+```python
+students.sort_values(
+    ["Marks", "Age"],
+    ascending=[False, True]
+)
+```
+
+This means:
+
+* Sort `Marks` from largest to smallest.
+* If marks are the same, sort `Age` from smallest to largest.
+
+This is useful when analyzing data with multiple ranking or priority conditions.
+
+---
+
+# 🔝 Top and Bottom Records
+
+Learned how to identify top-performing and bottom-performing records using:
+
+* `sort_values()`
+* `head()`
+* `tail()`
+
+Example:
+
+```python
+students.sort_values(
+    "Marks",
+    ascending=False
+).head(3)
+```
+
+This returns the top 3 students based on marks.
+
+Example:
+
+```python
+students.sort_values(
+    "Marks",
+    ascending=True
+).head(2)
+```
+
+This returns the bottom 2 students based on marks.
+
+These techniques can be used in business analysis for questions such as:
+
+* Top 10 customers by revenue
+* Lowest-performing products
+* Highest-selling regions
+* Bottom-performing stores
+
+---
+
+# 🔎 Filtering with `query()`
+
+Learned how to write filtering conditions using the `query()` method.
+
+Example:
+
+```python
+students.query("Marks >= 90")
+```
+
+Multiple conditions:
+
+```python
+students.query(
+    "Age <= 22 and Marks >= 85"
+)
+```
+
+`query()` can make filtering conditions cleaner and more readable.
+
+---
+
+# 📌 Counting Filtered Records
+
+Learned two important approaches for counting rows that satisfy a condition.
+
+### Using `.shape[0]`
+
+```python
+students[
+    students["Marks"] >= 85
+].shape[0]
+```
+
+Process:
+
+1. Create a Boolean condition.
+2. Filter the DataFrame.
+3. Use `.shape[0]` to count the remaining rows.
+
+### Using `.sum()`
+
+```python
+(students["Marks"] >= 85).sum()
+```
+
+This works because:
+
+```text
+True  behaves like 1
+False behaves like 0
+```
+
+Therefore, `.sum()` directly counts how many `True` values exist.
+
+---
+
+# 📊 `groupby()` for Data Analysis
+
+Learned how to split data into groups and perform calculations for each group.
+
+Example:
+
+```python
+students.groupby("City")["Marks"].mean()
+```
+
+This groups students by city and calculates the average marks for each city.
+
+Also practiced:
+
+* `mean()`
+* `sum()`
+* `min()`
+* `max()`
+* `count()`
+
+Example business use cases:
+
+* Average sales by region
+* Total revenue by category
+* Maximum sales by store
+* Number of customers by city
+
+---
+
+# 📊 Multiple Aggregations with `agg()`
+
+Learned how to perform multiple calculations on grouped data.
+
+Example:
+
+```python
+students.groupby("City")["Marks"].agg(
+    ["mean", "min", "max", "sum", "count"]
+)
+```
+
+This can calculate multiple business metrics at once.
+
+For example:
+
+```text
+Average Sales
+Minimum Sales
+Maximum Sales
+Total Sales
+Transaction Count
+```
+
+---
+
+# 📊 Different Aggregations for Different Columns
+
+Learned how to perform different calculations on different columns.
+
+Example:
+
+```python
+students.groupby("City").agg({
+    "Marks": "mean",
+    "Age": "max",
+    "Name": "count"
+})
+```
+
+This means:
+
+* Calculate average marks.
+* Find maximum age.
+* Count students.
+
+---
+
+# 📊 Named Aggregations
+
+Learned how to give meaningful names to calculated columns.
+
+Example:
+
+```python
+students.groupby(
+    "City",
+    as_index=False
+).agg(
+    Average_Marks=("Marks", "mean"),
+    Highest_Marks=("Marks", "max"),
+    Student_Count=("Name", "count")
+)
+```
+
+Named aggregations make results easier to understand and more suitable for business reporting.
+
+Example output columns:
+
+```text
+City
+Average_Marks
+Highest_Marks
+Student_Count
+```
+
+---
+
+# 📊 Grouping by Multiple Columns
+
+Learned how to group data using more than one column.
+
+Example:
+
+```python
+students.groupby(
+    ["City", "Gender"]
+)["Marks"].mean()
+```
+
+This creates groups based on combinations such as:
+
+```text
+Mumbai + Male
+Mumbai + Female
+Delhi + Male
+Pune + Male
+```
+
+This is useful for deeper analysis such as:
+
+* Sales by Region and Product Category
+* Revenue by City and Customer Segment
+* Employee count by Department and Gender
+
+---
+
+# 📌 `reset_index()` After `groupby()`
+
+By default, grouping columns can become part of the index.
+
+Learned how to convert them back into normal columns using:
+
+```python
+.reset_index()
+```
+
+Example:
+
+```python
+result = (
+    students
+    .groupby(["City", "Gender"])["Marks"]
+    .sum()
+    .reset_index()
+)
+```
+
+This is useful when we want to continue working with the grouped result as a normal DataFrame.
+
+---
+
+# 📌 `as_index=False`
+
+Learned an alternative approach:
+
+```python
+students.groupby(
+    "City",
+    as_index=False
+)["Marks"].mean()
+```
+
+Using `as_index=False` keeps the grouping column as a normal column instead of making it the index.
+
+This often makes grouped business reports easier to read and use.
+
+---
+
+# 📊 Combining `groupby()` and `sort_values()`
+
+Learned how to create sorted business summaries.
+
+Example:
+
+```python
+result = (
+    students
+    .groupby("City", as_index=False)["Marks"]
+    .mean()
+    .sort_values("Marks", ascending=False)
+)
+```
+
+This can be used for questions such as:
+
+> Which city has the highest average marks?
+
+A similar business example would be:
+
+> Which region has the highest average sales?
+
+---
+
+# 📊 Combining `groupby()`, `agg()`, and `sort_values()`
+
+Learned how to create more complete summary reports.
+
+Example:
+
+```python
+result = students.groupby(
+    "City",
+    as_index=False
+).agg(
+    Average_Marks=("Marks", "mean"),
+    Highest_Marks=("Marks", "max"),
+    Student_Count=("Name", "count")
+).sort_values(
+    "Average_Marks",
+    ascending=False
+)
+```
+
+This pattern is useful for creating business summaries with multiple KPIs.
+
+---
+
+# 📌 `value_counts()`
+
+Learned how to count the frequency of values in a column.
+
+Example:
+
+```python
+students["City"].value_counts()
+```
+
+Possible use cases:
+
+* Number of customers in each city
+* Number of orders by status
+* Number of employees by department
+* Frequency of product categories
+
+---
+
+# 📊 Percentage Distribution with `normalize=True`
+
+Learned how to convert value counts into proportions.
+
+Example:
+
+```python
+students["City"].value_counts(
+    normalize=True
+) * 100
+```
+
+This returns the percentage distribution.
+
+Example business question:
+
+> What percentage of customers come from each region?
+
+---
+
+# 📌 `unique()` and `nunique()`
+
+### `unique()`
+
+Returns the unique values.
+
+```python
+students["City"].unique()
+```
+
+### `nunique()`
+
+Returns the number of unique values.
+
+```python
+students["City"].nunique()
+```
+
+Example business use case:
+
+```text
+Customer_ID → 1,250 unique values
+```
+
+This can help understand the number of unique customers in a dataset.
+
+---
+
+# 🧹 Finding Duplicate Data
+
+Learned how to identify duplicate records using:
+
+```python
+duplicated()
+```
+
+Example:
+
+```python
+students.duplicated()
+```
+
+Pandas creates a Boolean result:
+
+```text
+False → Record is not considered a duplicate
+True  → Record is considered a duplicate
+```
+
+Then:
+
+```python
+students[students.duplicated()]
+```
+
+returns only the duplicate records.
+
+---
+
+# 🧹 Removing Duplicate Data
+
+Learned how to remove duplicate records using:
+
+```python
+drop_duplicates()
+```
+
+Example:
+
+```python
+students = students.drop_duplicates()
+```
+
+By default:
+
+* The first occurrence is kept.
+* Later identical occurrences are removed.
+
+---
+
+# 📌 Removing Duplicates from Specific Columns
+
+Learned how to check duplicates using a specific column.
+
+Example:
+
+```python
+customers.drop_duplicates(
+    subset="Customer_ID"
+)
+```
+
+This checks duplicate values specifically in the `Customer_ID` column.
+
+This is useful when the business rule says a customer should appear only once.
+
+---
+
+# 📌 `keep` Parameter
+
+Learned how to control which duplicate occurrence is kept.
+
+### Keep First
+
+```python
+keep="first"
+```
+
+Keeps the first occurrence.
+
+### Keep Last
+
+```python
+keep="last"
+```
+
+Keeps the last occurrence.
+
+### Remove All Duplicates
+
+```python
+keep=False
+```
+
+Removes all duplicated occurrences and keeps only values that appear once.
+
+---
+
+# ⚠️ Important Business Lesson About Duplicates
+
+Duplicate records should not always be removed immediately.
+
+For example, the same customer may appear multiple times because they made multiple purchases.
+
+Therefore, before removing duplicates, it is important to understand:
+
+* What does one row represent?
+* Is the repeated value actually an error?
+* Which column should be checked for duplicates?
+* Could removing duplicates delete valid business transactions?
+
+---
+
+# 🧹 Finding Missing Values
+
+Learned how to identify missing values using:
+
+```python
+isna()
+```
+
+and:
+
+```python
+isnull()
+```
+
+Example:
+
+```python
+students.isna()
+```
+
+This returns a Boolean result:
+
+```text
+True  → Value is missing
+False → Value is present
+```
+
+---
+
+# 📊 Counting Missing Values
+
+Learned how to count missing values in each column.
+
+```python
+students.isna().sum()
+```
+
+Example result:
+
+```text
+Name     0
+Age      2
+Marks    1
+City     1
+```
+
+This helps identify which columns require data cleaning.
+
+---
+
+# 🗑️ Removing Missing Values with `dropna()`
+
+Learned how to remove rows containing missing values.
+
+```python
+students.dropna()
+```
+
+Important:
+
+By default, `dropna()` returns a new DataFrame and does not modify the original DataFrame.
+
+To store the updated data:
+
+```python
+students = students.dropna()
+```
+
+---
+
+# ⚠️ Important Business Lesson About `dropna()`
+
+`dropna()` should not be used blindly.
+
+If removing missing values deletes a large percentage of the dataset, we should first investigate:
+
+* Which columns contain missing values?
+* How much data would be removed?
+* Are those columns important for the analysis?
+* Can missing values be handled differently?
+
+---
+
+# 🧹 Filling Missing Values with `fillna()`
+
+Learned how to replace missing values with a specific value.
+
+Example:
+
+```python
+students["City"] = students["City"].fillna(
+    "Unknown"
+)
+```
+
+Numeric example:
+
+```python
+students["Age"] = students["Age"].fillna(0)
+```
+
+However, a missing numeric value should not automatically be considered `0`.
+
+---
+
+# 📊 Filling Missing Values with Mean
+
+Learned how to calculate the mean and use it to fill missing numeric values.
+
+```python
+mean_marks = students["Marks"].mean()
+
+students["Marks"] = students["Marks"].fillna(
+    mean_marks
+)
+```
+
+Pandas ignores `NaN` values by default while calculating the mean.
+
+---
+
+# 📊 Filling Missing Values with Median
+
+Learned how to calculate the median and use it to fill missing values.
+
+```python
+median_marks = students["Marks"].median()
+
+students["Marks"] = students["Marks"].fillna(
+    median_marks
+)
+```
+
+### Mean vs Median
+
+| Mean                                    | Median                            |
+| --------------------------------------- | --------------------------------- |
+| Calculates the average                  | Finds the middle value            |
+| Sensitive to extreme outliers           | Less affected by extreme outliers |
+| Useful when data is reasonably balanced | Often safer when data is skewed   |
+
+Example:
+
+```text
+10, 12, 11, 13, 1000, NaN
+```
+
+The value `1000` is an extreme outlier, so the median can be more representative than the mean.
+
+---
+
+# 📌 Forward Fill with `ffill()`
+
+Learned how to fill missing values using the previous available value.
+
+```python
+sales["Sales"] = sales["Sales"].ffill()
+```
+
+Example:
+
+```text
+100
+NaN
+NaN
+250
+```
+
+After `ffill()`:
+
+```text
+100
+100
+100
+250
+```
+
+`ffill()` is more suitable when values logically continue until a new value is recorded.
+
+Example:
+
+```text
+Employee Status
+
+Active
+NaN
+NaN
+Inactive
+```
+
+Forward filling can reasonably produce:
+
+```text
+Active
+Active
+Active
+Inactive
+```
+
+---
+
+# 📌 Backward Fill with `bfill()`
+
+Learned how to fill missing values using the next available value.
+
+```python
+sales["Sales"] = sales["Sales"].bfill()
+```
+
+Example:
+
+```text
+100
+NaN
+NaN
+250
+```
+
+After `bfill()`:
+
+```text
+100
+250
+250
+250
+```
+
+---
+
+# ⚠️ Important Business Lesson About `ffill()` and `bfill()`
+
+These methods should not be used blindly.
+
+For example, if daily sales are:
+
+```text
+Jan 1 → 100
+Jan 2 → NaN
+Jan 3 → 250
+```
+
+We cannot automatically assume that Jan 2 sales were:
+
+```text
+100
+```
+
+or:
+
+```text
+250
+```
+
+The correct missing-value strategy depends on what the data represents and the business context.
+
+---
+
+# 🧹 Renaming Columns with `rename()`
+
+Learned how to rename inconsistent or unclear column names.
+
+Example:
+
+```python
+sales = sales.rename(columns={
+    "Customer Name": "Customer_Name",
+    "sales amount": "Sales_Amount",
+    "ORDER_DATE": "Order_Date"
+})
+```
+
+General syntax:
+
+```python
+df = df.rename(columns={
+    "Old_Name": "New_Name"
+})
+```
+
+Standardized column names help make datasets:
+
+* Easier to understand
+* More consistent
+* Easier to maintain
+* Less likely to cause coding errors
+
+---
+
+# 💡 Key Concepts Learned
+
+* `loc[]` uses labels and column names.
+* `iloc[]` uses integer positions.
+* `loc[]` includes the ending label in label slicing.
+* `iloc[]` follows normal Python slicing and excludes the stop position.
+* Boolean conditions create `True` and `False` masks.
+* `&` means all conditions must be `True`.
+* `|` means at least one condition must be `True`.
+* `~` reverses a Boolean condition.
+* `.sum()` can count `True` values because `True` behaves like `1`.
+* `.shape[0]` returns the number of rows in a filtered DataFrame.
+* `query()` can provide cleaner filtering syntax.
+* `groupby()` is used to split data into groups and calculate metrics for each group.
+* `agg()` allows multiple calculations to be performed.
+* Named aggregations create clearer business summary columns.
+* `as_index=False` keeps grouping columns as normal columns.
+* `reset_index()` converts index values back into normal columns.
+* `value_counts()` calculates frequency.
+* `normalize=True` returns proportions that can be converted to percentages.
+* `unique()` returns unique values.
+* `nunique()` returns the number of unique values.
+* `duplicated()` identifies duplicate records.
+* `drop_duplicates()` removes duplicate records.
+* Duplicate data should be investigated before removal.
+* `isna()` and `isnull()` help identify missing values.
+* `isna().sum()` counts missing values by column.
+* `dropna()` can remove rows containing missing values.
+* `fillna()` replaces missing values with selected values.
+* Mean is sensitive to outliers.
+* Median is less affected by extreme outliers.
+* `ffill()` uses the previous available value.
+* `bfill()` uses the next available value.
+* Missing-value handling should depend on data and business context.
+* `rename()` helps standardize inconsistent column names.
+
+---
+
+# 📝 Important Interview Questions
+
+### Q1. What is the difference between `loc[]` and `iloc[]`?
+
+**Answer:**
+
+`loc[]` is label-based indexing and uses row labels and column names.
+
+`iloc[]` is position-based indexing and uses integer positions for rows and columns.
+
+A key difference is that label slicing with `loc[]` includes the ending label, while `iloc[]` excludes the stop position following normal Python slicing.
+
+---
+
+### Q2. What is a Boolean Mask in Pandas?
+
+**Answer:**
+
+A Boolean Mask is a sequence of `True` and `False` values generated after evaluating a condition. Pandas uses this mask to filter and return only the rows where the condition is `True`.
+
+---
+
+### Q3. What is the difference between `&`, `|`, and `~` in Pandas filtering?
+
+**Answer:**
+
+* `&` means AND, so all conditions must be `True`.
+* `|` means OR, so at least one condition must be `True`.
+* `~` means NOT and reverses the Boolean condition.
+
+---
+
+### Q4. Why are parentheses important when using multiple Pandas conditions?
+
+**Answer:**
+
+Parentheses ensure that each comparison is evaluated separately before applying operators such as `&` or `|`.
+
+Example:
+
+```python
+(students["Marks"] >= 85) &
+(students["Age"] <= 22)
+```
+
+---
+
+### Q5. What is `groupby()` used for?
+
+**Answer:**
+
+`groupby()` is used to split data into groups based on one or more columns and then perform calculations such as `mean()`, `sum()`, `count()`, `min()`, or `max()` for each group.
+
+Example business use case:
+
+> Calculate total sales for each region.
+
+---
+
+### Q6. What is the purpose of `agg()`?
+
+**Answer:**
+
+`agg()` allows multiple aggregation operations to be performed at once.
+
+It can calculate multiple metrics for the same column or different metrics for different columns.
+
+---
+
+### Q7. What is the difference between `reset_index()` and `as_index=False`?
+
+**Answer:**
+
+`reset_index()` is used after an operation when we want to convert index values back into normal columns.
+
+`as_index=False` is passed to `groupby()` to keep grouping columns as normal columns from the beginning.
+
+---
+
+### Q8. What is the difference between `unique()` and `nunique()`?
+
+**Answer:**
+
+* `unique()` returns the actual unique values.
+* `nunique()` returns the number of unique values.
+
+---
+
+### Q9. What is the difference between `duplicated()` and `drop_duplicates()`?
+
+**Answer:**
+
+`duplicated()` identifies duplicate records and returns a Boolean result.
+
+`drop_duplicates()` removes duplicate records from the DataFrame.
+
+---
+
+### Q10. Why should duplicate records be investigated before removing them?
+
+**Answer:**
+
+Because repeated values are not always errors.
+
+For example, the same customer may appear multiple times because they made multiple valid purchases. Before removing duplicates, we need to understand what one row represents and which columns define a true duplicate.
+
+---
+
+### Q11. What is the difference between `isna()` and `isna().sum()`?
+
+**Answer:**
+
+`isna()` returns a Boolean result showing whether each value is missing.
+
+`isna().sum()` counts the total missing values in each column.
+
+---
+
+### Q12. What is the difference between `dropna()` and `fillna()`?
+
+**Answer:**
+
+`dropna()` removes rows or data containing missing values.
+
+`fillna()` replaces missing values with a selected value or calculated value such as mean or median.
+
+The correct approach depends on the dataset and business context.
+
+---
+
+### Q13. When would you use mean instead of median for missing values?
+
+**Answer:**
+
+Mean can be considered when numeric data is reasonably balanced and does not contain significant extreme outliers.
+
+---
+
+### Q14. When is median generally safer than mean?
+
+**Answer:**
+
+Median is generally safer when data contains extreme outliers or is heavily skewed because it is less affected by extreme values.
+
+---
+
+### Q15. What is the difference between `ffill()` and `bfill()`?
+
+**Answer:**
+
+* `ffill()` fills missing values using the previous available value.
+* `bfill()` fills missing values using the next available value.
+
+Both methods should only be used when the data has a logical sequence where such filling makes business sense.
+
+---
+
+### Q16. Does `NaN` mean the same thing as `0`?
+
+**Answer:**
+
+No.
+
+`0` represents an actual known value of zero.
+
+`NaN` represents an unknown or missing value.
+
+Replacing `NaN` with `0` without understanding the data can create incorrect analysis and misleading business insights.
+
+---
+
+### Q17. What does `value_counts(normalize=True)` do?
+
+**Answer:**
+
+It returns the proportion of each unique value instead of only the count.
+
+Multiplying the result by `100` converts the proportions into percentages.
+
+---
+
+### Q18. Why are standardized column names useful?
+
+**Answer:**
+
+Standardized column names improve readability, consistency, and maintainability. They also reduce errors caused by inconsistent capitalization, spaces, and naming conventions when writing analysis code.
+
+---
+
+# 🚀 Next Topics
+
+After completing these Pandas concepts, I will continue with the remaining high-priority topics for Data Analysis:
+
+* Data Inspection and Profiling
+* Combining DataFrames with `merge()`
+* Understanding Joins
+* Pivot Tables
+* Datetime Handling
+* String Cleaning and Transformation
+
+The focus will remain on **practical Data Analyst and Business Analyst use cases** rather than learning every Pandas function.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
