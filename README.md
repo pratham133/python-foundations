@@ -6825,6 +6825,1092 @@ After completing these Pandas concepts, I will continue with the remaining high-
 The focus will remain on **practical Data Analyst and Business Analyst use cases** rather than learning every Pandas function.
 
 ---
+# 🔗 Combining DataFrames with `merge()` and `concat()`
+
+After completing the core data cleaning concepts, I learned how to combine multiple DataFrames — an important skill when working with real-world business data stored across different tables, files, or systems.
+
+## 📚 Topics Covered
+
+* Combining DataFrames with `pd.merge()`
+* Understanding common keys
+* Inner Join
+* Left Join
+* Right Join
+* Outer Join
+* Merging DataFrames using `on=`
+* Merging DataFrames with different column names
+* `left_on` and `right_on`
+* Handling overlapping column names with `suffixes`
+* Combining DataFrames with `pd.concat()`
+* Vertical concatenation
+* Horizontal concatenation
+* Understanding `axis=0` and `axis=1`
+* Using `ignore_index=True`
+* Difference between `pd.merge()` and `pd.concat()`
+
+---
+
+# 🔗 Combining DataFrames with `pd.merge()`
+
+`pd.merge()` is used to combine **related DataFrames** by matching records using a common key.
+
+For example, one DataFrame may contain customer information:
+
+```text
+Customer_ID
+Name
+City
+```
+
+Another DataFrame may contain order information:
+
+```text
+Customer_ID
+Order_ID
+Product
+Sales
+```
+
+Both DataFrames can be connected using:
+
+```text
+Customer_ID
+```
+
+Example:
+
+```python
+merged_data = pd.merge(
+    customers,
+    orders,
+    on="Customer_ID"
+)
+```
+
+The `Customer_ID` column acts as the common key used to match related records.
+
+### Practical Use Case
+
+A company may store:
+
+* Customer information in one table
+* Orders in another table
+* Products in another table
+* Employee information in another table
+
+`pd.merge()` helps combine related information for analysis.
+
+---
+
+# 🔹 Inner Join
+
+An Inner Join keeps **only the matching records** that exist in both DataFrames.
+
+Example:
+
+```python
+merged_data = pd.merge(
+    customers,
+    orders,
+    on="Customer_ID",
+    how="inner"
+)
+```
+
+### Logic
+
+```text
+Customers DataFrame
+        +
+Orders DataFrame
+        ↓
+Keep only matching Customer_ID values
+```
+
+If a customer exists only in the `customers` DataFrame but has no matching order, that record is not included.
+
+Similarly, if an order contains a Customer_ID that does not exist in the customer DataFrame, that record is also not included.
+
+### Important Note
+
+`pd.merge()` performs an Inner Join by default.
+
+Therefore:
+
+```python
+pd.merge(customers, orders, on="Customer_ID")
+```
+
+is equivalent to:
+
+```python
+pd.merge(
+    customers,
+    orders,
+    on="Customer_ID",
+    how="inner"
+)
+```
+
+### Simple Memory Trick
+
+```text
+Inner Join → Only common or matching records
+```
+
+---
+
+# 🔹 Left Join
+
+A Left Join keeps **all records from the left DataFrame** and adds matching information from the right DataFrame.
+
+Example:
+
+```python
+merged_data = pd.merge(
+    customers,
+    orders,
+    on="Customer_ID",
+    how="left"
+)
+```
+
+Here:
+
+```text
+customers → Left DataFrame
+orders    → Right DataFrame
+```
+
+### Logic
+
+```text
+All customer records
+        +
+Matching order records
+```
+
+If a customer does not have a matching order, the customer is still included.
+
+The columns coming from the `orders` DataFrame will contain:
+
+```text
+NaN
+```
+
+for that customer.
+
+### Example Business Use Case
+
+Finding customers who have not placed an order.
+
+A Left Join is useful when the main dataset is the customer dataset and we want to preserve every customer.
+
+### Simple Memory Trick
+
+```text
+Left Join → All left rows + matching right records
+```
+
+---
+
+# 🔹 Right Join
+
+A Right Join keeps **all records from the right DataFrame** and adds matching information from the left DataFrame.
+
+Example:
+
+```python
+merged_data = pd.merge(
+    customers,
+    orders,
+    on="Customer_ID",
+    how="right"
+)
+```
+
+Here:
+
+```text
+customers → Left DataFrame
+orders    → Right DataFrame
+```
+
+### Logic
+
+```text
+All order records
+        +
+Matching customer records
+```
+
+If an order does not have a matching customer record, the order is still included.
+
+The columns coming from the `customers` DataFrame will contain:
+
+```text
+NaN
+```
+
+where matching customer information does not exist.
+
+### Example Business Use Case
+
+Checking whether every order has valid customer information.
+
+### Simple Memory Trick
+
+```text
+Right Join → All right rows + matching left records
+```
+
+---
+
+# 🔹 Outer Join
+
+An Outer Join keeps **all records from both DataFrames**.
+
+Example:
+
+```python
+merged_data = pd.merge(
+    customers,
+    orders,
+    on="Customer_ID",
+    how="outer"
+)
+```
+
+### Logic
+
+```text
+All customer records
+        +
+All order records
+        ↓
+Keep everything from both DataFrames
+```
+
+If a record exists only in one DataFrame, it is still included.
+
+The missing side contains:
+
+```text
+NaN
+```
+
+### Example
+
+If:
+
+```text
+Customer_ID 104
+```
+
+exists only in the `customers` DataFrame, it will still appear.
+
+If:
+
+```text
+Customer_ID 105
+```
+
+exists only in the `orders` DataFrame, it will also still appear.
+
+### Practical Data Analyst Use Case
+
+Outer Join is useful for:
+
+* Data reconciliation
+* Finding unmatched customers
+* Finding unmatched orders
+* Identifying data quality issues
+* Comparing records from different systems
+
+### Simple Memory Trick
+
+```text
+Outer Join → Everything from both DataFrames
+```
+
+---
+
+# 📊 Comparison of Join Types
+
+| Join Type  | Result                                            |
+| ---------- | ------------------------------------------------- |
+| Inner Join | Keeps only matching records from both DataFrames  |
+| Left Join  | Keeps all left records and matching right records |
+| Right Join | Keeps all right records and matching left records |
+| Outer Join | Keeps all records from both DataFrames            |
+
+### Easy Way to Remember
+
+```text
+INNER → Common records only
+
+LEFT → Keep everything on the left
+
+RIGHT → Keep everything on the right
+
+OUTER → Keep everything from both
+```
+
+---
+
+# 🔑 Using `on=` with `pd.merge()`
+
+The `on=` parameter is used when both DataFrames have the same matching column name.
+
+Example:
+
+```python
+pd.merge(
+    customers,
+    orders,
+    on="Customer_ID"
+)
+```
+
+Both DataFrames contain:
+
+```text
+Customer_ID
+```
+
+Therefore, Pandas can use the same column name to match records.
+
+### Rule
+
+```text
+Same matching column name → Use on=
+```
+
+---
+
+# 🔑 Using `left_on` and `right_on`
+
+Sometimes two DataFrames contain the same type of information but use different column names.
+
+Example:
+
+```text
+customers DataFrame → Customer_ID
+
+orders DataFrame → Customer
+```
+
+Both columns represent customer information, but their names are different.
+
+In this situation, use:
+
+```python
+merged_data = pd.merge(
+    customers,
+    orders,
+    left_on="Customer_ID",
+    right_on="Customer"
+)
+```
+
+### What `left_on` Means
+
+```python
+left_on="Customer_ID"
+```
+
+Use the `Customer_ID` column from the left DataFrame for matching.
+
+### What `right_on` Means
+
+```python
+right_on="Customer"
+```
+
+Use the `Customer` column from the right DataFrame for matching.
+
+### Rule
+
+```text
+Same column name
+→ on=
+```
+
+```text
+Different column names containing matching data
+→ left_on= + right_on=
+```
+
+---
+
+# 🏷️ Handling Overlapping Column Names with `suffixes`
+
+Sometimes both DataFrames contain columns with the same name.
+
+For example:
+
+```text
+customers DataFrame → City
+
+orders DataFrame → City
+```
+
+If both columns are included after merging, Pandas needs a way to distinguish them.
+
+We can use:
+
+```python
+suffixes=
+```
+
+Example:
+
+```python
+merged_data = pd.merge(
+    customers,
+    orders,
+    on="Customer_ID",
+    suffixes=("_Customer", "_Order")
+)
+```
+
+The resulting columns become:
+
+```text
+City_Customer
+City_Order
+```
+
+### What I Learned
+
+The first suffix is applied to overlapping columns from the left DataFrame.
+
+The second suffix is applied to overlapping columns from the right DataFrame.
+
+### Why This Is Important
+
+It helps identify:
+
+* Which DataFrame a column came from
+* Differences between similar information
+* Possible data inconsistencies
+
+For example:
+
+```text
+City_Customer → Mumbai
+City_Order    → Pune
+```
+
+This could indicate a possible data quality issue or different business meaning.
+
+---
+
+# 📚 Combining DataFrames with `pd.concat()`
+
+`pd.concat()` is used to combine or stack DataFrames together.
+
+Unlike `pd.merge()`, it does not match records using a common key.
+
+## Example Use Case
+
+A company has separate sales DataFrames:
+
+```text
+January Sales
+February Sales
+March Sales
+```
+
+All contain similar columns:
+
+```text
+Customer_ID
+Sales
+```
+
+These DataFrames can be stacked using:
+
+```python
+combined_sales = pd.concat([
+    january_sales,
+    february_sales,
+    march_sales
+])
+```
+
+### Important Logic
+
+The order of the DataFrames matters.
+
+```python
+[
+    january_sales,
+    february_sales,
+    march_sales
+]
+```
+
+means:
+
+```text
+January rows first
+        ↓
+February rows second
+        ↓
+March rows third
+```
+
+---
+
+# 🔹 Vertical Concatenation
+
+By default, `pd.concat()` combines DataFrames vertically.
+
+Example:
+
+```python
+combined_sales = pd.concat([
+    january_sales,
+    february_sales
+])
+```
+
+### Result
+
+```text
+January Sales Rows
+        ↓
+February Sales Rows
+```
+
+This adds rows to the DataFrame.
+
+Conceptually:
+
+```text
+axis=0
+```
+
+### Simple Memory Trick
+
+```text
+axis=0 → Add rows → Vertical
+```
+
+---
+
+# 🔢 Using `ignore_index=True`
+
+After concatenating DataFrames, the original indexes may be repeated.
+
+Example without `ignore_index=True`:
+
+```text
+0
+1
+0
+1
+```
+
+This happens because each original DataFrame already had its own index.
+
+Using:
+
+```python
+combined_sales = pd.concat(
+    [january_sales, february_sales],
+    ignore_index=True
+)
+```
+
+creates a fresh continuous index:
+
+```text
+0
+1
+2
+3
+```
+
+### Why It Is Useful
+
+It creates a clean and organized index after stacking multiple DataFrames.
+
+---
+
+# ↔️ Horizontal Concatenation with `axis=1`
+
+DataFrames can also be combined horizontally.
+
+Example:
+
+```python
+combined_data = pd.concat(
+    [customers, orders],
+    axis=1
+)
+```
+
+This adds columns side by side.
+
+Conceptually:
+
+```text
+DataFrame 1 | DataFrame 2
+```
+
+### Important Logic
+
+`axis=1` aligns data using the row indexes.
+
+For example:
+
+```text
+Index 0 from DataFrame 1
+        +
+Index 0 from DataFrame 2
+```
+
+```text
+Index 1 from DataFrame 1
+        +
+Index 1 from DataFrame 2
+```
+
+and so on.
+
+### Important Difference
+
+`pd.concat(axis=1)` does not use a common key such as:
+
+```text
+Customer_ID
+```
+
+It aligns the DataFrames based on their indexes.
+
+### Simple Memory Trick
+
+```text
+axis=1 → Add columns → Horizontal
+```
+
+---
+
+# 📊 `axis=0` vs `axis=1`
+
+| Parameter | Direction  | Main Result  |
+| --------- | ---------- | ------------ |
+| `axis=0`  | Vertical   | Adds rows    |
+| `axis=1`  | Horizontal | Adds columns |
+
+### Easy Memory Trick
+
+```text
+axis=0
+↓
+Rows
+```
+
+```text
+axis=1
+→
+Columns
+```
+
+---
+
+# 🔥 `pd.concat()` vs `pd.merge()`
+
+One of the most important comparisons learned.
+
+## `pd.concat()`
+
+Used when we want to combine or stack DataFrames.
+
+Example:
+
+```text
+January Sales
+February Sales
+March Sales
+```
+
+All DataFrames contain similar data.
+
+Use:
+
+```python
+pd.concat()
+```
+
+### Main Purpose
+
+```text
+STACK
+```
+
+---
+
+## `pd.merge()`
+
+Used when we want to combine related data by matching a common key.
+
+Example:
+
+```text
+Customers
+Customer_ID
+Name
+City
+```
+
+and:
+
+```text
+Orders
+Customer_ID
+Order_ID
+Sales
+```
+
+Both DataFrames are related through:
+
+```text
+Customer_ID
+```
+
+Use:
+
+```python
+pd.merge()
+```
+
+### Main Purpose
+
+```text
+MATCH
+```
+
+---
+
+# ⚡ `pd.concat()` vs `pd.merge()` Comparison
+
+| `pd.concat()`                          | `pd.merge()`                                    |
+| -------------------------------------- | ----------------------------------------------- |
+| Combines or stacks DataFrames          | Matches and combines related DataFrames         |
+| Usually used with similar structures   | Usually used with related tables                |
+| Can combine vertically                 | Combines based on a key                         |
+| Can combine horizontally using indexes | Uses common columns or matching columns         |
+| Uses `axis=0` or `axis=1`              | Uses `on`, `left_on`, and `right_on`            |
+| Does not require a common key          | Requires matching data/key for matching records |
+| Main idea: **STACK**                   | Main idea: **MATCH**                            |
+
+### Final Rule
+
+```text
+Want to stack rows or combine DataFrames together
+→ pd.concat()
+```
+
+```text
+Want to match related records using a common key
+→ pd.merge()
+```
+
+---
+
+# 💼 Practical Data Analyst Applications
+
+These concepts are commonly useful when working with real-world business data.
+
+### `pd.merge()`
+
+Can be used for:
+
+* Combining customers with orders
+* Combining employees with departments
+* Combining products with sales
+* Combining transaction data with customer information
+* Data reconciliation
+* Finding unmatched records
+
+### Left Join
+
+Useful for:
+
+* Finding customers with no orders
+* Keeping every employee even if some information is missing
+* Preserving the main business dataset
+
+### Right Join
+
+Useful for:
+
+* Checking all transaction records
+* Finding orders without matching customer information
+
+### Outer Join
+
+Useful for:
+
+* Data quality checks
+* Data reconciliation
+* Identifying unmatched records from both datasets
+
+### `pd.concat()`
+
+Useful for:
+
+* Combining monthly sales files
+* Combining weekly reports
+* Combining quarterly data
+* Stacking data exported from multiple branches or regions
+
+---
+
+# 🧠 Important Interview Questions
+
+### Q1. What is the difference between `pd.merge()` and `pd.concat()`?
+
+**Answer:**
+
+`pd.merge()` is used to combine related DataFrames by matching records using a common key.
+
+`pd.concat()` is mainly used to combine or stack DataFrames vertically or horizontally.
+
+A simple way to remember:
+
+```text
+pd.merge() → MATCH
+
+pd.concat() → STACK
+```
+
+---
+
+### Q2. What is the default join type used by `pd.merge()`?
+
+**Answer:**
+
+The default join type is:
+
+```text
+Inner Join
+```
+
+It keeps only matching records from both DataFrames.
+
+---
+
+### Q3. What does an Inner Join do?
+
+**Answer:**
+
+An Inner Join keeps only records with matching key values in both DataFrames.
+
+Records without a match are excluded.
+
+---
+
+### Q4. What does a Left Join do?
+
+**Answer:**
+
+A Left Join keeps all records from the left DataFrame and adds matching records from the right DataFrame.
+
+If no match exists, the right-side columns contain `NaN`.
+
+---
+
+### Q5. What does a Right Join do?
+
+**Answer:**
+
+A Right Join keeps all records from the right DataFrame and adds matching records from the left DataFrame.
+
+If no match exists, the left-side columns contain `NaN`.
+
+---
+
+### Q6. What does an Outer Join do?
+
+**Answer:**
+
+An Outer Join keeps all records from both DataFrames.
+
+If a record does not have a match, the missing side contains `NaN`.
+
+---
+
+### Q7. When should we use `on=` in `pd.merge()`?
+
+**Answer:**
+
+Use `on=` when both DataFrames have the same matching column name.
+
+Example:
+
+```python
+on="Customer_ID"
+```
+
+---
+
+### Q8. When should we use `left_on` and `right_on`?
+
+**Answer:**
+
+Use `left_on` and `right_on` when the matching columns contain the same type of data but have different names.
+
+Example:
+
+```python
+left_on="Customer_ID"
+right_on="Customer"
+```
+
+---
+
+### Q9. What are `suffixes` used for in `pd.merge()`?
+
+**Answer:**
+
+`suffixes` are used when both DataFrames contain overlapping column names.
+
+They help distinguish which DataFrame each column came from.
+
+Example:
+
+```python
+suffixes=("_Customer", "_Order")
+```
+
+Result:
+
+```text
+City_Customer
+City_Order
+```
+
+---
+
+### Q10. What does `ignore_index=True` do in `pd.concat()`?
+
+**Answer:**
+
+It creates a fresh continuous index after combining DataFrames.
+
+For example:
+
+```text
+Before:
+0, 1, 0, 1
+```
+
+```text
+After:
+0, 1, 2, 3
+```
+
+---
+
+### Q11. What is the difference between `axis=0` and `axis=1` in `pd.concat()`?
+
+**Answer:**
+
+```text
+axis=0
+→ Combines vertically
+→ Adds rows
+```
+
+```text
+axis=1
+→ Combines horizontally
+→ Adds columns
+```
+
+---
+
+### Q12. Does `pd.concat(axis=1)` match records using a common column?
+
+**Answer:**
+
+No.
+
+`pd.concat(axis=1)` aligns DataFrames using their row indexes.
+
+If we need to match records using a common key such as `Customer_ID`, we should use:
+
+```python
+pd.merge()
+```
+
+---
+
+### Q13. Which join would you use to find customers who have not placed an order?
+
+**Answer:**
+
+A Left Join.
+
+Keep all customer records and check for missing values in the order-related columns.
+
+---
+
+### Q14. Which join is useful for identifying unmatched records from both DataFrames?
+
+**Answer:**
+
+An Outer Join.
+
+It keeps all records from both DataFrames and makes unmatched information visible through `NaN` values.
+
+---
+
+# 📌 Key Takeaways
+
+* `pd.merge()` is used to combine related DataFrames using matching data.
+* The matching column is called a common key.
+* Inner Join keeps only matching records.
+* Left Join keeps all left records.
+* Right Join keeps all right records.
+* Outer Join keeps all records from both DataFrames.
+* `on=` is used when the matching column name is the same.
+* `left_on` and `right_on` are used when matching column names are different.
+* `suffixes` help distinguish overlapping column names.
+* `pd.concat()` is used to combine or stack DataFrames.
+* `axis=0` combines DataFrames vertically and adds rows.
+* `axis=1` combines DataFrames horizontally and adds columns.
+* `ignore_index=True` creates a new continuous index.
+* `pd.concat(axis=1)` aligns DataFrames using indexes.
+* `pd.merge()` matches using keys.
+* `pd.concat()` → **STACK**
+* `pd.merge()` → **MATCH**
+
+---
+
+# 🚀 Progress Update
+
+Completed important Pandas concepts related to **combining multiple datasets**.
+
+I can now:
+
+* Combine related business datasets using `pd.merge()`
+* Choose between Inner, Left, Right, and Outer Joins
+* Match datasets using the same or different column names
+* Handle overlapping column names
+* Combine monthly or similar datasets using `pd.concat()`
+* Stack DataFrames vertically
+* Combine DataFrames horizontally
+* Understand index alignment
+* Choose between `pd.merge()` and `pd.concat()` based on the data and business requirement
+
+These concepts are highly relevant when working with real-world data because business information is often stored across multiple files, tables, and systems.
+
+---
 
 ## Goal 🎯
 
