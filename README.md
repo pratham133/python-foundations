@@ -8598,6 +8598,146 @@ It allows multiple numerical metrics to be summarized together without creating 
 
 ---
 
+# 🧹 Handling Missing Values in Pivot Tables
+
+Pivot Tables may contain missing values when a particular combination of row and column categories does not exist in the original dataset.
+
+For example, if there is no sales record for a specific Product and City combination, Pandas displays `NaN` by default.
+
+## 📚 Using `fill_value`
+
+The `fill_value` parameter can replace missing values directly while creating a Pivot Table.
+
+Example:
+
+```python
+pivot_table = sales.pivot_table(
+    values="Sales",
+    index="Product",
+    columns="City",
+    aggfunc="sum",
+    fill_value=0
+)
+```
+
+## 🧩 How `fill_value` Works
+
+Without `fill_value`, a missing combination may appear as:
+
+```text
+NaN
+```
+
+With:
+
+```python
+fill_value=0
+```
+
+the missing value is displayed as:
+
+```text
+0
+```
+
+### Example Logic
+
+```text
+Missing Product + City combination
+        ↓
+Default Pivot Table result
+        ↓
+NaN
+        ↓
+fill_value=0
+        ↓
+0
+```
+
+For example, if there is no record for:
+
+```text
+Product = Tablet
+City = Delhi
+```
+
+the Pivot Table can display:
+
+```text
+Tablet → Delhi → 0
+```
+
+instead of `NaN`.
+
+## ⚠️ Important Difference
+
+Using:
+
+```python
+fill_value=0
+```
+
+does not modify the original DataFrame.
+
+It only affects the missing values in the resulting Pivot Table.
+
+```text
+Original DataFrame
+        ↓
+Remains unchanged
+
+Pivot Table Result
+        ↓
+Missing values replaced with the specified fill value
+```
+
+## 💼 Data Analyst Use Cases
+
+Replacing missing values with `0` can be useful when a missing combination logically represents zero activity.
+
+Examples:
+
+* No sales
+* No orders
+* No transactions
+* No units sold
+
+For example, if a company had no Tablet sales in Delhi, displaying `0` may be easier to understand during analysis.
+
+However, a missing value should not always be treated as zero. Before replacing it, the analyst should understand what the missing value represents in the business data.
+
+## 🧠 Beginner Interview Questions
+
+### Q1. What does `fill_value` do in a Pandas Pivot Table?
+
+It replaces missing values in the resulting Pivot Table with a specified value.
+
+### Q2. What does `fill_value=0` do?
+
+It replaces missing values in the Pivot Table result with `0`.
+
+### Q3. Does `fill_value=0` modify the original DataFrame?
+
+No. It only affects the resulting Pivot Table.
+
+### Q4. What is displayed by default when a Pivot Table has a missing combination?
+
+Pandas typically displays `NaN`.
+
+### Q5. When can replacing a missing value with `0` be useful?
+
+When the missing combination logically represents zero activity, such as no sales, no orders, or no transactions.
+
+## 📌 Key Takeaways
+
+* Missing category combinations can appear as `NaN` in Pivot Tables.
+* `fill_value` replaces missing values in the Pivot Table result.
+* `fill_value=0` displays missing values as `0`.
+* The original DataFrame remains unchanged.
+* Always understand the business meaning of missing data before replacing it with zero.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
