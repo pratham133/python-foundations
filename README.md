@@ -8331,6 +8331,127 @@ For example, `sum` provides totals, `mean` provides averages, and `count` provid
 
 ---
 
+# 📊 Multiple Aggregation Functions in Pivot Tables
+
+A Pivot Table can perform multiple aggregation operations at the same time by passing a list of aggregation functions to the `aggfunc` parameter.
+
+## 📚 Using Multiple Aggregation Functions
+
+Instead of performing one calculation:
+
+```python
+aggfunc="sum"
+```
+
+we can provide multiple calculations:
+
+```python
+aggfunc=["sum", "mean", "count"]
+```
+
+The square brackets `[]` create a list containing multiple aggregation functions.
+
+Pandas performs every specified aggregation operation on the selected values.
+
+## 🧩 Example
+
+```python
+pivot_table = sales.pivot_table(
+    values="Sales",
+    index="Product",
+    aggfunc=["sum", "mean", "count"]
+)
+```
+
+### Logic
+
+```text
+Sales
+↓
+Group by Product
+↓
+Perform multiple calculations:
+- sum
+- mean
+- count
+```
+
+This produces multiple insights in one Pivot Table.
+
+Conceptually:
+
+```text
+              sum     mean  count
+Product
+Laptop     150000  50000.0      3
+Phone       55000  27500.0      2
+Tablet      20000  20000.0      1
+```
+
+When multiple aggregation functions are used, Pandas may display a multi-level column structure showing both the aggregation function and the column on which it was performed.
+
+## 🔄 Single vs Multiple Aggregation Functions
+
+### Single aggregation
+
+```python
+aggfunc="sum"
+```
+
+Performs one calculation.
+
+### Multiple aggregations
+
+```python
+aggfunc=["sum", "mean", "count"]
+```
+
+Performs multiple calculations in one Pivot Table.
+
+## 💼 Why This Is Useful for Data Analysis
+
+Multiple aggregation functions allow analysts to generate several insights from the same grouped data efficiently.
+
+For example, a product sales analysis can show:
+
+* Total sales
+* Average sales
+* Number of transactions
+
+Instead of creating separate Pivot Tables for each calculation, all the required insights can be generated together.
+
+## 🧠 Beginner Interview Questions
+
+### Q1. How can you use multiple aggregation functions in a Pandas Pivot Table?
+
+Pass a list of aggregation functions to the `aggfunc` parameter.
+
+```python
+aggfunc=["sum", "mean", "count"]
+```
+
+### Q2. Why are square brackets used in `aggfunc`?
+
+Square brackets are used to create a list containing multiple aggregation functions.
+
+### Q3. What is the advantage of using multiple aggregation functions?
+
+They allow multiple calculations to be performed in a single Pivot Table instead of creating separate Pivot Tables for each calculation.
+
+### Q4. Can different aggregation functions be performed on the same column?
+
+Yes. For example, `sum`, `mean`, and `count` can all be performed on the `Sales` column.
+
+## 📌 Key Takeaways
+
+* A Pivot Table can perform multiple aggregation functions simultaneously.
+* Pass aggregation functions as a list using square brackets.
+* Multiple calculations can be performed on the same selected column.
+* This reduces the need to create separate Pivot Tables for each calculation.
+* Multiple aggregations help generate several business insights efficiently.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
