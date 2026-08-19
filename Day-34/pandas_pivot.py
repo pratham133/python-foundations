@@ -125,3 +125,28 @@ pivot_table = sales.pivot_table(
 
 print("Sales and Profit Analysis by Product:")
 print(pivot_table)
+
+
+# ==========================================
+# Program 100 - Handling Missing Values in Pivot Tables
+# ==========================================
+
+sales_data = {
+    "Product": ["Laptop", "Phone", "Laptop", "Phone", "Tablet", "Laptop"],
+    "City": ["Mumbai", "Mumbai", "Delhi", "Delhi", "Mumbai", "Delhi"],
+    "Sales": [50000, 30000, 45000, 25000, 20000, 55000]
+}
+
+sales = pd.DataFrame(sales_data)
+
+pivot_table = sales.pivot_table(
+    values="Sales",
+    index="Product",
+    columns="City",
+    aggfunc="sum",
+    fill_value=0
+)
+
+
+print("Product Sales by City:")
+print(pivot_table)
