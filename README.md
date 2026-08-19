@@ -8452,6 +8452,152 @@ Yes. For example, `sum`, `mean`, and `count` can all be performed on the `Sales`
 
 ---
 
+# 📊 Multiple Values in Pivot Tables
+
+A Pandas Pivot Table can analyze multiple numerical columns at the same time by passing a list of column names to the `values` parameter.
+
+## 📚 Analyzing Multiple Columns
+
+Previously, a Pivot Table could calculate one column:
+
+```python
+values="Sales"
+```
+
+This performs the calculation only on the `Sales` column.
+
+To analyze multiple numerical columns together, we can use a list:
+
+```python
+values=["Sales", "Profit"]
+```
+
+The square brackets `[]` are used to pass multiple column names.
+
+This allows Pandas to perform calculations on both selected columns in the same Pivot Table.
+
+## 🧩 Example
+
+```python
+pivot_table = sales.pivot_table(
+    values=["Sales", "Profit"],
+    index="Product",
+    aggfunc="sum"
+)
+```
+
+### Logic
+
+```text
+values=["Sales", "Profit"]
+        ↓
+Select multiple numerical columns
+        ↓
+index="Product"
+        ↓
+Group records by Product
+        ↓
+aggfunc="sum"
+        ↓
+Calculate the total for each selected column
+```
+
+Conceptually, the result becomes:
+
+```text
+         Profit   Sales
+Product
+Laptop    30000  150000
+Phone     11000   55000
+Tablet     4000   20000
+```
+
+## 🔄 Single Value vs Multiple Values
+
+### Single value
+
+```python
+values="Sales"
+```
+
+Calculates one selected numerical column.
+
+### Multiple values
+
+```python
+values=["Sales", "Profit"]
+```
+
+Calculates multiple selected numerical columns in the same Pivot Table.
+
+## 💼 Why Multiple Values Are Useful
+
+Real-world business datasets often contain multiple numerical metrics, such as:
+
+* Sales
+* Profit
+* Quantity
+* Discount
+* Cost
+
+A Data Analyst may need to summarize multiple metrics together.
+
+Instead of creating separate Pivot Tables or separate calculations for every numerical metric, multiple columns can be passed through the `values` parameter.
+
+This makes the analysis more organized and helps compare different business metrics together.
+
+For example, analyzing Sales and Profit together can help identify products with:
+
+* High sales and high profit
+* High sales but lower profit
+* Lower sales and lower profit
+
+## 🧠 Beginner Interview Questions
+
+### Q1. How can multiple columns be analyzed in a Pandas Pivot Table?
+
+Pass a list of column names to the `values` parameter.
+
+```python
+values=["Sales", "Profit"]
+```
+
+### Q2. Why are square brackets used in `values`?
+
+Square brackets are used to create a list containing multiple column names.
+
+### Q3. Can the same aggregation function be applied to multiple columns?
+
+Yes. The aggregation function is performed on every column passed through the `values` parameter.
+
+For example:
+
+```python
+values=["Sales", "Profit"]
+aggfunc="sum"
+```
+
+calculates the total for both `Sales` and `Profit`.
+
+### Q4. What does `index="Product"` do when using multiple values?
+
+It groups the records by Product and makes each unique Product a row in the Pivot Table.
+
+### Q5. Why is analyzing multiple values useful?
+
+It allows multiple numerical metrics to be summarized together without creating separate Pivot Tables for each metric.
+
+## 📌 Key Takeaways
+
+* The `values` parameter can accept multiple columns.
+* Use a list to pass multiple column names.
+* Example: `values=["Sales", "Profit"]`.
+* The same aggregation function can be applied to multiple selected columns.
+* Multiple values help summarize several business metrics in one Pivot Table.
+* This makes data analysis more organized and efficient.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
