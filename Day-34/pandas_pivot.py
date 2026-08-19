@@ -29,3 +29,54 @@ print()
 
 print("Sales Pivot Table:")
 print(pivot_table)
+
+
+# ==========================================
+# Program 97 - Pivot Table Aggregation Functions
+# ==========================================
+
+import pandas as pd
+
+
+sales_data = {
+    "Product": ["Laptop", "Laptop", "Phone", "Phone", "Tablet", "Laptop"],
+    "City": ["Mumbai", "Delhi", "Mumbai", "Delhi", "Mumbai", "Delhi"],
+    "Sales": [50000, 45000, 30000, 25000, 20000, 55000]
+}
+
+
+sales = pd.DataFrame(sales_data)
+
+
+sum_table = sales.pivot_table(
+    values="Sales",
+    index="Product",
+    aggfunc="sum"
+)
+
+print("Total Sales by Product:")
+print(sum_table)
+
+print()
+
+
+mean_table = sales.pivot_table(
+    values="Sales",
+    index="Product",
+    aggfunc="mean"
+)
+
+print("Average Sales by Product:")
+print(mean_table)
+
+print()
+
+
+count_table = sales.pivot_table(
+    values="Sales",
+    index="Product",
+    aggfunc="count"
+)
+
+print("Number of Sales Records by Product:")
+print(count_table)
