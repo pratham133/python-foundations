@@ -1539,3 +1539,351 @@ sales = sales.rename(columns={
 
 print("Renamed DataFrame:")
 print(sales)
+
+
+# ==========================================
+# Program 87 - Pandas Merge Basics
+# ==========================================
+
+import pandas as pd
+
+customers_data = {
+    "Customer_ID": [101, 102, 103, 104],
+    "Name": ["Pratham", "Gojo", "Naruto", "Luffy"],
+    "City": ["Mumbai", "Delhi", "Mumbai", "Pune"]
+}
+
+customers = pd.DataFrame(customers_data)
+
+orders_data = {
+    "Order_ID": [1001, 1002, 1003, 1004],
+    "Customer_ID": [101, 102, 101, 103],
+    "Product": ["Laptop", "Phone", "Headphones", "Tablet"],
+    "Sales": [50000, 30000, 5000, 25000]
+}
+
+orders = pd.DataFrame(orders_data)
+
+print("Customers DataFrame:")
+print(customers)
+
+print()
+
+print("Orders DataFrame:")
+print(orders)
+
+
+# ==========================================
+# Program 88 - Merging Two DataFrames
+# ==========================================
+
+import pandas as pd
+
+customers_data = {
+    "Customer_ID": [101, 102, 103, 104],
+    "Name": ["Pratham", "Gojo", "Naruto", "Luffy"],
+    "City": ["Mumbai", "Delhi", "Mumbai", "Pune"]
+}
+
+customers = pd.DataFrame(customers_data)
+
+orders_data = {
+    "Order_ID": [1001, 1002, 1003, 1004],
+    "Customer_ID": [101, 102, 101, 103],
+    "Product": ["Laptop", "Phone", "Headphones", "Tablet"],
+    "Sales": [50000, 30000, 5000, 25000]
+}
+
+orders = pd.DataFrame(orders_data)
+
+merged_data = pd.merge(
+    customers,
+    orders,
+    on="Customer_ID"
+)
+
+print("Merged DataFrame:")
+print(merged_data)
+
+
+# ==========================================
+# Program 89 - Inner Join
+# ==========================================
+
+import pandas as pd
+
+customers_data = {
+    "Customer_ID": [101, 102, 103, 104],
+    "Name": ["Pratham", "Gojo", "Naruto", "Luffy"],
+    "City": ["Mumbai", "Delhi", "Mumbai", "Pune"]
+}
+
+customers = pd.DataFrame(customers_data)
+
+orders_data = {
+    "Order_ID": [1001, 1002, 1003, 1004],
+    "Customer_ID": [101, 102, 101, 103],
+    "Product": ["Laptop", "Phone", "Headphones", "Tablet"],
+    "Sales": [50000, 30000, 5000, 25000]
+}
+
+orders = pd.DataFrame(orders_data)
+
+merged_data = pd.merge(
+    customers,
+    orders,
+    on="Customer_ID",
+    how="inner"
+)
+
+print("Inner Join Result:")
+print(merged_data)
+
+
+# ==========================================
+# Program 90 - Left Join
+# ==========================================
+
+import pandas as pd
+
+customers_data = {
+    "Customer_ID": [101, 102, 103, 104],
+    "Name": ["Pratham", "Gojo", "Naruto", "Luffy"],
+    "City": ["Mumbai", "Delhi", "Mumbai", "Pune"]
+}
+
+customers = pd.DataFrame(customers_data)
+
+orders_data = {
+    "Order_ID": [1001, 1002, 1003, 1004],
+    "Customer_ID": [101, 102, 101, 103],
+    "Product": ["Laptop", "Phone", "Headphones", "Tablet"],
+    "Sales": [50000, 30000, 5000, 25000]
+}
+
+orders = pd.DataFrame(orders_data)
+
+merged_data = pd.merge(
+    customers,
+    orders,
+    on="Customer_ID",
+    how="left"
+)
+
+print("Left Join Result:")
+print(merged_data)
+
+
+# ==========================================
+# Program 91 - Right Join
+# ==========================================
+
+import pandas as pd
+
+customers_data = {
+    "Customer_ID": [101, 102, 103, 104],
+    "Name": ["Pratham", "Gojo", "Naruto", "Luffy"],
+    "City": ["Mumbai", "Delhi", "Mumbai", "Pune"]
+}
+
+customers = pd.DataFrame(customers_data)
+
+orders_data = {
+    "Order_ID": [1001, 1002, 1003, 1004, 1005],
+    "Customer_ID": [101, 102, 101, 103, 105],
+    "Product": ["Laptop", "Phone", "Headphones", "Tablet", "Keyboard"],
+    "Sales": [50000, 30000, 5000, 25000, 2000]
+}
+
+orders = pd.DataFrame(orders_data)
+
+merged_data = pd.merge(
+    customers,
+    orders,
+    on="Customer_ID",
+    how="right"
+)
+
+print("Right Join Result:")
+print(merged_data)
+
+
+# ==========================================
+# Program 92 - Outer Join
+# ==========================================
+
+import pandas as pd
+
+customers_data = {
+    "Customer_ID": [101, 102, 103, 104],
+    "Name": ["Pratham", "Gojo", "Naruto", "Luffy"],
+    "City": ["Mumbai", "Delhi", "Mumbai", "Pune"]
+}
+
+customers = pd.DataFrame(customers_data)
+
+orders_data = {
+    "Order_ID": [1001, 1002, 1003, 1004, 1005],
+    "Customer_ID": [101, 102, 101, 103, 105],
+    "Product": ["Laptop", "Phone", "Headphones", "Tablet", "Keyboard"],
+    "Sales": [50000, 30000, 5000, 25000, 2000]
+}
+
+orders = pd.DataFrame(orders_data)
+
+merged_data = pd.merge(
+    customers,
+    orders,
+    on="Customer_ID",
+    how="outer"
+)
+
+print("Outer Join Result:")
+print(merged_data)
+
+
+# ==========================================
+# Program 93 - Merge with Different Column Names
+# ==========================================
+
+import pandas as pd
+
+customers_data = {
+    "Customer_ID": [101, 102, 103],
+    "Name": ["Pratham", "Gojo", "Naruto"],
+    "City": ["Mumbai", "Delhi", "Mumbai"]
+}
+
+customers = pd.DataFrame(customers_data)
+
+orders_data = {
+    "Order_ID": [1001, 1002, 1003],
+    "Customer": [101, 102, 103],
+    "Product": ["Laptop", "Phone", "Tablet"],
+    "Sales": [50000, 30000, 25000]
+}
+
+orders = pd.DataFrame(orders_data)
+
+merged_data = pd.merge(
+    customers,
+    orders,
+    left_on="Customer_ID",
+    right_on="Customer"
+)
+
+
+
+print("Merged DataFrame:")
+print(merged_data)
+
+
+# ==========================================
+# Program 94 - Merge with Suffixes
+# ==========================================
+
+import pandas as pd
+
+customers_data = {
+    "Customer_ID": [101, 102, 103],
+    "Name": ["Pratham", "Gojo", "Naruto"],
+    "City": ["Mumbai", "Delhi", "Mumbai"]
+}
+
+customers = pd.DataFrame(customers_data)
+
+orders_data = {
+    "Order_ID": [1001, 1002, 1003],
+    "Customer_ID": [101, 102, 103],
+    "City": ["Mumbai", "Delhi", "Pune"],
+    "Sales": [50000, 30000, 25000]
+}
+
+orders = pd.DataFrame(orders_data)
+
+merged_data = pd.merge(
+    customers,
+    orders,
+    on="Customer_ID",
+    suffixes=("_Customer", "_Order")
+)
+
+print("Merged DataFrame:")
+print(merged_data)
+
+
+# ==========================================
+# Program 95 - Combining DataFrames with concat()
+# ==========================================
+
+import pandas as pd
+
+january_data = {
+    "Customer_ID": [101, 102],
+    "Sales": [5000, 7000]
+}
+
+february_data = {
+    "Customer_ID": [103, 104],
+    "Sales": [6000, 8000]
+}
+
+january_sales = pd.DataFrame(january_data)
+february_sales = pd.DataFrame(february_data)
+
+combined_sales = pd.concat(
+    [january_sales, february_sales],
+    ignore_index=True
+)
+
+print("January Sales:")
+print(january_sales)
+
+print()
+
+print("February Sales:")
+print(february_sales)
+
+print()
+
+print("Combined Sales:")
+print(combined_sales)
+
+
+# ==========================================
+# Program 96 - Combining DataFrames with axis=1
+# ==========================================
+
+import pandas as pd
+
+customer_data = {
+    "Customer_ID": [101, 102, 103],
+    "Name": ["Pratham", "Gojo", "Naruto"]
+}
+
+sales_data = {
+    "Sales": [5000, 7000, 6000],
+    "Product": ["Laptop", "Phone", "Tablet"]
+}
+
+customers = pd.DataFrame(customer_data)
+sales = pd.DataFrame(sales_data)
+
+combined_data = pd.concat(
+    [customers, sales],
+    axis=1
+)
+
+
+print("Customers DataFrame:")
+print(customers)
+
+print()
+
+print("Sales DataFrame:")
+print(sales)
+
+print()
+
+print("Combined DataFrame:")
+print(combined_data)
