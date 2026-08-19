@@ -7912,6 +7912,233 @@ These concepts are highly relevant when working with real-world data because bus
 
 ---
 
+# 📊 Pandas Pivot Tables
+
+Learned how to summarize and reorganize tabular data using Pandas `pivot_table()`.
+
+Pivot Tables are useful when analyzing business data because they can quickly transform detailed records into a summarized format that is easier to compare and analyze.
+
+## 📚 Concept Learned
+
+### `pivot_table()`
+
+A Pivot Table is used to summarize data by organizing it into rows and columns and applying a calculation to numerical values.
+
+### Basic Structure
+
+```python
+DataFrame.pivot_table(
+    values="Column_To_Calculate",
+    index="Column_For_Rows",
+    columns="Column_For_Columns",
+    aggfunc="Calculation"
+)
+```
+
+## 🧩 Parameters Learned
+
+### `values`
+
+Specifies the column on which we want to perform a calculation.
+
+Example:
+
+```python
+values="Sales"
+```
+
+This means the calculation will be performed on the `Sales` column.
+
+### `index`
+
+Specifies the column that becomes the rows of the Pivot Table.
+
+Example:
+
+```python
+index="Product"
+```
+
+The products become the rows.
+
+### `columns`
+
+Specifies the column that becomes the columns of the Pivot Table.
+
+Example:
+
+```python
+columns="City"
+```
+
+The cities become the columns.
+
+### `aggfunc`
+
+Specifies the aggregation operation that should be performed.
+
+Example:
+
+```python
+aggfunc="sum"
+```
+
+This adds values when multiple records have the same combination of row and column values.
+
+## 💡 Example Logic
+
+Original sales data:
+
+```text
+Product | City   | Sales
+--------------------------------
+Laptop  | Mumbai | 50000
+Phone   | Mumbai | 30000
+Laptop  | Delhi  | 45000
+Phone   | Delhi  | 25000
+Tablet  | Mumbai | 20000
+Laptop  | Delhi  | 55000
+```
+
+Using:
+
+```python
+pivot_table = sales.pivot_table(
+    values="Sales",
+    index="Product",
+    columns="City",
+    aggfunc="sum"
+)
+```
+
+Pandas summarizes the data into:
+
+```text
+City       Delhi    Mumbai
+Product
+Laptop   100000.0   50000.0
+Phone     25000.0   30000.0
+Tablet        NaN   20000.0
+```
+
+### Why is Laptop in Delhi `100000`?
+
+There are two records for the same combination:
+
+```text
+Laptop | Delhi | 45000
+Laptop | Delhi | 55000
+```
+
+Because:
+
+```python
+aggfunc="sum"
+```
+
+Pandas calculates:
+
+```text
+45000 + 55000 = 100000
+```
+
+### Why is Tablet in Delhi `NaN`?
+
+There is no record where:
+
+```text
+Product = Tablet
+City = Delhi
+```
+
+Therefore, Pandas displays `NaN` for that combination.
+
+## 🧠 Easy Memory Trick
+
+```text
+values
+→ What do we want to calculate?
+
+index
+→ What becomes the rows?
+
+columns
+→ What becomes the columns?
+
+aggfunc
+→ Which operation should be performed?
+```
+
+### In This Program
+
+```text
+values
+→ Sales
+
+index
+→ Product
+
+columns
+→ City
+
+aggfunc
+→ sum
+```
+
+## 💼 Data Analyst Use Cases
+
+Pivot Tables can be used to quickly summarize and compare business data, such as:
+
+* Total sales by product and city
+* Revenue by region and category
+* Sales performance by product and month
+* Employee performance by department
+* Customer activity by location
+* Comparing multiple categories across different regions
+
+## 🧠 Beginner Interview Questions
+
+### Q1. What is the main purpose of `pivot_table()`?
+
+`pivot_table()` is used to summarize and reorganize data into rows and columns while performing calculations on selected values.
+
+### Q2. What does the `values` parameter specify?
+
+It specifies the column on which the calculation will be performed.
+
+### Q3. What does the `index` parameter do?
+
+It specifies the column that becomes the rows of the Pivot Table.
+
+### Q4. What does the `columns` parameter do?
+
+It specifies the column that becomes the columns of the Pivot Table.
+
+### Q5. What does `aggfunc` do?
+
+It specifies the aggregation operation to perform, such as `sum`, `mean`, `count`, `min`, or `max`.
+
+### Q6. Why did Laptop sales in Delhi become `100000`?
+
+Because there were two Laptop records for Delhi, and `aggfunc="sum"` added their sales values: `45000 + 55000`.
+
+### Q7. Why does a Pivot Table contain `NaN`?
+
+`NaN` can appear when there is no record for a particular combination of row and column values.
+
+## 📌 Key Takeaways
+
+* Learned how to use `pivot_table()` to summarize data.
+* `values` specifies the column to calculate.
+* `index` specifies the rows.
+* `columns` specifies the columns.
+* `aggfunc` specifies the calculation.
+* `sum` can combine multiple values for the same row and column combination.
+* Pivot Tables help transform detailed business data into an easier-to-analyze summary.
+* Missing combinations can appear as `NaN`.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
