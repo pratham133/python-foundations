@@ -80,3 +80,25 @@ count_table = sales.pivot_table(
 
 print("Number of Sales Records by Product:")
 print(count_table)
+
+
+# ==========================================
+# Program 98 - Multiple Aggregation Functions
+# ==========================================
+
+sales_data = {
+    "Product": ["Laptop", "Laptop", "Phone", "Phone", "Tablet", "Laptop"],
+    "Sales": [50000, 45000, 30000, 25000, 20000, 55000]
+}
+
+sales = pd.DataFrame(sales_data)
+
+pivot_table = sales.pivot_table(
+    values="Sales",
+    index="Product",
+    aggfunc=["sum", "mean", "count"]
+)
+
+
+print("Sales Analysis by Product:")
+print(pivot_table)
