@@ -6,9 +6,9 @@ import pandas as pd
 
 
 sales_data = {
-    "Order_ID": [1001, 1002, 1003],
-    "Order_Date": ["2026-01-15", "2026-02-20", "2026-03-10"],
-    "Sales": [5000, 7000, 6000]
+    "Order_ID": [1001, 1002, 1003, 1004],
+    "Order_Date": ["2026-01-15", "2026-02-20", "2026-03-10", "2026-12-25"],
+    "Sales": [5000, 7000, 6000, 8000]
 }
 
 
@@ -47,4 +47,16 @@ sales["Day"] = sales["Order_Date"].dt.day
 
 
 print("Sales Data with Date Components:")
+print(sales)
+
+
+# ==========================================
+# Extracting Month and Day Names from Datetime
+# ==========================================
+
+sales["Month_Name"] = sales["Order_Date"].dt.month_name()
+sales["Day_Name"] = sales["Order_Date"].dt.day_name()
+
+
+print("Sales Data with Month and Day Names:")
 print(sales)
