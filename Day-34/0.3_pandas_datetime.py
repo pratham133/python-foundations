@@ -35,3 +35,16 @@ print()
 
 print("Data Types After Conversion:")
 print(sales.dtypes)
+
+
+# ==========================================
+# Extracting Year, Month, and Day from Datetime
+# ==========================================
+
+sales["Year"] = sales["Order_Date"].dt.year
+sales["Month"] = sales["Order_Date"].dt.month
+sales["Day"] = sales["Order_Date"].dt.day
+
+
+print("Sales Data with Date Components:")
+print(sales)
