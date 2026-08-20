@@ -9081,6 +9081,145 @@ When the main goal is creating a summarized table and comparing categories.
 
 ---
 
+# 🔢 Frequency Analysis with Crosstab
+
+Pandas provides `pd.crosstab()` to create a frequency table showing how often combinations between categorical columns occur.
+
+It is useful when the main goal is to count relationships between two categories.
+
+## 📚 Using `pd.crosstab()`
+
+```python
+cross_table = pd.crosstab(
+    sales["Product"],
+    sales["City"]
+)
+```
+
+The first column becomes the rows, and the second column becomes the columns.
+
+Pandas then counts how many times each category combination appears in the dataset.
+
+## 🧩 Example
+
+```text
+City     Delhi  Mumbai
+Product
+Laptop       2       1
+Phone        1       1
+Tablet       0       1
+```
+
+This means:
+
+```text
+Laptop + Delhi → 2 records
+Laptop + Mumbai → 1 record
+
+Phone + Delhi → 1 record
+Phone + Mumbai → 1 record
+
+Tablet + Delhi → 0 records
+Tablet + Mumbai → 1 record
+```
+
+## 🧠 Complete Logic
+
+```text
+pd.crosstab()
+        ↓
+Compare category combinations
+        ↓
+First category → Rows
+Second category → Columns
+        ↓
+Count how many times each combination occurs
+        ↓
+Display the frequency table
+```
+
+For the example:
+
+```text
+Product → Rows
+
+City → Columns
+
+Output values → Count of each Product + City combination
+```
+
+## 🔄 Crosstab vs Pivot Table
+
+### `pd.crosstab()`
+
+Mainly used for frequency and count analysis between categories.
+
+Example:
+
+```text
+Product + City → Number of records
+```
+
+### `pivot_table()`
+
+Used to summarize numerical values using aggregation functions.
+
+Example:
+
+```text
+Product + City → Total Sales
+```
+
+## 💼 Data Analyst Use Cases
+
+`pd.crosstab()` can be useful for analyzing:
+
+* Number of orders by Product and City
+* Number of employees by Department and Location
+* Number of customers by Customer Type and Region
+* Number of transactions by Payment Method and Status
+
+It helps answer questions such as:
+
+> How many times does each category combination occur?
+
+## 🧠 Beginner Interview Questions
+
+### Q1. What is the main purpose of `pd.crosstab()`?
+
+It counts the frequency of combinations between categorical variables.
+
+### Q2. What happens to the first column passed to `pd.crosstab()`?
+
+It becomes the rows of the frequency table.
+
+### Q3. What happens to the second column passed to `pd.crosstab()`?
+
+It becomes the columns of the frequency table.
+
+### Q4. What does `Laptop + Delhi = 2` mean?
+
+The combination of Laptop and Delhi appears two times in the dataset.
+
+### Q5. Why might a category combination contain `0`?
+
+Because no record exists for that specific combination in the dataset.
+
+### Q6. What is the main difference between `pd.crosstab()` and `pivot_table()`?
+
+`pd.crosstab()` is mainly used for counting category combinations, while `pivot_table()` is used to summarize numerical values using aggregation functions.
+
+## 📌 Key Takeaways
+
+* `pd.crosstab()` creates a frequency table.
+* It counts combinations between categorical variables.
+* The first argument becomes the rows.
+* The second argument becomes the columns.
+* The output shows the count of each category combination.
+* It is useful for frequency analysis and quick categorical summaries.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
