@@ -207,3 +207,25 @@ pivot_sales = sales.pivot_table(
 
 print("Pivot Table Result:")
 print(pivot_sales)
+
+
+# ==========================================
+# Program 103 - Crosstab for Category Counts
+# ==========================================
+
+sales_data = {
+    "Product": ["Laptop", "Phone", "Laptop", "Phone", "Tablet", "Laptop"],
+    "City": ["Mumbai", "Mumbai", "Delhi", "Delhi", "Mumbai", "Delhi"]
+}
+
+sales = pd.DataFrame(sales_data)
+
+
+cross_table = pd.crosstab(
+    sales["Product"],
+    sales["City"]
+)
+
+
+print("Product Count by City:")
+print(cross_table)
