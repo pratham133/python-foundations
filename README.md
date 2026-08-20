@@ -8738,6 +8738,167 @@ When the missing combination logically represents zero activity, such as no sale
 
 ---
 
+# 📊 Adding Totals to Pivot Tables
+
+Pandas Pivot Tables can automatically calculate row totals, column totals, and an overall grand total using the `margins` parameter.
+
+## 📚 Using `margins=True`
+
+Example:
+
+```python
+pivot_table = sales.pivot_table(
+    values="Sales",
+    index="Product",
+    columns="City",
+    aggfunc="sum",
+    fill_value=0,
+    margins=True
+)
+```
+
+The new parameter is:
+
+```python
+margins=True
+```
+
+This tells Pandas to automatically add totals to the Pivot Table.
+
+## 🧩 Understanding the `All` Column
+
+When `margins=True` is used, Pandas adds an `All` column.
+
+The `All` column shows the total for each row across all columns.
+
+Example:
+
+```text
+City      Delhi  Mumbai     All
+Product
+Laptop   100000   50000  150000
+Phone     25000   30000   55000
+Tablet        0   20000   20000
+```
+
+For Laptop:
+
+```text
+100000 + 50000 = 150000
+```
+
+Therefore, the `All` column shows the total sales for each Product across all cities.
+
+## 🧩 Understanding the `All` Row
+
+Pandas also adds an `All` row.
+
+The `All` row shows the total for each column across all rows.
+
+Example:
+
+```text
+All      125000  100000  225000
+```
+
+For Delhi:
+
+```text
+100000 + 25000 + 0 = 125000
+```
+
+For Mumbai:
+
+```text
+50000 + 30000 + 20000 = 100000
+```
+
+Therefore, the `All` row shows the total sales for each City across all products.
+
+## 🧮 Understanding the Grand Total
+
+The value at the bottom-right of the Pivot Table represents the grand total of all values.
+
+```text
+225000
+```
+
+This can be calculated using either row totals:
+
+```text
+125000 + 100000 = 225000
+```
+
+or Product totals:
+
+```text
+150000 + 55000 + 20000 = 225000
+```
+
+## 🧠 Complete Logic
+
+```text
+margins=True
+        ↓
+Adds totals to the Pivot Table
+
+All column
+        ↓
+Total for each row
+
+All row
+        ↓
+Total for each column
+
+Bottom-right All
+        ↓
+Grand total of the dataset
+```
+
+## 💼 Data Analyst Use Cases
+
+Using `margins=True` is useful when an analyst needs a complete summary without manually calculating totals.
+
+It can provide:
+
+* Total sales for each Product
+* Total sales for each City
+* Overall total sales
+
+This helps compare categories while also seeing their contribution to the complete dataset.
+
+## 🧠 Beginner Interview Questions
+
+### Q1. What does `margins=True` do in a Pandas Pivot Table?
+
+It automatically adds totals to the Pivot Table.
+
+### Q2. What does the `All` column represent?
+
+It represents the total for each row across all columns.
+
+### Q3. What does the `All` row represent?
+
+It represents the total for each column across all rows.
+
+### Q4. What does the bottom-right `All` value represent?
+
+It represents the grand total of all values in the Pivot Table.
+
+### Q5. Why is `margins=True` useful?
+
+It automatically provides row totals, column totals, and the grand total without requiring manual calculations.
+
+## 📌 Key Takeaways
+
+* `margins=True` automatically adds totals to a Pivot Table.
+* The `All` column shows the total for each row.
+* The `All` row shows the total for each column.
+* The bottom-right `All` value represents the grand total.
+* This helps create a complete summary of grouped data efficiently.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
