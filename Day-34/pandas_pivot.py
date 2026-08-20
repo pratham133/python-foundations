@@ -176,3 +176,34 @@ pivot_table = sales.pivot_table(
 
 print("Product Sales with Totals:")
 print(pivot_table)
+
+
+# ==========================================
+# Program 102 - GroupBy vs Pivot Table
+# ==========================================
+
+sales_data = {
+    "Product": ["Laptop", "Phone", "Laptop", "Phone", "Tablet", "Laptop"],
+    "City": ["Mumbai", "Mumbai", "Delhi", "Delhi", "Mumbai", "Delhi"],
+    "Sales": [50000, 30000, 45000, 25000, 20000, 55000]
+}
+
+sales = pd.DataFrame(sales_data)
+
+
+grouped_sales = sales.groupby("Product")["Sales"].sum()
+
+print("GroupBy Result:")
+print(grouped_sales)
+
+print()
+
+
+pivot_sales = sales.pivot_table(
+    values="Sales",
+    index="Product",
+    aggfunc="sum"
+)
+
+print("Pivot Table Result:")
+print(pivot_sales)
