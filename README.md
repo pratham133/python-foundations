@@ -9376,6 +9376,189 @@ It allows proper date-based operations and time-based analysis.
 
 ---
 
+# 📆 Extracting Year, Month, and Day from Datetime
+
+After converting a date column into datetime format, Pandas allows individual date components to be extracted using the `.dt` accessor.
+
+This is useful for breaking a complete date into separate values that can be used for time-based analysis.
+
+## 📚 Using the `.dt` Accessor
+
+The `.dt` accessor is used to access and work with datetime values in a Pandas column.
+
+Example datetime value:
+
+```text
+2026-03-10
+```
+
+Using `.dt`, individual components can be extracted:
+
+```text
+.dt.year  → 2026
+.dt.month → 3
+.dt.day   → 10
+```
+
+## 🗓️ Extracting the Year
+
+```python
+sales["Year"] = sales["Order_Date"].dt.year
+```
+
+This extracts the year from each value in the `Order_Date` column and stores it in a new `Year` column.
+
+Example:
+
+```text
+2026-01-15 → 2026
+2026-02-20 → 2026
+2026-03-10 → 2026
+```
+
+## 📅 Extracting the Month
+
+```python
+sales["Month"] = sales["Order_Date"].dt.month
+```
+
+This extracts the month number from each datetime value and stores it in a new `Month` column.
+
+Example:
+
+```text
+2026-01-15 → 1
+2026-02-20 → 2
+2026-03-10 → 3
+```
+
+For a date such as:
+
+```text
+2026-12-25
+```
+
+`.dt.month` returns:
+
+```text
+12
+```
+
+## 📍 Extracting the Day
+
+```python
+sales["Day"] = sales["Order_Date"].dt.day
+```
+
+This extracts the day number from each datetime value and stores it in a new `Day` column.
+
+Example:
+
+```text
+2026-01-15 → 15
+2026-02-20 → 20
+2026-03-10 → 10
+```
+
+For:
+
+```text
+2026-12-25
+```
+
+`.dt.day` returns:
+
+```text
+25
+```
+
+## 🧩 Complete Example
+
+```python
+sales["Year"] = sales["Order_Date"].dt.year
+sales["Month"] = sales["Order_Date"].dt.month
+sales["Day"] = sales["Order_Date"].dt.day
+```
+
+This creates separate date component columns:
+
+```text
+Order_Date   Year   Month   Day
+2026-01-15   2026     1      15
+2026-02-20   2026     2      20
+2026-03-10   2026     3      10
+```
+
+## 🧠 Complete Logic
+
+```text
+Order_Date
+    ↓
+2026-03-10
+    ↓
+.dt.year  → 2026
+.dt.month → 3
+.dt.day   → 10
+    ↓
+Store extracted values in separate columns
+```
+
+## 💼 Data Analyst Use Cases
+
+Extracting date components makes datetime-based analysis easier.
+
+It can be used for:
+
+* Yearly sales analysis
+* Monthly sales analysis
+* Grouping data by year
+* Grouping data by month
+* Filtering records from a specific month
+* Analyzing activity on specific days
+
+Instead of working only with a complete date, analysts can analyze individual components based on the business requirement.
+
+## 🧠 Beginner Interview Questions
+
+### Q1. What is the `.dt` accessor used for?
+
+It is used to access and work with datetime values in a Pandas column.
+
+### Q2. What does `.dt.year` extract?
+
+It extracts the year from each datetime value.
+
+### Q3. What does `.dt.month` extract?
+
+It extracts the month number from each datetime value.
+
+### Q4. What does `.dt.day` extract?
+
+It extracts the day number from each datetime value.
+
+### Q5. What does `.dt.month` return for `2026-12-25`?
+
+`12`
+
+### Q6. What does `.dt.day` return for `2026-12-25`?
+
+`25`
+
+### Q7. Why is extracting date components useful for a Data Analyst?
+
+It makes datetime-based analysis, grouping, filtering, and time-based comparisons easier.
+
+## 📌 Key Takeaways
+
+* `.dt` is used to work with datetime values in Pandas.
+* `.dt.year` extracts the year.
+* `.dt.month` extracts the month number.
+* `.dt.day` extracts the day number.
+* Extracted values can be stored in separate DataFrame columns.
+* Date components are useful for monthly, yearly, and other datetime-based analysis.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
