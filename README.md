@@ -9559,6 +9559,181 @@ It makes datetime-based analysis, grouping, filtering, and time-based comparison
 
 ---
 
+# 📅 Extracting Month and Day Names from Datetime
+
+After converting a column into datetime format, Pandas can extract readable month and weekday names using `.dt.month_name()` and `.dt.day_name()`.
+
+These methods are useful when numeric date components need to be converted into readable values for analysis and reporting.
+
+## 📚 Extracting the Month Name
+
+```python
+sales["Month_Name"] = sales["Order_Date"].dt.month_name()
+```
+
+`.dt.month_name()` extracts the full month name from each datetime value and stores it in a new column.
+
+Example:
+
+```text
+2026-01-15 → January
+2026-02-20 → February
+2026-03-10 → March
+```
+
+This creates a readable `Month_Name` column:
+
+```text
+Month_Name
+January
+February
+March
+```
+
+## 📆 Extracting the Day Name
+
+```python
+sales["Day_Name"] = sales["Order_Date"].dt.day_name()
+```
+
+`.dt.day_name()` extracts the weekday name from each datetime value and stores it in a new column.
+
+Example:
+
+```text
+2026-01-15 → Thursday
+2026-02-20 → Friday
+2026-03-10 → Tuesday
+```
+
+This creates a `Day_Name` column containing the weekday names.
+
+## 🔄 Numeric Values vs Readable Names
+
+Pandas provides both numeric date components and readable names.
+
+```text
+2026-01-15
+     ↓
+.dt.month        → 1
+.dt.month_name() → January
+
+.dt.day          → 15
+.dt.day_name()   → Thursday
+```
+
+### Month Comparison
+
+```text
+.dt.month        → Returns the month number
+.dt.month_name() → Returns the month name
+```
+
+Example:
+
+```text
+2026-12-25
+     ↓
+.dt.month        → 12
+.dt.month_name() → December
+```
+
+### Day Comparison
+
+```text
+.dt.day        → Returns the day number
+.dt.day_name() → Returns the weekday name
+```
+
+Example:
+
+```text
+2026-12-25
+     ↓
+.dt.day        → 25
+.dt.day_name() → Friday
+```
+
+## 🧠 Complete Logic
+
+```text
+Datetime Column
+      ↓
+2026-01-15
+      ↓
+.dt.month_name() → January
+.dt.day_name()   → Thursday
+      ↓
+Store values in separate columns
+      ↓
+Readable datetime-based analysis
+```
+
+## 💼 Data Analyst Use Cases
+
+Month and day names are useful for creating readable reports and performing time-based analysis.
+
+Examples include:
+
+* Monthly sales analysis using month names
+* Finding which weekday has the highest number of orders
+* Analyzing customer activity by weekday
+* Comparing business activity across different days
+* Creating readable dashboards and summaries
+
+For example, instead of displaying:
+
+```text
+Month = 1
+```
+
+a report can display:
+
+```text
+Month = January
+```
+
+## 🧠 Beginner Interview Questions
+
+### Q1. What does `.dt.month_name()` extract?
+
+It extracts the full month name from a datetime value.
+
+### Q2. What does `.dt.day_name()` extract?
+
+It extracts the weekday name from a datetime value.
+
+### Q3. What is the difference between `.dt.month` and `.dt.month_name()`?
+
+`.dt.month` returns the month number, while `.dt.month_name()` returns the full month name.
+
+### Q4. What is the difference between `.dt.day` and `.dt.day_name()`?
+
+`.dt.day` returns the day number, while `.dt.day_name()` returns the weekday name.
+
+### Q5. What does `.dt.month_name()` return for `2026-12-25`?
+
+`December`
+
+### Q6. What does `.dt.day_name()` return for `2026-12-25`?
+
+`Friday`
+
+### Q7. Which method can help analyze orders by weekday?
+
+`.dt.day_name()`
+
+## 📌 Key Takeaways
+
+* `.dt.month_name()` extracts the full month name.
+* `.dt.day_name()` extracts the weekday name.
+* `.dt.month` returns a month number.
+* `.dt.day` returns a day number.
+* Month and weekday names improve readability in reports and dashboards.
+* These methods are useful for monthly and weekday-based analysis.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
