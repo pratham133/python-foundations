@@ -9220,6 +9220,162 @@ Because no record exists for that specific combination in the dataset.
 
 ---
 
+# 📅 Converting Text to Datetime
+
+Date columns are common in real-world datasets, including order dates, transaction dates, joining dates, and timestamps. Before performing date-based analysis, it is important to ensure that date values are stored in a proper datetime format.
+
+## 📚 Using `pd.to_datetime()`
+
+The `pd.to_datetime()` function converts date-like text into Pandas datetime values.
+
+```python
+sales["Order_Date"] = pd.to_datetime(sales["Order_Date"])
+```
+
+This process:
+
+```text
+Select the Order_Date column
+        ↓
+Convert text into datetime
+        ↓
+Store the converted values back
+        ↓
+Order_Date becomes a datetime column
+```
+
+## 🔍 Checking Data Types Before Conversion
+
+Before conversion, the `Order_Date` column contained date-like values stored as text.
+
+```text
+Order_ID      int64
+Order_Date      str
+Sales         int64
+```
+
+Although values such as:
+
+```text
+2026-01-15
+2026-02-20
+2026-03-10
+```
+
+look like dates, Pandas initially treated them as strings.
+
+## 🔄 Converting the Date Column
+
+```python
+sales["Order_Date"] = pd.to_datetime(sales["Order_Date"])
+```
+
+Breaking down the code:
+
+```python
+sales["Order_Date"]
+```
+
+Selects the `Order_Date` column from the `sales` DataFrame.
+
+```python
+pd.to_datetime(sales["Order_Date"])
+```
+
+Converts the date-like text values into proper datetime values.
+
+The converted result is then assigned back to:
+
+```python
+sales["Order_Date"]
+```
+
+This updates the original column in the DataFrame.
+
+## 📊 Checking Data Types After Conversion
+
+After conversion:
+
+```text
+Order_ID               int64
+Order_Date    datetime64[us]
+Sales                  int64
+```
+
+The important change is:
+
+```text
+Before conversion → str
+
+After conversion → datetime64[us]
+```
+
+The printed date values may look similar before and after conversion, but their underlying data type has changed.
+
+## 🧠 Complete Logic
+
+```text
+Date stored as text
+        ↓
+Data type = str
+        ↓
+pd.to_datetime()
+        ↓
+Converts text into datetime format
+        ↓
+Data type = datetime64[us]
+        ↓
+Ready for date-based analysis
+```
+
+## 💼 Data Analyst Use Cases
+
+Converting dates into datetime format prepares the data for time-based analysis, including:
+
+* Extracting years, months, and days
+* Filtering records by date ranges
+* Sorting data chronologically
+* Analyzing monthly sales
+* Analyzing yearly sales
+* Calculating differences between dates
+* Working with transaction and order timelines
+
+## 🧠 Beginner Interview Questions
+
+### Q1. What is `pd.to_datetime()` used for?
+
+It converts date-like text or values into Pandas datetime format.
+
+### Q2. What was the data type of `Order_Date` before conversion?
+
+`str`
+
+### Q3. What was the data type after conversion?
+
+`datetime64[us]`
+
+### Q4. What does `sales["Order_Date"]` do?
+
+It selects the `Order_Date` column from the `sales` DataFrame.
+
+### Q5. Why is the converted result assigned back to the original column?
+
+To update the original column with the converted datetime values.
+
+### Q6. Why is datetime conversion important?
+
+It allows proper date-based operations and time-based analysis.
+
+## 📌 Key Takeaways
+
+* Date-like values may initially be stored as strings.
+* Dates should be converted into datetime format before performing date-based analysis.
+* `pd.to_datetime()` converts text into Pandas datetime values.
+* The converted values should be assigned back to the DataFrame column.
+* A proper datetime column can be used for filtering, sorting, extracting date components, and time-based analysis.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
