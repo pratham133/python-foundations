@@ -10015,6 +10015,179 @@ It allows data analysis for a specific date, month, year, or date range.
 
 ---
 
+# 📅 Filtering Data Between Two Dates
+
+Pandas can filter records within a specific date range by combining a start-date condition and an end-date condition.
+
+This is useful when analysis needs to focus on a particular reporting period, month, quarter, campaign, or other time range.
+
+## 📚 Filtering with Two Date Conditions
+
+```python
+date_range_sales = sales[
+    (sales["Order_Date"] >= "2026-02-01") &
+    (sales["Order_Date"] <= "2026-03-31")
+]
+```
+
+This keeps only records where `Order_Date` is:
+
+* Greater than or equal to `2026-02-01`
+* Less than or equal to `2026-03-31`
+
+## 🔍 Understanding the Start Date Condition
+
+```python
+sales["Order_Date"] >= "2026-02-01"
+```
+
+This checks whether each date is on or after `2026-02-01`.
+
+Example:
+
+```text
+2026-01-15 → False
+2026-02-20 → True
+2026-03-10 → True
+2026-12-25 → True
+```
+
+## 🔍 Understanding the End Date Condition
+
+```python
+sales["Order_Date"] <= "2026-03-31"
+```
+
+This checks whether each date is on or before `2026-03-31`.
+
+Example:
+
+```text
+2026-01-15 → True
+2026-02-20 → True
+2026-03-10 → True
+2026-12-25 → False
+```
+
+## 🔗 Combining Conditions with `&`
+
+The `&` operator represents **AND** in Pandas Boolean filtering.
+
+```python
+(start_date_condition) & (end_date_condition)
+```
+
+For a row to remain in the filtered DataFrame, **both conditions must evaluate to `True`**.
+
+```text
+True  & True  → True  → Keep
+True  & False → False → Remove
+False & True  → False → Remove
+False & False → False → Remove
+```
+
+## 📊 Date Range Filtering Example
+
+| Order Date | >= 2026-02-01 | <= 2026-03-31 | Final Result |
+| ---------- | ------------- | ------------- | ------------ |
+| 2026-01-15 | False         | True          | Remove       |
+| 2026-02-20 | True          | True          | Keep         |
+| 2026-03-10 | True          | True          | Keep         |
+| 2026-12-25 | True          | False         | Remove       |
+
+The final filtered result contains:
+
+```text
+2026-02-20
+2026-03-10
+```
+
+## 🧠 Complete Logic
+
+```text
+Check start date condition
+        ↓
+Order_Date >= Start Date
+        ↓
+Check end date condition
+        ↓
+Order_Date <= End Date
+        ↓
+Combine both conditions using &
+        ↓
+Both conditions must be True
+        ↓
+Keep the row
+```
+
+## 💼 Data Analyst Use Cases
+
+Filtering between two dates is commonly used for:
+
+* Analyzing sales within a specific period
+* Filtering transactions for a reporting period
+* Analyzing quarterly performance
+* Finding orders placed during a campaign
+* Comparing activity across specific months
+* Filtering customer activity within a date range
+
+## 🧠 Beginner Interview Questions
+
+### Q1. How can you filter a DataFrame between two dates?
+
+By creating a start-date condition and an end-date condition, then combining them using `&`.
+
+### Q2. What does this condition check?
+
+```python
+sales["Order_Date"] >= "2026-02-01"
+```
+
+It checks whether each date is greater than or equal to `2026-02-01`.
+
+### Q3. What does this condition check?
+
+```python
+sales["Order_Date"] <= "2026-03-31"
+```
+
+It checks whether each date is less than or equal to `2026-03-31`.
+
+### Q4. What does `&` mean in Pandas filtering?
+
+It is the **AND operator**. A row is kept only when both conditions are `True`.
+
+### Q5. How must both conditions evaluate for a row to remain?
+
+Both conditions must evaluate to `True`.
+
+### Q6. Why was `2026-01-15` removed?
+
+It failed the start-date condition because it is earlier than `2026-02-01`.
+
+### Q7. Why was `2026-12-25` removed?
+
+It failed the end-date condition because it is later than `2026-03-31`.
+
+### Q8. Which dates remained after filtering?
+
+`2026-02-20` and `2026-03-10`.
+
+### Q9. Why is filtering between two dates useful for a Data Analyst?
+
+It allows analysts to focus on data from a specific period, such as a month, quarter, reporting period, campaign, or custom date range.
+
+## 📌 Key Takeaways
+
+* Two conditions can be used to filter data within a date range.
+* `>=` defines the start-date boundary.
+* `<=` defines the end-date boundary.
+* `&` combines both conditions using AND logic.
+* Both conditions must be `True` for a row to remain.
+* Date-range filtering is widely used for time-based data analysis.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
