@@ -71,3 +71,16 @@ sales["Day_Of_Week"] = sales["Order_Date"].dt.dayofweek
 
 print("Sales Data with Day of Week Number:")
 print(sales)
+
+
+# ==========================================
+# Filtering Data Using Datetime
+# ==========================================
+
+filtered_sales= sales[
+    sales["Order_Date"] >= "2026-02-01"
+]
+
+
+print("Orders From February 2026 Onwards:")
+print(filtered_sales)
