@@ -9734,6 +9734,154 @@ It extracts the weekday name from a datetime value.
 
 ---
 
+# 📊 Extracting Day of Week Numbers from Datetime
+
+Pandas provides `.dt.dayofweek` to extract the weekday from a datetime value as a numeric value.
+
+This is useful for grouping, sorting, and analyzing data based on the day of the week.
+
+## 📚 Using `.dt.dayofweek`
+
+```python
+sales["Day_Of_Week"] = sales["Order_Date"].dt.dayofweek
+```
+
+This extracts the weekday number from each value in the `Order_Date` column and stores it in a new `Day_Of_Week` column.
+
+## 🔢 Weekday Number Mapping
+
+Pandas uses the following weekday numbering:
+
+```text
+Monday    → 0
+Tuesday   → 1
+Wednesday → 2
+Thursday  → 3
+Friday    → 4
+Saturday  → 5
+Sunday    → 6
+```
+
+## 🧩 Example
+
+```text
+2026-01-15 → Thursday → 3
+2026-02-20 → Friday   → 4
+2026-03-10 → Tuesday  → 1
+2026-12-25 → Friday   → 4
+```
+
+## 🔄 Day Components Comparison
+
+Different Pandas datetime methods provide different information about a date.
+
+```text
+2026-12-25
+     ↓
+.dt.day        → 25
+.dt.day_name() → Friday
+.dt.dayofweek  → 4
+```
+
+### `.dt.day`
+
+Returns the day number within the month.
+
+```text
+2026-12-25 → 25
+```
+
+### `.dt.day_name()`
+
+Returns the weekday name.
+
+```text
+2026-12-25 → Friday
+```
+
+### `.dt.dayofweek`
+
+Returns the weekday as a numeric value.
+
+```text
+2026-12-25 → 4
+```
+
+## 🧠 Complete Logic
+
+```text
+Datetime Column
+      ↓
+2026-01-15
+      ↓
+Thursday
+      ↓
+.dt.dayofweek
+      ↓
+3
+      ↓
+Store the value in Day_Of_Week
+```
+
+## 💼 Data Analyst Use Cases
+
+Numeric weekday values are useful for:
+
+* Grouping sales or orders by weekday
+* Sorting weekdays in chronological order
+* Finding the busiest day of the week
+* Analyzing customer activity by weekday
+* Comparing sales or transactions across different weekdays
+
+For example:
+
+```text
+Which weekday has the highest number of orders?
+```
+
+The `Day_Of_Week` values can be used for further grouping, sorting, and analysis.
+
+## 🧠 Beginner Interview Questions
+
+### Q1. What does `.dt.dayofweek` return?
+
+It returns the weekday as a numeric value.
+
+### Q2. What number represents Monday?
+
+`0`
+
+### Q3. What number represents Friday?
+
+`4`
+
+### Q4. What number represents Sunday?
+
+`6`
+
+### Q5. What is the difference between `.dt.day` and `.dt.dayofweek`?
+
+`.dt.day` returns the day number within the month, while `.dt.dayofweek` returns the numeric weekday.
+
+### Q6. What is the difference between `.dt.day_name()` and `.dt.dayofweek`?
+
+`.dt.day_name()` returns the weekday name, while `.dt.dayofweek` returns the numeric weekday.
+
+### Q7. Why are numeric weekday values useful in data analysis?
+
+Numeric weekday values are useful for **grouping, sorting, and analyzing data by weekdays**, such as finding which weekday has the highest sales or number of orders.
+
+## 📌 Key Takeaways
+
+* `.dt.dayofweek` extracts the weekday as a numeric value.
+* Monday starts at `0` and Sunday ends at `6`.
+* `.dt.day` returns the day number within the month.
+* `.dt.day_name()` returns the weekday name.
+* `.dt.dayofweek` returns the weekday number.
+* Numeric weekday values are useful for grouping, sorting, and analyzing weekday-based data.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
