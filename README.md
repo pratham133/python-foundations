@@ -10188,6 +10188,187 @@ It allows analysts to focus on data from a specific period, such as a month, qua
 
 ---
 
+# 🔎 Filtering Data Within a Range Using `.between()`
+
+Pandas provides the `.between()` method to check whether values fall within a specified range.
+
+It offers a clean and readable alternative to writing two separate comparison conditions when filtering a simple range.
+
+## 📚 Using `.between()` with Datetime Values
+
+```python
+between_sales = sales[
+    sales["Order_Date"].between("2026-02-01", "2026-03-31")
+]
+```
+
+The two values passed to `.between()` define the range:
+
+```text
+Start Date → 2026-02-01
+End Date   → 2026-03-31
+```
+
+Conceptually, the condition works like:
+
+```text
+2026-02-01 <= Order_Date <= 2026-03-31
+```
+
+## 🧠 How `.between()` Works
+
+Pandas checks every value in the selected column and determines whether it falls within the specified range.
+
+Example:
+
+```text
+2026-01-15 → False
+2026-02-20 → True
+2026-03-10 → True
+2026-12-25 → False
+```
+
+This conceptually creates a Boolean result for each row:
+
+```text
+False
+True
+True
+False
+```
+
+When used inside:
+
+```python
+sales[...]
+```
+
+Pandas keeps only the rows where the result is `True`.
+
+## 📊 Filtered Result
+
+For the date range:
+
+```text
+2026-02-01 to 2026-03-31
+```
+
+The following dates remain:
+
+```text
+2026-02-20
+2026-03-10
+```
+
+The dates outside the specified range are excluded.
+
+## 🔄 Two Conditions with `&` vs `.between()`
+
+### Using Two Conditions
+
+```python
+sales[
+    (sales["Order_Date"] >= "2026-02-01") &
+    (sales["Order_Date"] <= "2026-03-31")
+]
+```
+
+This method provides more explicit control over each condition.
+
+### Using `.between()`
+
+```python
+sales[
+    sales["Order_Date"].between("2026-02-01", "2026-03-31")
+]
+```
+
+This is cleaner and easier to read when filtering a simple range.
+
+## 🧩 Comparison
+
+```text
+Simple range
+    ↓
+.between()
+    ↓
+Cleaner and more readable
+
+Separate or more complex conditions
+    ↓
+Comparison operators with &, |, and other conditions
+    ↓
+More explicit control
+```
+
+## 📌 Boundary Behavior
+
+By default, `.between()` includes both boundary values.
+
+```text
+2026-02-01 → Included
+2026-03-31 → Included
+```
+
+Therefore, values equal to the start or end of the specified range are also considered part of the range.
+
+## 💼 Data Analyst Use Cases
+
+`.between()` can be used to filter data within a range, including:
+
+* Sales between two dates
+* Orders within a reporting period
+* Transactions during a specific campaign
+* Prices within a selected range
+* Scores between two values
+* Customer activity during a specific period
+
+## 🧠 Beginner Interview Questions
+
+### Q1. What does `.between()` do in Pandas?
+
+It checks whether values fall within a specified start and end range.
+
+### Q2. What values are passed to `.between()` in a range filter?
+
+The start value and the end value.
+
+### Q3. Does `.between()` include both boundary values by default?
+
+Yes. Both the start and end boundaries are included by default.
+
+### Q4. What type of result does `.between()` conceptually create for each row?
+
+It creates a Boolean result: `True` or `False`.
+
+### Q5. Which dates remained when filtering between `2026-02-01` and `2026-03-31`?
+
+`2026-02-20` and `2026-03-10`.
+
+### Q6. What is the difference between using two conditions with `&` and using `.between()`?
+
+Two conditions with `&` provide more explicit control over each condition, while `.between()` provides cleaner and more readable code for filtering a simple range.
+
+### Q7. Which method is cleaner for filtering a simple range?
+
+`.between()`.
+
+### Q8. When should comparison operators with `&` be preferred?
+
+When separate conditions or more complex filtering logic are required.
+
+## 📌 Key Takeaways
+
+* `.between()` checks whether values fall within a specified range.
+* It can be used with datetime values and other comparable data.
+* It conceptually creates `True` or `False` results for each value.
+* `True` values are kept when used for Boolean filtering.
+* Both boundaries are included by default.
+* `.between()` is cleaner for filtering simple ranges.
+* Comparison operators with `&` provide more control for separate or complex conditions.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
