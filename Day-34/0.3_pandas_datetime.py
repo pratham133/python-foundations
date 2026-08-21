@@ -60,3 +60,14 @@ sales["Day_Name"] = sales["Order_Date"].dt.day_name()
 
 print("Sales Data with Month and Day Names:")
 print(sales)
+
+
+# ==========================================
+# Extracting Day of Week Number from Datetime
+# ==========================================
+
+sales["Day_Of_Week"] = sales["Order_Date"].dt.dayofweek
+
+
+print("Sales Data with Day of Week Number:")
+print(sales)
