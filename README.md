@@ -9882,6 +9882,139 @@ Numeric weekday values are useful for **grouping, sorting, and analyzing data by
 
 ---
 
+# 🔎 Filtering Data Using Datetime
+
+After converting a date column into datetime format, Pandas can filter records based on specific date conditions.
+
+This is useful when analysis needs to focus on a particular date, month, year, or period.
+
+## 📚 Filtering with a Date Condition
+
+```python
+filtered_sales = sales[
+    sales["Order_Date"] >= "2026-02-01"
+]
+```
+
+This checks every value in the `Order_Date` column and keeps only the records where the date is greater than or equal to `2026-02-01`.
+
+## 🧠 Understanding the Condition
+
+```python
+sales["Order_Date"] >= "2026-02-01"
+```
+
+Pandas compares every date with the specified date.
+
+Example:
+
+```text
+2026-01-15 >= 2026-02-01 → False
+2026-02-20 >= 2026-02-01 → True
+2026-03-10 >= 2026-02-01 → True
+2026-12-25 >= 2026-02-01 → True
+```
+
+This creates a Boolean mask:
+
+```text
+False
+True
+True
+True
+```
+
+## 🔄 How Boolean Filtering Works
+
+```text
+Check each Order_Date
+        ↓
+Compare it with the specified date
+        ↓
+Create a True / False Boolean mask
+        ↓
+True  → Keep the row
+False → Remove the row
+        ↓
+Return the filtered DataFrame
+```
+
+Only rows that satisfy the condition are kept.
+
+## 📊 Filtered Result
+
+For the condition:
+
+```text
+Order_Date >= 2026-02-01
+```
+
+The following record is excluded:
+
+```text
+2026-01-15
+```
+
+The following records remain:
+
+```text
+2026-02-20
+2026-03-10
+2026-12-25
+```
+
+## 💼 Data Analyst Use Cases
+
+Datetime filtering is useful for analyzing data from a specific period.
+
+Examples include:
+
+* Orders after a specific date
+* Sales before a deadline
+* Transactions from a specific month
+* Records from a particular year
+* Customer activity during a specific period
+* Analysis within a specific date range
+
+It allows analysts to focus only on the records relevant to the required time period.
+
+## 🧠 Beginner Interview Questions
+
+### Q1. What does `>= "2026-02-01"` mean in a datetime filtering condition?
+
+It keeps dates that are greater than or equal to `2026-02-01`.
+
+### Q2. Why was the order dated `2026-01-15` removed?
+
+It did not satisfy the filtering condition because it is earlier than `2026-02-01`.
+
+### Q3. What type of result does a filtering condition create for each row?
+
+It creates a Boolean result: `True` or `False`.
+
+### Q4. Which rows does Pandas keep during Boolean filtering?
+
+Pandas keeps the rows where the condition is `True`.
+
+### Q5. How does this filtering process work?
+
+Pandas checks the condition for every value, creates a True/False Boolean mask, and keeps only the rows where the condition is `True`.
+
+### Q6. Why is datetime filtering useful for a Data Analyst?
+
+It allows data analysis for a specific date, month, year, or date range.
+
+## 📌 Key Takeaways
+
+* Datetime columns can be filtered using comparison operators.
+* `>=` means greater than or equal to.
+* Pandas checks the condition for every row.
+* The comparison creates a Boolean mask containing `True` and `False`.
+* `True` rows are kept, while `False` rows are excluded.
+* Datetime filtering is useful for analyzing specific time periods.
+
+---
+
 ## Goal 🎯
 
 Building strong Python fundamentals for:
