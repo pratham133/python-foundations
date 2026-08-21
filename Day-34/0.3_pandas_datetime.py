@@ -84,3 +84,18 @@ filtered_sales= sales[
 
 print("Orders From February 2026 Onwards:")
 print(filtered_sales)
+
+
+# ==========================================
+# Filtering Data Between Two Dates
+# ==========================================
+
+date_range_sales = sales[
+    (sales["Order_Date"] >= "2026-02-01") &
+    (sales["Order_Date"] <= "2026-03-31")
+]
+
+
+
+print("Sales Between February and March 2026:")
+print(date_range_sales)
