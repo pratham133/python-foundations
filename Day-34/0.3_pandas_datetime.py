@@ -99,3 +99,16 @@ date_range_sales = sales[
 
 print("Sales Between February and March 2026:")
 print(date_range_sales)
+
+
+# ==========================================
+# Filtering Datetime Values Using .between()
+# ==========================================
+
+between_sales = sales[
+    sales["Order_Date"].between("2026-02-01", "2026-03-31")
+]
+
+
+print("Sales Between February and March 2026:")
+print(between_sales)
